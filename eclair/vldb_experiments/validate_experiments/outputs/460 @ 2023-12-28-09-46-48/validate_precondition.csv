@@ -1,0 +1,55 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Price"" text field is visible.",The 'Price' text field is visible under the SKU field with a value of $69.00.,True,"```json
+{
+    ""rationale"": ""The 'Price' text field is visible under the SKU field with a value of $69.00."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Price"" text field is visible.",The price text field is visible in the screenshot with a value of '59.00' in it.,True,"```json
+{
+    ""rationale"": ""The price text field is visible in the screenshot with a value of '59.00' in it."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Price"" text field is visible.",The 'Price' text field is visible on the screen. It is located under the 'SKU' text field and contains the value '$69.00'.,True,"```json
+{
+    ""rationale"": ""The 'Price' text field is visible on the screen. It is located under the 'SKU' text field and contains the value '$69.00'."",
+    ""is_satisfied"": true
+}
+```",False
+3,4,5,2.png,True,"The ""Price"" text field is visible.","The 'Price' text field is clearly visible on the screen within the product details form, with a value of $65.00 entered into the field.",True,"```json
+{
+    ""rationale"": ""The 'Price' text field is clearly visible on the screen within the product details form, with a value of $65.00 entered into the field."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""Price"" text field is visible.","The 'Price' text field is visible in the screenshot, showing a price of $69.00.",True,"```json
+{
+    ""rationale"": ""The 'Price' text field is visible in the screenshot, showing a price of $69.00."",
+    ""is_satisfied"": true
+}
+```",False
+5,6,7,3.png,True,"The ""Price"" text field is focused AND empty.","The 'Price' text field is focused as indicated by the blinking cursor inside the field. However, the field is not empty because it contains the value '65.00'.",False,"```json
+{
+    ""rationale"": ""The 'Price' text field is focused as indicated by the blinking cursor inside the field. However, the field is not empty because it contains the value '65.00'."",
+    ""is_satisfied"": false
+}
+```",False
+6,2,7,1.png,False,"The ""Price"" text field is focused AND empty.","The 'Price' text field is focused as indicated by the blinking cursor within the field. Also, the field appears to be empty because there is no visible numeric value entered in it.",True,"```json
+{
+    ""rationale"": ""The 'Price' text field is focused as indicated by the blinking cursor within the field. Also, the field appears to be empty because there is no visible numeric value entered in it."",
+    ""is_satisfied"": true
+}
+```",False
+7,8,9,4.png,True,"The orange ""Save"" button is visible.",The orange 'Save' button is clearly visible in the screenshot on the top right corner of the UI.,True,"```json
+{
+    ""rationale"": ""The orange 'Save' button is clearly visible in the screenshot on the top right corner of the UI."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The orange ""Save"" button is visible.",The orange 'Save' button is visible in the top-right corner of the UI.,True,"```json
+{
+    ""rationale"": ""The orange 'Save' button is visible in the top-right corner of the UI."",
+    ""is_satisfied"": true
+}
+```",False

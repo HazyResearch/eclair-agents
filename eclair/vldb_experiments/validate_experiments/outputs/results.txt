@@ -1,0 +1,20 @@
+==== validate_actuation ====
+Accuracy: 0.8920454545454546
+Sensitivity: 0.8532423208191127
+Specificity: 0.9404255319148936
+Total: 528 | GT=True: 293 | GT=False: 235
+==== validate_task_completion ====
+Accuracy: 0.9333333333333333
+Sensitivity: 0.84375
+Specificity: 0.9659090909090909
+Total: 120 | GT=True: 32 | GT=False: 88
+==== validate_precondition ====
+Accuracy: 0.8353413654618473
+Sensitivity: 0.825
+Specificity: 0.8486238532110092
+Total: 498 | GT=True: 280 | GT=False: 218
+==== validate_task_trajectory_valid ====
+Accuracy: 0.7857142857142857
+Sensitivity: 0.36363636363636365
+Specificity: 0.9354838709677419
+Total: 210 | GT=True: 55 | GT=False: 155

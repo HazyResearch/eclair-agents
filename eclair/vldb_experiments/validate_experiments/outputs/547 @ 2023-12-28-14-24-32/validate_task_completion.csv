@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png']",The workflow was successfully completed. The screenshots and actions show that a new color option 'Brown' was added to the size 'S' of the Phoebe Zipper Sweatshirt product in the web application. The final screenshot indicates that the product was saved with the new configurations.,True,"```json
+{
+    ""rationale"": ""The workflow was successfully completed. The screenshots and actions show that a new color option 'Brown' was added to the size 'S' of the Phoebe Zipper Sweatshirt product in the web application. The final screenshot indicates that the product was saved with the new configurations."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not completed successfully. The last action taken was clicking on the search field, but there was no search conducted for the 'Phoebe Zipper Sweatshirt' nor was there any editing of the product to add a new color option 'brown' to the size 'S'. The screenshots do not show the completion of the required steps in the workflow.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The last action taken was clicking on the search field, but there was no search conducted for the 'Phoebe Zipper Sweatshirt' nor was there any editing of the product to add a new color option 'brown' to the size 'S'. The screenshots do not show the completion of the required steps in the workflow."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,"['0.png', '1.png']","The workflow has not been completed. The screenshots show that the user has accessed the 'CATALOG' section of the web application, but there is no evidence that the user has added a new color option 'brown' to the size 'S' of the Phoebe Zipper Sweatshirt. The screenshots do not show the product details or the process of adding a new color option.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed. The screenshots show that the user has accessed the 'CATALOG' section of the web application, but there is no evidence that the user has added a new color option 'brown' to the size 'S' of the Phoebe Zipper Sweatshirt. The screenshots do not show the product details or the process of adding a new color option."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was not completed successfully. The last screenshot shows the product editing page for the Phoebe Zipper Sweatshirt, but there is no evidence in the screenshots that a new color option 'brown' was added to the size 'S'. The workflow required adding a specific color to a specific size, and the screenshots do not demonstrate this action being taken.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The last screenshot shows the product editing page for the Phoebe Zipper Sweatshirt, but there is no evidence in the screenshots that a new color option 'brown' was added to the size 'S'. The workflow required adding a specific color to a specific size, and the screenshots do not demonstrate this action being taken."",
+    ""was_completed"": false
+}
+```",True,truncate

@@ -1,0 +1,52 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Catalog', then 'Products', searched for 'Taurus Elements Shell', clicked the search icon, scrolled to find the configurable product, clicked 'Edit', changed the stock status to 'Out of Stock', and saved the changes.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Catalog', then 'Products', searched for 'Taurus Elements Shell', clicked the search icon, scrolled to find the configurable product, clicked 'Edit', changed the stock status to 'Out of Stock', and saved the changes."",
+    ""was_acurate"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png']","The workflow was not followed accurately. The user did not click on the 'Products' option in the popup menu after clicking 'Catalog', instead, they directly typed the product name into the search bar. Additionally, the user did not scroll down to find the product with the 'Configurable Product' type; they clicked on the 'Edit' link of the configurable product without scrolling, which was not visible in the provided screenshots. The user also did not click on the dropdown next to the 'Stock Status' label as instructed; instead, they clicked on a dropdown labeled 'notice-K7QV4MN', which is not mentioned in the guide.","[2, 5, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the 'Products' option in the popup menu after clicking 'Catalog', instead, they directly typed the product name into the search bar. Additionally, the user did not scroll down to find the product with the 'Configurable Product' type; they clicked on the 'Edit' link of the configurable product without scrolling, which was not visible in the provided screenshots. The user also did not click on the dropdown next to the 'Stock Status' label as instructed; instead, they clicked on a dropdown labeled 'notice-K7QV4MN', which is not mentioned in the guide."",
+    ""inaccurate_steps"": [
+        2,
+        5,
+        8
+    ],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow was not accurately followed. The user did not scroll down to find the product with the 'Configurable Product' type as instructed in step 5. Instead, the user clicked on the 'Edit' link for the 'Configurable Product' type without scrolling, which was visible without the need to scroll. Additionally, the user clicked on a dropdown labeled 'notice-K7QV4MN' instead of the dropdown next to the 'Stock Status' label as instructed in step 8.","[5, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not accurately followed. The user did not scroll down to find the product with the 'Configurable Product' type as instructed in step 5. Instead, the user clicked on the 'Edit' link for the 'Configurable Product' type without scrolling, which was visible without the need to scroll. Additionally, the user clicked on a dropdown labeled 'notice-K7QV4MN' instead of the dropdown next to the 'Stock Status' label as instructed in step 8."",
+    ""inaccurate_steps"": [5, 8],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png']","The workflow did not start with clicking on the 'Catalog' option in the left sidebar as indicated in step 1. Instead, the workflow began at a later point in the process. Additionally, the workflow did not include clicking on the 'Products' option as indicated in step 2. The first screenshot provided already shows the product search page, indicating that steps 1 and 2 were skipped or not shown. The rest of the steps from 3 to 10 were followed correctly, including searching for the product, editing the stock status, and saving the changes.","[1, 2]",False,"```json
+{
+    ""rationale"": ""The workflow did not start with clicking on the 'Catalog' option in the left sidebar as indicated in step 1. Instead, the workflow began at a later point in the process. Additionally, the workflow did not include clicking on the 'Products' option as indicated in step 2. The first screenshot provided already shows the product search page, indicating that steps 1 and 2 were skipped or not shown. The rest of the steps from 3 to 10 were followed correctly, including searching for the product, editing the stock status, and saving the changes."",
+    ""inaccurate_steps"": [1, 2],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '4.png', '2.png', '3.png', '1.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png']","The workflow did not accurately follow the Step-by-Step Guide. The user did not click on the magnifying glass to search after typing 'Taurus Elements Shell' in the search bar, as specified in step 4. Instead, they clicked on the 'Products' link again. Additionally, the user did not scroll down to find the product with 'Configurable Product' type as mentioned in step 5. They directly clicked on the 'Edit' link of the configurable product without scrolling, which was not shown in the screenshots. Furthermore, the user did not perform step 7, which is to ensure that the product page says 'Taurus' and to scroll down to the 'Stock Status'. Instead, they clicked on a dropdown that was incorrectly labeled as 'notice-K7QV4MN' instead of 'Stock Status'.","[4, 5, 7]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The user did not click on the magnifying glass to search after typing 'Taurus Elements Shell' in the search bar, as specified in step 4. Instead, they clicked on the 'Products' link again. Additionally, the user did not scroll down to find the product with 'Configurable Product' type as mentioned in step 5. They directly clicked on the 'Edit' link of the configurable product without scrolling, which was not shown in the screenshots. Furthermore, the user did not perform step 7, which is to ensure that the product page says 'Taurus' and to scroll down to the 'Stock Status'. Instead, they clicked on a dropdown that was incorrectly labeled as 'notice-K7QV4MN' instead of 'Stock Status'."",
+    ""inaccurate_steps"": [4, 5, 7],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '8.png', '7.png', '9.png', '10.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Catalog', then 'Products', searched for 'Taurus Elements Shell', clicked the search icon, scrolled to find the configurable product, clicked 'Edit', changed the stock status to 'Out of Stock', and saved the changes.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Catalog', then 'Products', searched for 'Taurus Elements Shell', clicked the search icon, scrolled to find the configurable product, clicked 'Edit', changed the stock status to 'Out of Stock', and saved the changes."",
+    ""was_acurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '7.png', '6.png', '8.png', '9.png', '10.png']","The workflow was not followed accurately. The user did not scroll down to find the product with the 'Configurable Product' type as instructed in step 5. Instead, the user clicked on the 'Edit' link for a product that was not confirmed to be the configurable type. Additionally, the user did not perform step 7, which is to confirm that the product page says 'Taurus'.","[5, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not scroll down to find the product with the 'Configurable Product' type as instructed in step 5. Instead, the user clicked on the 'Edit' link for a product that was not confirmed to be the configurable type. Additionally, the user did not perform step 7, which is to confirm that the product page says 'Taurus'."",
+    ""inaccurate_steps"": [5, 7],
+    ""was_accurate"": false
+}
+```",True,shuffle

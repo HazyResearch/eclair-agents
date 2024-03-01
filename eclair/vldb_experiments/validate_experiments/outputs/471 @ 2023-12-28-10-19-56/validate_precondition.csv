@@ -1,0 +1,89 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Sales"" link is visible.","The 'Sales' link is not visible directly on the current state of the UI in the screenshot. The dashboard displayed is from a Magento Admin panel, and usual links such as 'Sales' are often located in a horizontal navigation menu near the top of the page or under a vertical navigation menu on the left-hand side. However, neither is showing a 'Sales' link in this screenshot.",False,"```json
+{
+    ""rationale"": ""The 'Sales' link is not visible directly on the current state of the UI in the screenshot. The dashboard displayed is from a Magento Admin panel, and usual links such as 'Sales' are often located in a horizontal navigation menu near the top of the page or under a vertical navigation menu on the left-hand side. However, neither is showing a 'Sales' link in this screenshot."",
+    ""is_satisfied"": false
+}
+```",False
+1,2,3,1.png,True,"The ""Orders"" option is visible.",The 'Orders' option is visible in the sidebar menu under the 'Sales' section of the Magento Admin dashboard.,True,"```json
+{
+    ""rationale"": ""The 'Orders' option is visible in the sidebar menu under the 'Sales' section of the Magento Admin dashboard."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Orders"" option is visible.",The 'Orders' option is not visible in the current screenshot of the Magento Admin dashboard.,False,"```json
+{
+    ""rationale"": ""The 'Orders' option is not visible in the current screenshot of the Magento Admin dashboard."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"The ""Search by keyword"" searchbar is visible.","The 'Search by keyword' searchbar is visible in the upper portion of the Orders screen, to the left of the 'Filters' button.",True,"```json
+{
+    ""rationale"": ""The 'Search by keyword' searchbar is visible in the upper portion of the Orders screen, to the left of the 'Filters' button."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""Search by keyword"" searchbar is visible.",There is no 'Search by keyword' searchbar visible in the current UI shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""There is no 'Search by keyword' searchbar visible in the current UI shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"The ""Search by keyword"" searchbar is focused AND empty.","The searchbar labeled 'Search by keyword' is reflecting the focused state due to its highlighted border and the insertion cursor blinking within it. However, it is not empty as it contains the text 'Hollister'.",False,"```json
+{
+    ""rationale"": ""The searchbar labeled 'Search by keyword' is reflecting the focused state due to its highlighted border and the insertion cursor blinking within it. However, it is not empty as it contains the text 'Hollister'."",
+    ""is_satisfied"": false
+}
+```",False
+6,2,7,1.png,False,"The ""Search by keyword"" searchbar is focused AND empty.","The screenshot provided does not show a 'Search by keyword' search bar. The current focus of the UI cannot be determined from a screenshot, as focus is a state that requires interaction or observation in real-time.",False,"{
+    ""rationale"": ""The screenshot provided does not show a 'Search by keyword' search bar. The current focus of the UI cannot be determined from a screenshot, as focus is a state that requires interaction or observation in real-time."",
+    ""is_satisfied"": false
+}",True
+7,8,9,4.png,True,"The magnifying glass on the right of the ""Search by keyword"" searchbar is visible.","In the screenshot, the magnifying glass icon is visible on the right side of the 'Search by keyword' searchbar located at the top of the Orders page.",True,"```json
+{
+    ""rationale"": ""In the screenshot, the magnifying glass icon is visible on the right side of the 'Search by keyword' searchbar located at the top of the Orders page."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The magnifying glass on the right of the ""Search by keyword"" searchbar is visible.",The 'Search by keyword' searchbar in the screenshot does not have a magnifying glass icon visible on the right side of the searchbar.,False,"```json
+{
+    ""rationale"": ""The 'Search by keyword' searchbar in the screenshot does not have a magnifying glass icon visible on the right side of the searchbar."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"The row corresponding to the order with ID ""000000307"" is visible.",The order with ID '000000307' is clearly visible in the single row displayed on the Orders page.,True,"```json
+{
+    ""rationale"": ""The order with ID '000000307' is clearly visible in the single row displayed on the Orders page."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"The row corresponding to the order with ID ""000000307"" is visible.",The row corresponding to the order with ID '000000307' is visible and is the second row from the top in the Orders table displayed on the current UI screen.,True,"```json
+{
+    ""rationale"": ""The row corresponding to the order with ID '000000307' is visible and is the second row from the top in the Orders table displayed on the current UI screen."",
+    ""is_satisfied"": true
+}
+```",False
+11,12,13,6.png,True,"The ""Actions"" dropdown menu is visible.",The 'Actions' dropdown menu is visible to the left of the '1 records found (1 selected)' text on the Orders page.,True,"```json
+{
+    ""rationale"": ""The 'Actions' dropdown menu is visible to the left of the '1 records found (1 selected)' text on the Orders page."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"The ""Actions"" dropdown menu is visible.","The 'Actions' dropdown menu is visible on the left side, just above the list of records underneath the 'Hollister' search bar entry.",True,"```json
+{
+    ""rationale"": ""The 'Actions' dropdown menu is visible on the left side, just above the list of records underneath the 'Hollister' search bar entry."",
+    ""is_satisfied"": true
+}
+```",False
+13,14,15,7.png,True,"The ""Cancel"" option is visible.",The 'Cancel' option is visible in the Actions dropdown menu.,True,"```json
+{
+    ""rationale"": ""The 'Cancel' option is visible in the Actions dropdown menu."",
+    ""is_satisfied"": true
+}
+```",True
+14,6,15,3.png,False,"The ""Cancel"" option is visible.",The 'Cancel' option is not visible in the current state of the UI shown in the screenshot. The actions available for the orders are only 'View' under the 'Action' column.,False,"```json
+{
+    ""rationale"": ""The 'Cancel' option is not visible in the current state of the UI shown in the screenshot. The actions available for the orders are only 'View' under the 'Action' column."",
+    ""is_satisfied"": false
+}
+```",True

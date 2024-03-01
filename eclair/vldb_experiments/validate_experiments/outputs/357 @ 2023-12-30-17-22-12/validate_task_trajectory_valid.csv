@@ -1,0 +1,50 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png']","The user did not follow the Step-by-Step Guide accurately. The first step required clicking on the 'Merge Requests' icon on the top navigation bar, but the user clicked on the 'merge requests' text in the notifications area instead. The second step was correctly followed by clicking on 'Assigned to you'. The third step was to report the number of merge requests requiring review, which should be the number next to 'Open', but the user did not report this number.",[1],False,"```json
+{
+    ""rationale"": ""The user did not follow the Step-by-Step Guide accurately. The first step required clicking on the 'Merge Requests' icon on the top navigation bar, but the user clicked on the 'merge requests' text in the notifications area instead. The second step was correctly followed by clicking on 'Assigned to you'. The third step was to report the number of merge requests requiring review, which should be the number next to 'Open', but the user did not report this number."",
+    ""inaccurate_steps"": [1],
+    ""was_accurate"": false
+}
+```",False,true
+1,False,['2.png'],"The provided screenshot shows the merge requests page with the 'Assigned to you' filter already applied, indicating that the user has clicked on the 'Assigned to you' link. However, the first step of the guide, which instructs the user to click on the 'Merge Requests' icon on the top navigation bar, is not shown in the screenshots. Therefore, we cannot confirm whether the user accurately followed the first step of the guide.",[1],False,"```json
+{
+    ""rationale"": ""The provided screenshot shows the merge requests page with the 'Assigned to you' filter already applied, indicating that the user has clicked on the 'Assigned to you' link. However, the first step of the guide, which instructs the user to click on the 'Merge Requests' icon on the top navigation bar, is not shown in the screenshots. Therefore, we cannot confirm whether the user accurately followed the first step of the guide."",
+    ""inaccurate_steps"": [1],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,['2.png'],"The provided screenshot shows the merge requests page with the 'Assigned to you' filter already applied, indicating that the user has clicked on the 'Assigned to you' link. However, the first step of the guide, which is to click on the 'Merge Requests' icon on the top navigation bar, is not shown in any screenshot. Therefore, we cannot confirm that the user started by clicking the 'Merge Requests' icon as instructed in the guide.",[1],False,"```json
+{
+    ""rationale"": ""The provided screenshot shows the merge requests page with the 'Assigned to you' filter already applied, indicating that the user has clicked on the 'Assigned to you' link. However, the first step of the guide, which is to click on the 'Merge Requests' icon on the top navigation bar, is not shown in any screenshot. Therefore, we cannot confirm that the user started by clicking the 'Merge Requests' icon as instructed in the guide."",
+    ""inaccurate_steps"": [1],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,['0.png'],"The provided screenshot does not show any action taken to follow the Step-by-Step Guide. The screenshot shows the 'Projects' page, and there is no indication that the 'Merge Requests' icon was clicked or that any dropdown menu was interacted with. Therefore, it cannot be determined if the steps were followed accurately based on this single screenshot.",[],False,"```json
+{
+    ""rationale"": ""The provided screenshot does not show any action taken to follow the Step-by-Step Guide. The screenshot shows the 'Projects' page, and there is no indication that the 'Merge Requests' icon was clicked or that any dropdown menu was interacted with. Therefore, it cannot be determined if the steps were followed accurately based on this single screenshot."",
+    ""inaccurate_steps"": [],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['1.png', '0.png', '2.png']","The workflow did not accurately follow the Step-by-Step Guide. The first step was to click on the 'Merge Requests' icon on the top navigation bar, but the user clicked on the 'Assigned to you' link directly from the dashboard without using the 'Merge Requests' icon. Additionally, the user clicked on the '8 merge requests' text instead of reporting the number of merge requests requiring review as instructed in step 3.","[1, 3]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The first step was to click on the 'Merge Requests' icon on the top navigation bar, but the user clicked on the 'Assigned to you' link directly from the dashboard without using the 'Merge Requests' icon. Additionally, the user clicked on the '8 merge requests' text instead of reporting the number of merge requests requiring review as instructed in step 3."",
+    ""inaccurate_steps"": [1, 3],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['1.png', '0.png', '2.png']","The workflow did not accurately follow the Step-by-Step Guide. The first step was to click on the 'Merge Requests' icon on the top navigation bar, but instead, the user clicked on the 'Merge requests' dropdown in the top right corner and selected 'Assigned to you'. Additionally, the user clicked on the '8 merge requests' text instead of reporting the number of merge requests requiring review as instructed in step 3.","[1, 3]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The first step was to click on the 'Merge Requests' icon on the top navigation bar, but instead, the user clicked on the 'Merge requests' dropdown in the top right corner and selected 'Assigned to you'. Additionally, the user clicked on the '8 merge requests' text instead of reporting the number of merge requests requiring review as instructed in step 3."",
+    ""inaccurate_steps"": [1, 3],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['1.png', '0.png', '2.png']","The workflow did not accurately follow the Step-by-Step Guide. The first step was to click on the 'Merge Requests' icon on the top navigation bar, but instead, the user clicked on the 'Merge requests' link in the dropdown menu under the user's profile. The second step was correctly followed by clicking on 'Assigned to you'. However, the third step was not completed as the user did not report the number of merge requests requiring review, which should be the number next to the 'Open' header.","[1, 3]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The first step was to click on the 'Merge Requests' icon on the top navigation bar, but instead, the user clicked on the 'Merge requests' link in the dropdown menu under the user's profile. The second step was correctly followed by clicking on 'Assigned to you'. However, the third step was not completed as the user did not report the number of merge requests requiring review, which should be the number next to the 'Open' header."",
+    ""inaccurate_steps"": [1, 3],
+    ""was_accurate"": false
+}
+```",True,shuffle

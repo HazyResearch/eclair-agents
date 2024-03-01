@@ -1,0 +1,12 @@
+names:
+- webelement
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: webpages-abgy4
+  url: https://universe.roboflow.com/workflowaugmentation/webpages-abgy4/dataset/3
+  version: 3
+  workspace: workflowaugmentation
+test: ../test/images
+train: ../train/images
+val: ../valid/images

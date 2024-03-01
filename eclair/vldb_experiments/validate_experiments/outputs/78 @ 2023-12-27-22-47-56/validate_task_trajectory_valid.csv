@@ -1,0 +1,48 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was accurately followed. The user clicked on the 'Marketing' icon, then 'All Reviews', selected 'Approved' from the 'Status' dropdown, and clicked the 'Search' button. The final screenshot shows '346 records found', which indicates the total count of Approved reviews.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on the 'Marketing' icon, then 'All Reviews', selected 'Approved' from the 'Status' dropdown, and clicked the 'Search' button. The final screenshot shows '346 records found', which indicates the total count of Approved reviews."",
+    ""was_acurate"": true
+}
+```",True,true
+1,False,"['0.png', '3.png', '4.png', '5.png']","The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or selecting 'All Reviews' from the 'User Content' section. Instead, the user is already on the 'Reviews' page. Additionally, the user clicked on the 'Search' button without selecting 'Approved' from the dropdown menu first, which is out of order according to the Step-by-Step Guide.","[1, 2, 4, 5]",False,"```json
+{
+    ""rationale"": ""The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or selecting 'All Reviews' from the 'User Content' section. Instead, the user is already on the 'Reviews' page. Additionally, the user clicked on the 'Search' button without selecting 'Approved' from the dropdown menu first, which is out of order according to the Step-by-Step Guide."",
+    ""inaccurate_steps"": [1, 2, 4, 5],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not followed accurately. The user did not click the 'Search' button after selecting 'Approved' from the dropdown menu. Therefore, the total count of Approved reviews was not displayed.",[5],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click the 'Search' button after selecting 'Approved' from the dropdown menu. Therefore, the total count of Approved reviews was not displayed."",
+    ""inaccurate_steps"": [5],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['2.png', '3.png', '4.png', '5.png']","The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or navigating through the 'User Content' section to access 'All Reviews'. Instead, the workflow starts with the user already on the 'All Reviews' page. Additionally, the user did not click the 'Search' button after selecting 'Approved' from the 'Status' dropdown, which is required to filter the results. The final count of approved reviews is shown without this step being demonstrated.","[1, 5]",False,"```json
+{
+    ""rationale"": ""The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or navigating through the 'User Content' section to access 'All Reviews'. Instead, the workflow starts with the user already on the 'All Reviews' page. Additionally, the user did not click the 'Search' button after selecting 'Approved' from the 'Status' dropdown, which is required to filter the results. The final count of approved reviews is shown without this step being demonstrated."",
+    ""inaccurate_steps"": [1, 5],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png']","The workflow was not followed accurately. After clicking on the 'Approved' option in the dropdown menu, the user did not click the 'Search' button to filter the results. Instead, the user clicked on the 'Search' text, which does not appear to be a button and did not initiate a search. Therefore, the step to actually perform the search and filter the results was not completed as instructed.",[5],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. After clicking on the 'Approved' option in the dropdown menu, the user did not click the 'Search' button to filter the results. Instead, the user clicked on the 'Search' text, which does not appear to be a button and did not initiate a search. Therefore, the step to actually perform the search and filter the results was not completed as instructed."",
+    ""inaccurate_steps"": [5],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The Step-by-Step Guide was followed accurately. The user clicked on the 'Marketing' icon, then 'All Reviews', selected 'Approved' from the status dropdown, and clicked the 'Search' button. The final screenshot shows '346 records found', which indicates the total count of approved reviews.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was followed accurately. The user clicked on the 'Marketing' icon, then 'All Reviews', selected 'Approved' from the status dropdown, and clicked the 'Search' button. The final screenshot shows '346 records found', which indicates the total count of approved reviews."",
+    ""was_acurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The Step-by-Step Guide was not accurately followed. The user did not click the 'Search' button after selecting 'Approved' from the dropdown menu. Instead, the dropdown menu was clicked again, which is not a step in the guide.",[5],False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not click the 'Search' button after selecting 'Approved' from the dropdown menu. Instead, the dropdown menu was clicked again, which is not a step in the guide."",
+    ""inaccurate_steps"": [5],
+    ""was_accurate"": false
+}
+```",True,shuffle

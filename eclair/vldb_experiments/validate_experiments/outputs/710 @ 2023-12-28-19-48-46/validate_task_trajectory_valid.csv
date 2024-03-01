@@ -1,0 +1,50 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Reports', then 'Shipping', entered the 'From' date as '08/05/2022', entered the 'To' date as '03/01/2023', and finally clicked on 'Show Report'.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Reports', then 'Shipping', entered the 'From' date as '08/05/2022', entered the 'To' date as '03/01/2023', and finally clicked on 'Show Report'."",
+    ""was_accurate"": true
+}
+```",True,true
+1,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The provided screenshots and actions do not show the user clicking on the 'Reports' option or selecting 'Shipping' from the popup menu, which are steps 1 and 2 in the Step-by-Step Guide. The screenshots start from the Shipping Report page, indicating that these steps were either not taken during the screenshot sequence or were omitted from the provided screenshots. Therefore, the Step-by-Step Guide was not accurately followed.","[1, 2]",False,"```json
+{
+    ""rationale"": ""The provided screenshots and actions do not show the user clicking on the 'Reports' option or selecting 'Shipping' from the popup menu, which are steps 1 and 2 in the Step-by-Step Guide. The screenshots start from the Shipping Report page, indicating that these steps were either not taken during the screenshot sequence or were omitted from the provided screenshots. Therefore, the Step-by-Step Guide was not accurately followed."",
+    ""inaccurate_steps"": [1, 2],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png']","The Step-by-Step Guide was not accurately followed. The user did not click the 'From' text field before typing '08/05/2022' as instructed in step 3 and step 4. Instead, they clicked on the text field labeled 'None' and then typed '03/01/2023', which should have been done in the 'To' field as per steps 5 and 6. The dates were entered in reverse order.","[3, 4, 5, 6]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not click the 'From' text field before typing '08/05/2022' as instructed in step 3 and step 4. Instead, they clicked on the text field labeled 'None' and then typed '03/01/2023', which should have been done in the 'To' field as per steps 5 and 6. The dates were entered in reverse order."",
+    ""inaccurate_steps"": [3, 4, 5, 6],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The user did not complete step 6, which is to type '03/01/2023' into the 'To' text field. Instead, the user clicked on the 'To' text field but did not enter the date as required by the workflow.",[6],False,"```json
+{
+    ""rationale"": ""The user did not complete step 6, which is to type '03/01/2023' into the 'To' text field. Instead, the user clicked on the 'To' text field but did not enter the date as required by the workflow."",
+    ""inaccurate_steps"": [6],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['6.png', '1.png', '2.png', '3.png', '4.png', '5.png', '0.png', '7.png']","The workflow was not followed accurately. The user did not click on the 'Reports' option on the lefthand sidebar first, instead, they started at the 'Shipping Report' screen. Additionally, the user clicked on the 'Show Report' button before entering the 'To' date, which is out of order according to the Step-by-Step Guide.","[1, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the 'Reports' option on the lefthand sidebar first, instead, they started at the 'Shipping Report' screen. Additionally, the user clicked on the 'Show Report' button before entering the 'To' date, which is out of order according to the Step-by-Step Guide."",
+    ""inaccurate_steps"": [1, 7],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The user did not follow the Step-by-Step Guide accurately. After clicking on the 'From' text field, the user should have typed '08/05/2022' into the 'From' text field, which was done correctly. However, instead of clicking on the 'To' text field as instructed in step 5, the user clicked on the 'None' text field, which is not the correct field as per the guide. The user then clicked on the 'Shipping' link in the sidebar, which took them away from the report page, and they had to navigate back to the 'Reports' section and then to 'Shipping' again to continue. This detour was not part of the steps and indicates a deviation from the guide. Finally, the user typed '03/01/2023' into the 'To' text field and clicked 'Show Report', which were correct as per steps 6 and 7.",[5],False,"```json
+{
+    ""rationale"": ""The user did not follow the Step-by-Step Guide accurately. After clicking on the 'From' text field, the user should have typed '08/05/2022' into the 'From' text field, which was done correctly. However, instead of clicking on the 'To' text field as instructed in step 5, the user clicked on the 'None' text field, which is not the correct field as per the guide. The user then clicked on the 'Shipping' link in the sidebar, which took them away from the report page, and they had to navigate back to the 'Reports' section and then to 'Shipping' again to continue. This detour was not part of the steps and indicates a deviation from the guide. Finally, the user typed '03/01/2023' into the 'To' text field and clicked 'Show Report', which were correct as per steps 6 and 7."",
+    ""inaccurate_steps"": [
+        5
+    ],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png', '6.png', '7.png']","The Step-by-Step Guide was accurately followed. The user clicked on 'Reports', then 'Shipping', entered the 'From' date as '08/05/2022', entered the 'To' date as '03/01/2023', and finally clicked on 'Show Report'. The screenshots and actions match the steps described in the guide.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on 'Reports', then 'Shipping', entered the 'From' date as '08/05/2022', entered the 'To' date as '03/01/2023', and finally clicked on 'Show Report'. The screenshots and actions match the steps described in the guide."",
+    ""was_accurate"": true
+}
+```",False,shuffle

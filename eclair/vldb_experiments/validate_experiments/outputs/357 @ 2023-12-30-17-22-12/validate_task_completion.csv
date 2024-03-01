@@ -1,0 +1,21 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png']","The workflow 'Checkout merge requests requiring my review' was successfully completed. The user navigated to the merge requests section by clicking on the '8 merge requests' notification, then filtered the merge requests by those 'Assigned to you', which resulted in a list of merge requests that are assigned to the user for review.",True,"```json
+{
+    ""rationale"": ""The workflow 'Checkout merge requests requiring my review' was successfully completed. The user navigated to the merge requests section by clicking on the '8 merge requests' notification, then filtered the merge requests by those 'Assigned to you', which resulted in a list of merge requests that are assigned to the user for review."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,[],"The sequence of screenshots and actions necessary to determine if the workflow was completed are missing. Without this information, it is impossible to deduce whether the workflow 'Checkout merge requests requiring my review' was successfully completed.",False,"{
+    ""rationale"": ""The sequence of screenshots and actions necessary to determine if the workflow was completed are missing. Without this information, it is impossible to deduce whether the workflow 'Checkout merge requests requiring my review' was successfully completed."",
+    ""was_completed"": false
+}",True,truncate
+2,False,"['0.png', '1.png']","The workflow was not completed successfully. The action taken was to click on the text labeled '8 merge requests', but the second screenshot does not show the result of that action. Instead, it shows the same page as the first screenshot without any indication that the merge requests section has been accessed or expanded to show the merge requests requiring the user's review.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The action taken was to click on the text labeled '8 merge requests', but the second screenshot does not show the result of that action. Instead, it shows the same page as the first screenshot without any indication that the merge requests section has been accessed or expanded to show the merge requests requiring the user's review."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,[],"The sequence of screenshots and actions necessary to demonstrate the workflow 'Checkout merge requests requiring my review' are not provided in the prompt. Therefore, it is not possible to determine whether the workflow was successfully completed.",False,"{
+    ""rationale"": ""The sequence of screenshots and actions necessary to demonstrate the workflow 'Checkout merge requests requiring my review' are not provided in the prompt. Therefore, it is not possible to determine whether the workflow was successfully completed."",
+    ""was_completed"": false
+}",True,truncate

@@ -1,0 +1,53 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the 'spring sale' rule with a 20 percent discount, indicating that the rule was saved successfully.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the 'spring sale' rule with a 20 percent discount, indicating that the rule was saved successfully."",
+    ""was_accurate"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png']","The user did not follow the Step-by-Step Guide accurately. The user did not click on the 'Cart Price Rules' option under the 'Promotions' header after clicking 'Marketing'. Instead, they clicked on a text field labeled 'None'. Additionally, the user did not click on the 'Add New Rule' button to draft a new marketing price rule. The user also did not select the 'General' option under 'Customer Groups'. The 'Actions' section was expanded, but the user did not clear the current text contents of the 'Discount Amount' text box before typing '20'.","[2, 3, 7, 10]",False,"```json
+{
+    ""rationale"": ""The user did not follow the Step-by-Step Guide accurately. The user did not click on the 'Cart Price Rules' option under the 'Promotions' header after clicking 'Marketing'. Instead, they clicked on a text field labeled 'None'. Additionally, the user did not click on the 'Add New Rule' button to draft a new marketing price rule. The user also did not select the 'General' option under 'Customer Groups'. The 'Actions' section was expanded, but the user did not clear the current text contents of the 'Discount Amount' text box before typing '20'."",
+    ""inaccurate_steps"": [
+        2,
+        3,
+        7,
+        10
+    ],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '11.png', '12.png', '13.png', '14.png']","The user did not perform step 7 correctly. Instead of selecting all customer groups, the user only selected 'General'. The user also did not perform step 9, as they did not click on the 'Actions' section to expand it; the section was already expanded by default. Additionally, the user did not clear the current text contents of the 'Discount Amount' text box before typing '20' as instructed in step 10.","[7, 9, 10]",False,"```json
+{
+    ""rationale"": ""The user did not perform step 7 correctly. Instead of selecting all customer groups, the user only selected 'General'. The user also did not perform step 9, as they did not click on the 'Actions' section to expand it; the section was already expanded by default. Additionally, the user did not clear the current text contents of the 'Discount Amount' text box before typing '20' as instructed in step 10."",
+    ""inaccurate_steps"": [7, 9, 10],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The user followed the steps in the guide correctly up to step 10. However, instead of typing '20' into the 'Discount Amount' text box, the user clicked on the text field labeled 'None' again, which was not part of the instructions. Therefore, the workflow was not followed accurately.",[11],False,"```json
+{
+    ""rationale"": ""The user followed the steps in the guide correctly up to step 10. However, instead of typing '20' into the 'Discount Amount' text box, the user clicked on the text field labeled 'None' again, which was not part of the instructions. Therefore, the workflow was not followed accurately."",
+    ""inaccurate_steps"": [11],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '13.png', '12.png', '14.png']","The Step-by-Step Guide was followed accurately. The user clicked on 'Marketing', then 'Cart Price Rules', and 'Add New Rule'. They entered 'spring sale' as the rule name, selected 'Main Website' and 'General' under customer groups. They scrolled down to 'Actions', entered '20' in the 'Discount Amount' text box, and clicked 'Save'. All steps were completed in the correct order.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was followed accurately. The user clicked on 'Marketing', then 'Cart Price Rules', and 'Add New Rule'. They entered 'spring sale' as the rule name, selected 'Main Website' and 'General' under customer groups. They scrolled down to 'Actions', entered '20' in the 'Discount Amount' text box, and clicked 'Save'. All steps were completed in the correct order."",
+    ""was_acurate"": true
+}
+```",False,shuffle
+5,False,"['0.png', '5.png', '2.png', '3.png', '4.png', '1.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png']","The workflow was not followed accurately. The user did not select 'Main Website' after entering the rule name, and they did not select the 'General' customer group. Additionally, the user navigated away from the rule creation page and had to navigate back to it, which was not part of the steps. The 'Actions' section was not expanded before entering the discount amount.","[6, 7, 9]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not select 'Main Website' after entering the rule name, and they did not select the 'General' customer group. Additionally, the user navigated away from the rule creation page and had to navigate back to it, which was not part of the steps. The 'Actions' section was not expanded before entering the discount amount."",
+    ""inaccurate_steps"": [6, 7, 9],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '8.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '1.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png']","The user did not follow the Step-by-Step Guide accurately. The user did not perform step 7, which is to select the 'General' customer group. Instead, the user clicked on the 'General' option but did not select it. Additionally, the user did not expand the 'Actions' section as instructed in step 9 before clicking on the 'Discount Amount' text box.","[7, 9]",False,"```json
+{
+    ""rationale"": ""The user did not follow the Step-by-Step Guide accurately. The user did not perform step 7, which is to select the 'General' customer group. Instead, the user clicked on the 'General' option but did not select it. Additionally, the user did not expand the 'Actions' section as instructed in step 9 before clicking on the 'Discount Amount' text box."",
+    ""inaccurate_steps"": [7, 9],
+    ""was_accurate"": false
+}
+```",True,shuffle

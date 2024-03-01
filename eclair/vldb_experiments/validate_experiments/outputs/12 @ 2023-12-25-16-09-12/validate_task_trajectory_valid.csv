@@ -1,0 +1,47 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was accurately followed. The user clicked on the 'Marketing' icon, selected 'All Reviews', clicked on the textbox under 'Review', typed in 'satisfied', and then clicked the 'Search' button. The number of records found was displayed at the top left of the page, which completed the workflow as per the instructions.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on the 'Marketing' icon, selected 'All Reviews', clicked on the textbox under 'Review', typed in 'satisfied', and then clicked the 'Search' button. The number of records found was displayed at the top left of the page, which completed the workflow as per the instructions."",
+    ""was_accurate"": true
+}
+```",True,true
+1,False,"['0.png', '3.png', '4.png', '5.png']","The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or selecting 'All Reviews' from the 'User Content' section. Instead, the user is already on the 'Reviews' page in the first screenshot. The steps for searching the term 'satisfied' were followed correctly, but the initial navigation steps were not shown.","[1, 2]",False,"```json
+{
+    ""rationale"": ""The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or selecting 'All Reviews' from the 'User Content' section. Instead, the user is already on the 'Reviews' page in the first screenshot. The steps for searching the term 'satisfied' were followed correctly, but the initial navigation steps were not shown."",
+    ""inaccurate_steps"": [1, 2],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png']","The user did not type the term 'satisfied' into the textbox under 'Review' as instructed in step 4. Instead, the user clicked on the textbox without entering any text. The subsequent steps to search for the term and report the number of records found could not be completed because the term was not entered.",[4],False,"```json
+{
+    ""rationale"": ""The user did not type the term 'satisfied' into the textbox under 'Review' as instructed in step 4. Instead, the user clicked on the textbox without entering any text. The subsequent steps to search for the term and report the number of records found could not be completed because the term was not entered."",
+    ""inaccurate_steps"": [4],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['2.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was not accurately followed. The user did not start by clicking on the 'Marketing' icon on the lefthand sidebar as instructed in step 1. Instead, the user directly clicked on the 'All Reviews' link. Additionally, the user did not click on the empty textbox under 'Review' as instructed in step 3, but rather clicked on a text field labeled 'None'. The correct field was eventually selected, but the process did not follow the exact steps outlined in the guide.","[1, 3]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not start by clicking on the 'Marketing' icon on the lefthand sidebar as instructed in step 1. Instead, the user directly clicked on the 'All Reviews' link. Additionally, the user did not click on the empty textbox under 'Review' as instructed in step 3, but rather clicked on a text field labeled 'None'. The correct field was eventually selected, but the process did not follow the exact steps outlined in the guide."",
+    ""inaccurate_steps"": [1, 3],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png']","The workflow was not followed accurately. The user clicked on the wrong text field in the first action, which led to navigating away from the 'Reviews' page. The correct field was clicked on in a subsequent action, but this was after an unnecessary navigation. The correct steps were eventually followed, but not in the correct order.","[1, 3]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user clicked on the wrong text field in the first action, which led to navigating away from the 'Reviews' page. The correct field was clicked on in a subsequent action, but this was after an unnecessary navigation. The correct steps were eventually followed, but not in the correct order."",
+    ""inaccurate_steps"": [1, 3],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The Step-by-Step Guide was followed accurately. The user clicked on the 'Marketing' icon, then 'All Reviews', clicked on the textbox under 'Review', typed 'satisfied', and clicked the 'Search' button. The number of records found was displayed at the top left of the page.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was followed accurately. The user clicked on the 'Marketing' icon, then 'All Reviews', clicked on the textbox under 'Review', typed 'satisfied', and clicked the 'Search' button. The number of records found was displayed at the top left of the page."",
+    ""was_accurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The Step-by-Step Guide was followed accurately. The user clicked on 'Marketing', then 'All Reviews', clicked on the textbox under 'Review', typed 'satisfied', and clicked the 'Search' button. The number of records found was displayed at the top of the page.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was followed accurately. The user clicked on 'Marketing', then 'All Reviews', clicked on the textbox under 'Review', typed 'satisfied', and clicked the 'Search' button. The number of records found was displayed at the top of the page."",
+    ""was_accurate"": true
+}
+```",False,shuffle

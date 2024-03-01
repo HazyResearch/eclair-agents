@@ -1,0 +1,47 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. Each step was completed in the correct order, and the final screenshot shows that Abishek S was successfully added as a guest to the dotfiles project.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. Each step was completed in the correct order, and the final screenshot shows that Abishek S was successfully added as a guest to the dotfiles project."",
+    ""was_acurate"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png']","The workflow did not accurately follow the Step-by-Step Guide. The user did not perform a search for the 'dotfiles' project using the 'Search GitLab' searchbar as instructed in steps 1 and 2. Instead, the user navigated directly to the 'Project information' section without using the search function. Additionally, the user clicked on 'Project information' instead of the 'dotfiles' option from the dropdown menu, which does not align with step 3 of the guide.","[1, 2, 3]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The user did not perform a search for the 'dotfiles' project using the 'Search GitLab' searchbar as instructed in steps 1 and 2. Instead, the user navigated directly to the 'Project information' section without using the search function. Additionally, the user clicked on 'Project information' instead of the 'dotfiles' option from the dropdown menu, which does not align with step 3 of the guide."",
+    ""inaccurate_steps"": [1, 2, 3],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png']","The workflow did not start by using the 'Search GitLab' searchbar to find the 'dotfiles' project. Instead, the user navigated directly to the 'dotfiles' project from the projects list. Additionally, the user did not click on 'Project information' before selecting 'Members', which is a deviation from the steps provided.","[1, 2, 3, 4]",False,"```json
+{
+    ""rationale"": ""The workflow did not start by using the 'Search GitLab' searchbar to find the 'dotfiles' project. Instead, the user navigated directly to the 'dotfiles' project from the projects list. Additionally, the user did not click on 'Project information' before selecting 'Members', which is a deviation from the steps provided."",
+    ""inaccurate_steps"": [1, 2, 3, 4],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png', '8.png', '9.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows that Abishek S was successfully added as a guest to the dotfiles project.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows that Abishek S was successfully added as a guest to the dotfiles project."",
+    ""was_acurate"": true
+}
+```",False,skip
+4,False,"['0.png', '8.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '1.png', '9.png']","The workflow was not followed accurately. The user did not perform step 4, which is to click on the 'Project information' link on the lefthand sidebar. Instead, the user clicked on the 'Activity' link. Additionally, the user clicked on the 'Members' link twice (once before inviting Abishek and once after), which is not part of the steps. The user also clicked on the 's' character in the search bar, which is not part of the steps.",[4],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not perform step 4, which is to click on the 'Project information' link on the lefthand sidebar. Instead, the user clicked on the 'Activity' link. Additionally, the user clicked on the 'Members' link twice (once before inviting Abishek and once after), which is not part of the steps. The user also clicked on the 's' character in the search bar, which is not part of the steps."",
+    ""inaccurate_steps"": [4],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '8.png', '7.png', '9.png']","The Step-by-Step Guide was accurately followed. The user clicked on the 'Search GitLab' searchbar, searched for 'dotfiles', selected the 'dotfiles' project from the dropdown menu, clicked on 'Project information', then 'Members', and finally clicked on 'Invite members'. The user then typed 'Abishek' into the 'Username or email address' input box, selected the correct 'Abishek' from the dropdown, and clicked the 'Invite' button to invite Abishek as a guest to the repo.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on the 'Search GitLab' searchbar, searched for 'dotfiles', selected the 'dotfiles' project from the dropdown menu, clicked on 'Project information', then 'Members', and finally clicked on 'Invite members'. The user then typed 'Abishek' into the 'Username or email address' input box, selected the correct 'Abishek' from the dropdown, and clicked the 'Invite' button to invite Abishek as a guest to the repo."",
+    ""was_accurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '6.png', '4.png', '5.png', '3.png', '7.png', '8.png', '9.png']","The workflow was not followed accurately. The user did not click on 'Project information' before going to 'Members' as instructed in step 4. Instead, they clicked directly on 'Members' from the sidebar. Additionally, the user did not perform step 6 correctly; instead of clicking on 'Invite members', they clicked on the 'Members' link again, which did not follow the guide.","[4, 6]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on 'Project information' before going to 'Members' as instructed in step 4. Instead, they clicked directly on 'Members' from the sidebar. Additionally, the user did not perform step 6 correctly; instead of clicking on 'Invite members', they clicked on the 'Members' link again, which did not follow the guide."",
+    ""inaccurate_steps"": [4, 6],
+    ""was_accurate"": false
+}
+```",True,shuffle

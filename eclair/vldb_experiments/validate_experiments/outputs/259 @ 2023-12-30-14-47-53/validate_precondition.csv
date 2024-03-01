@@ -1,0 +1,55 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,Is there a user profile icon on the top right corner of the page?,"There is an icon that resembles a user profile in the top right corner of the page, next to the bell icon and before the 'GitLab' icon.",True,"```json
+{
+    ""rationale"": ""There is an icon that resembles a user profile in the top right corner of the page, next to the bell icon and before the 'GitLab' icon."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"Is the ""Edit Profile"" option visible in the dropdown menu?",The 'Edit Profile' option is visible in the dropdown menu under the user's profile on the top right corner of the screen.,True,"```json
+{
+    ""rationale"": ""The 'Edit Profile' option is visible in the dropdown menu under the user's profile on the top right corner of the screen."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"Is the ""Edit Profile"" option visible in the dropdown menu?","The dropdown menu is not visible on the current screenshot, therefore the 'Edit Profile' option's visibility cannot be determined.",False,"```json
+{
+    ""rationale"": ""The dropdown menu is not visible on the current screenshot, therefore the 'Edit Profile' option's visibility cannot be determined."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"Is the ""Access Tokens"" button in the lefthand sidebar visible?",The 'Access Tokens' button is visible in the lefthand sidebar.,True,"```json
+{
+    ""rationale"": ""The 'Access Tokens' button is visible in the lefthand sidebar."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"Is the ""Access Tokens"" button in the lefthand sidebar visible?","In the screenshot provided, the left-hand sidebar is not fully visible, and the 'Access Tokens' button cannot be seen. Therefore, the condition is not satisfied because the 'Access Tokens' button is not visible in the current state of the UI.",False,"```json
+{
+    ""rationale"": ""In the screenshot provided, the left-hand sidebar is not fully visible, and the 'Access Tokens' button cannot be seen. Therefore, the condition is not satisfied because the 'Access Tokens' button is not visible in the current state of the UI."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"Is the ""Feed Token"" section still not visible?","Based on the current state of the UI in the screenshot, there is no section visible labeled as 'Feed Token'. The sections listed under 'User Settings' do not include 'Feed Token' and the visible parts of the UI deal with 'Personal Access Tokens', not 'Feed Token'.",True,"```json
+{
+    ""rationale"": ""Based on the current state of the UI in the screenshot, there is no section visible labeled as 'Feed Token'. The sections listed under 'User Settings' do not include 'Feed Token' and the visible parts of the UI deal with 'Personal Access Tokens', not 'Feed Token'."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is the ""Feed Token"" section still not visible?","The screenshot shows a list of projects in GitLab. However, there is no 'Feed Token' section visible in the parts of the UI that are displayed. Since only a portion of the GitLab interface is visible, it is possible that the 'Feed Token' section might exist outside the viewable area, but based on the information provided, the 'Feed Token' section is not visible.",True,"```json
+{
+    ""rationale"": ""The screenshot shows a list of projects in GitLab. However, there is no 'Feed Token' section visible in the parts of the UI that are displayed. Since only a portion of the GitLab interface is visible, it is possible that the 'Feed Token' section might exist outside the viewable area, but based on the information provided, the 'Feed Token' section is not visible."",
+    ""is_satisfied"": true
+}
+```",False
+7,8,9,4.png,True,Is the eyeball icon visible?,"The eyeball icon is visible next to the obscured Feed token, indicating the option to view the token.",True,"```json
+{
+    ""rationale"": ""The eyeball icon is visible next to the obscured Feed token, indicating the option to view the token."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,Is the eyeball icon visible?,"There is an eyeball icon visible next to each project, indicating visibility or access settings for those projects.",True,"```json
+{
+    ""rationale"": ""There is an eyeball icon visible next to each project, indicating visibility or access settings for those projects."",
+    ""is_satisfied"": true
+}
+```",False

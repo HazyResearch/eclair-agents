@@ -1,0 +1,79 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is the ""Reports"" tab visible in the left sidebar?","The 'Reports' tab is visible in the left sidebar, under the 'Content' tab and above the 'Stores' tab.",True,"```json
+{
+    ""rationale"": ""The 'Reports' tab is visible in the left sidebar, under the 'Content' tab and above the 'Stores' tab."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"Is the ""Shipping"" tab visible in the popup menu?",The 'Shipping' tab is clearly visible in the popup menu under the 'Sales' section.,True,"```json
+{
+    ""rationale"": ""The 'Shipping' tab is clearly visible in the popup menu under the 'Sales' section."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"Is the ""Shipping"" tab visible in the popup menu?","The screenshot shows a Magento admin dashboard. There is no visible popup menu in the provided screenshot, so it is impossible to determine if the 'Shipping' tab is visible or not.",False,"```json
+{
+    ""rationale"": ""The screenshot shows a Magento admin dashboard. There is no visible popup menu in the provided screenshot, so it is impossible to determine if the 'Shipping' tab is visible or not."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"Is the ""From"" text field visible?",The 'From' text field is visible in the 'Filter' section of the 'Shipping Report' page.,True,"```json
+{
+    ""rationale"": ""The 'From' text field is visible in the 'Filter' section of the 'Shipping Report' page."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"Is the ""From"" text field visible?","The 'From' text field is not visible in the current state of the UI shown in the screenshot. The displayed UI elements pertain to a dashboard overview, including sections like 'Lifetime Sales', 'Average Order', 'Last Orders', 'Last Search Terms', and 'Bestsellers', but do not show any 'From' text field.",False,"```json
+{
+    ""rationale"": ""The 'From' text field is not visible in the current state of the UI shown in the screenshot. The displayed UI elements pertain to a dashboard overview, including sections like 'Lifetime Sales', 'Average Order', 'Last Orders', 'Last Search Terms', and 'Bestsellers', but do not show any 'From' text field."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"Is the ""From"" text field focused?","The 'From' text field appears to have a blinking text cursor, indicating that it is focused and ready for text input.",True,"```json
+{
+    ""rationale"": ""The 'From' text field appears to have a blinking text cursor, indicating that it is focused and ready for text input."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is the ""From"" text field focused?","The screenshot provided does not show a text field labeled 'From', nor does it show any text fields at all. It primarily displays a dashboard of an e-commerce backend with a side menu for reports and some elements of a sales report on the main part of the screen. We are unable to determine whether any text field is focused since no text fields are visible in the screenshot.",False,"```json
+{
+    ""rationale"": ""The screenshot provided does not show a text field labeled 'From', nor does it show any text fields at all. It primarily displays a dashboard of an e-commerce backend with a side menu for reports and some elements of a sales report on the main part of the screen. We are unable to determine whether any text field is focused since no text fields are visible in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"Is the ""To"" text field visible?",The 'To' text field is visible on the right side of the 'From' text field under the 'Filter' section of the Shipping Report.,True,"```json
+{
+    ""rationale"": ""The 'To' text field is visible on the right side of the 'From' text field under the 'Filter' section of the Shipping Report."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"Is the ""To"" text field visible?","Based on the provided screenshot, there is no visible 'To' text field present in the current view of the Magento Admin dashboard.",False,"```json
+{
+    ""rationale"": ""Based on the provided screenshot, there is no visible 'To' text field present in the current view of the Magento Admin dashboard."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"Is the ""To"" text field focused?","The 'To' text field in the Filter section has a blinking cursor inside it, indicating that it is currently focused and ready for input.",True,"```json
+{
+    ""rationale"": ""The 'To' text field in the Filter section has a blinking cursor inside it, indicating that it is currently focused and ready for input."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"Is the ""To"" text field focused?","The 'To' text field has a blinking cursor inside it, which indicates that it is currently focused.",True,"```json
+{
+    ""rationale"": ""The 'To' text field has a blinking cursor inside it, which indicates that it is currently focused."",
+    ""is_satisfied"": true
+}
+```",False
+11,12,13,6.png,True,"Is the ""Show Report"" button at the top right of the screen visible?",The 'Show Report' button is visible at the top right of the screen next to the system messages indicator.,True,"```json
+{
+    ""rationale"": ""The 'Show Report' button is visible at the top right of the screen next to the system messages indicator."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"Is the ""Show Report"" button at the top right of the screen visible?",The 'Show Report' button is visible at the top right of the screen just below the main navigation bar.,True,"```json
+{
+    ""rationale"": ""The 'Show Report' button is visible at the top right of the screen just below the main navigation bar."",
+    ""is_satisfied"": true
+}
+```",False

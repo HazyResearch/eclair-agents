@@ -1,0 +1,79 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Marketing"" icon is visible",The 'Marketing' icon is visible on the left sidebar between 'Customers' and 'Content'.,True,"```json
+{
+    ""rationale"": ""The 'Marketing' icon is visible on the left sidebar between 'Customers' and 'Content'."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""All Reviews"" link is visible",The 'All Reviews' link is visible under the 'User Content' section in the left sidebar of the Magento admin panel.,True,"```json
+{
+    ""rationale"": ""The 'All Reviews' link is visible under the 'User Content' section in the left sidebar of the Magento admin panel."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""All Reviews"" link is visible","The current state of the UI as shown in the screenshot does not display an 'All Reviews' link. The visible sections include 'Advanced Reporting', 'Lifetime Sales', 'Average Order', 'Last Orders', 'Bestsellers', 'Most Viewed Products', 'New Customers', and 'Customers', but 'All Reviews' is not listed among these options.",False,"```json
+{
+    ""rationale"": ""The current state of the UI as shown in the screenshot does not display an 'All Reviews' link. The visible sections include 'Advanced Reporting', 'Lifetime Sales', 'Average Order', 'Last Orders', 'Bestsellers', 'Most Viewed Products', 'New Customers', and 'Customers', but 'All Reviews' is not listed among these options."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"The ""From"" text box is visible",The 'From' text box under the 'Created' column is visible and located in the filters section of the 'Reviews' screen.,True,"```json
+{
+    ""rationale"": ""The 'From' text box under the 'Created' column is visible and located in the filters section of the 'Reviews' screen."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""From"" text box is visible","The 'From' text box is not visible in the current state of the UI shown in the screenshot. The screenshot displays a dashboard of Magento Admin with various sections like 'Advanced Reporting', 'Lifetime Sales', 'Average Order', 'Last Orders', 'Last Search Terms', and 'Bestsellers', but there is no 'From' text box visible in any of these sections.",False,"```json
+{
+    ""rationale"": ""The 'From' text box is not visible in the current state of the UI shown in the screenshot. The screenshot displays a dashboard of Magento Admin with various sections like 'Advanced Reporting', 'Lifetime Sales', 'Average Order', 'Last Orders', 'Last Search Terms', and 'Bestsellers', but there is no 'From' text box visible in any of these sections."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"The ""From"" text field is focused AND empty","Yes, the 'From' text field is focused as indicated by the cursor present in the field, and no date has been entered, thus the field is empty.",True,"```json
+{
+    ""rationale"": ""Yes, the 'From' text field is focused as indicated by the cursor present in the field, and no date has been entered, thus the field is empty."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"The ""From"" text field is focused AND empty",There is no 'From' text field visible or focused in the screenshot provided.,False,"```json
+{
+    ""rationale"": ""There is no 'From' text field visible or focused in the screenshot provided."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"The ""To"" text box is visible",The 'To' text box is visible under the 'Created' column in the filtering options section.,True,"```json
+{
+    ""rationale"": ""The 'To' text box is visible under the 'Created' column in the filtering options section."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The ""To"" text box is visible","The screenshot shows a Magento admin dashboard. There is no 'To' text box visible in the current UI state shown in the image. The elements present are related to reports, sales, search terms, and system messages.",False,"```json
+{
+    ""rationale"": ""The screenshot shows a Magento admin dashboard. There is no 'To' text box visible in the current UI state shown in the image. The elements present are related to reports, sales, search terms, and system messages."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"The ""To"" text field is focused AND empty","The 'To' text field in the 'Created' column is currently not in focus and it also contains a date, which means it is not empty.",False,"```json
+{
+    ""rationale"": ""The 'To' text field in the 'Created' column is currently not in focus and it also contains a date, which means it is not empty."",
+    ""is_satisfied"": false
+}
+```",False
+10,6,11,3.png,False,"The ""To"" text field is focused AND empty","The 'To' text field is focused as indicated by the blinking cursor inside of it. However, it is not empty; it contains '04/01/2023'.",False,"```json
+{
+    ""rationale"": ""The 'To' text field is focused as indicated by the blinking cursor inside of it. However, it is not empty; it contains '04/01/2023'."",
+    ""is_satisfied"": false
+}
+```",True
+11,12,13,6.png,True,"The ""To"" text field is focused","In the screenshot, the 'To' text field in the search bar is not focused. There is no cursor or any indication that it is the active element in the UI.",False,"```json
+{
+    ""rationale"": ""In the screenshot, the 'To' text field in the search bar is not focused. There is no cursor or any indication that it is the active element in the UI."",
+    ""is_satisfied"": false
+}
+```",False
+12,6,13,3.png,False,"The ""To"" text field is focused",The 'To' text field is currently not focused as there is no visible cursor or other indication of focus within the field.,False,"```json
+{
+    ""rationale"": ""The 'To' text field is currently not focused as there is no visible cursor or other indication of focus within the field."",
+    ""is_satisfied"": false
+}
+```",True

@@ -1,0 +1,43 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is the ""Sales"" icon on the lefthand sideba visible?",The 'Sales' icon is visible on the left-hand sidebar under the Magento Admin panel.,True,"```json
+{
+    ""rationale"": ""The 'Sales' icon is visible on the left-hand sidebar under the Magento Admin panel."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"Is the ""Orders"" option visible in the dropdown menu?",The 'Orders' option is visible in the dropdown menu on the left-hand side of the UI under the 'SALES' section.,True,"```json
+{
+    ""rationale"": ""The 'Orders' option is visible in the dropdown menu on the left-hand side of the UI under the 'SALES' section."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"Is the ""Orders"" option visible in the dropdown menu?","The dropdown menu is not currently visible in the screenshot, so the 'Orders' option cannot be confirmed to be visible.",False,"```json
+{
+    ""rationale"": ""The dropdown menu is not currently visible in the screenshot, so the 'Orders' option cannot be confirmed to be visible."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"Is a column header with the name ""Purchase Date"" visible?",There is a column header with the name 'Purchase Date' visible in the screenshot.,True,"```json
+{
+    ""rationale"": ""There is a column header with the name 'Purchase Date' visible in the screenshot."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"Is a column header with the name ""Purchase Date"" visible?","In the current UI, there is no column header visible with the name 'Purchase Date'.",False,"```json
+{
+    ""rationale"": ""In the current UI, there is no column header visible with the name 'Purchase Date'."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"Is a column header with the name ""Purchase Date"" visible?","The column header with the name 'Purchase Date' is clearly visible in the third column from the left, showing different dates for each order entry.",True,"```json
+{
+    ""rationale"": ""The column header with the name 'Purchase Date' is clearly visible in the third column from the left, showing different dates for each order entry."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is a column header with the name ""Purchase Date"" visible?",There is no column header with the name 'Purchase Date' visible in the screenshot provided.,False,"```json
+{
+    ""rationale"": ""There is no column header with the name 'Purchase Date' visible in the screenshot provided."",
+    ""is_satisfied"": false
+}
+```",True

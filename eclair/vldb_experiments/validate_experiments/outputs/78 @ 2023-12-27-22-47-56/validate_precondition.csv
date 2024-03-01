@@ -1,0 +1,53 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is the ""Marketing"" tab visible in the left sidebar?","The 'Marketing' tab is visible in the left sidebar approximately halfway down, with an icon that resembles a megaphone.",True,"```json
+{
+    ""rationale"": ""The 'Marketing' tab is visible in the left sidebar approximately halfway down, with an icon that resembles a megaphone."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"Is the ""All Reviews"" tab visible in the popup menu?",The 'All Reviews' option is visible within the 'User Content' submenu under the 'Marketing' section.,True,"```json
+{
+    ""rationale"": ""The 'All Reviews' option is visible within the 'User Content' submenu under the 'Marketing' section."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"Is the ""All Reviews"" tab visible in the popup menu?","The 'All Reviews' tab is not visible in the screenshot. The image shows the dashboard of a Magento Admin panel, and there are no pop-up menus displayed within the screenshot.",False,"```json
+{
+    ""rationale"": ""The 'All Reviews' tab is not visible in the screenshot. The image shows the dashboard of a Magento Admin panel, and there are no pop-up menus displayed within the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"Is the dropdown menu at the top of the ""Status"" column visible?","The dropdown menu at the top of the 'Status' column is not fully visible in the screenshot provided. Only a small portion of the dropdown icon is visible, indicating that there might be a dropdown menu, but since it is not fully shown, we cannot confirm its visibility.",False,"```json
+{
+    ""rationale"": ""The dropdown menu at the top of the 'Status' column is not fully visible in the screenshot provided. Only a small portion of the dropdown icon is visible, indicating that there might be a dropdown menu, but since it is not fully shown, we cannot confirm its visibility."",
+    ""is_satisfied"": false
+}
+```",False
+4,0,5,0.png,False,"Is the dropdown menu at the top of the ""Status"" column visible?",There is no 'Status' column visible in the current state of the UI shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""There is no 'Status' column visible in the current state of the UI shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"Is the ""Status"" dropdown menu open and is the ""Approved"" option visible?","The 'Status' dropdown menu is visibly open, and the 'Approved' option is visible within the dropdown menu.",True,"```json
+{
+    ""rationale"": ""The 'Status' dropdown menu is visibly open, and the 'Approved' option is visible within the dropdown menu."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is the ""Status"" dropdown menu open and is the ""Approved"" option visible?","In the screenshot provided, there is no 'Status' dropdown menu visible. The focus is on the Magento Admin dashboard where different marketing options and sales data are displayed. There are other dropdown menus such as 'Marketing' and a submenu under 'User Content,' but there is no indication of the 'Status' dropdown menu or an 'Approved' option being visible.",False,"{
+    ""rationale"": ""In the screenshot provided, there is no 'Status' dropdown menu visible. The focus is on the Magento Admin dashboard where different marketing options and sales data are displayed. There are other dropdown menus such as 'Marketing' and a submenu under 'User Content,' but there is no indication of the 'Status' dropdown menu or an 'Approved' option being visible."",
+    ""is_satisfied"": false
+}",True
+7,8,9,4.png,True,"Is the ""Search"" button located at the top left of the screen visible?","The 'Search' button is visible at the top left of the screen, above the 'Actions' dropdown and to the left of the 'Reset Filter' button.",True,"```json
+{
+    ""rationale"": ""The 'Search' button is visible at the top left of the screen, above the 'Actions' dropdown and to the left of the 'Reset Filter' button."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"Is the ""Search"" button located at the top left of the screen visible?","Based on the screenshot, the 'Search' button, which is represented by a magnifying glass icon, is located at the top right of the screen, not the top left. Therefore, the condition is not satisfied.",False,"```json
+{
+    ""rationale"": ""Based on the screenshot, the 'Search' button, which is represented by a magnifying glass icon, is located at the top right of the screen, not the top left. Therefore, the condition is not satisfied."",
+    ""is_satisfied"": false
+}
+```",True

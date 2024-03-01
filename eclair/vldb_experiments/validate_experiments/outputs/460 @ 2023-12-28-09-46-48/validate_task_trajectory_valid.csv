@@ -1,0 +1,50 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field with the label 'Price' to select the text in it as instructed in step 1. Instead, the user clicked on the text field labeled 'None' multiple times, which is not the correct label for the price field. Additionally, the screenshots do not show the calculation process for the 15% discount, but the final price entered does match the correct discounted price. Despite the final outcome being correct, the process did not follow the specified steps.",[1],False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field with the label 'Price' to select the text in it as instructed in step 1. Instead, the user clicked on the text field labeled 'None' multiple times, which is not the correct label for the price field. Additionally, the screenshots do not show the calculation process for the 15% discount, but the final price entered does match the correct discounted price. Despite the final outcome being correct, the process did not follow the specified steps."",
+    ""inaccurate_steps"": [1],
+    ""was_accurate"": false
+}
+```",False,true
+1,False,"['0.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was not followed accurately. The first step specifies to triple click on the text field with the label 'Price' to select the text in it, but the action taken was a single click on the text field labeled 'None'. Additionally, the guide specifies to calculate the discounted price, but there was no action demonstrating the calculation; the discounted price was simply typed in. The correct discounted price was entered, and the 'Save' button was clicked as per the guide.","[1, 2]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The first step specifies to triple click on the text field with the label 'Price' to select the text in it, but the action taken was a single click on the text field labeled 'None'. Additionally, the guide specifies to calculate the discounted price, but there was no action demonstrating the calculation; the discounted price was simply typed in. The correct discounted price was entered, and the 'Save' button was clicked as per the guide."",
+    ""inaccurate_steps"": [1, 2],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png']","The screenshots and actions provided do not show the price being reduced by 15%. The price field was clicked on but not updated with the new discounted price, and the 'Save' button was not clicked as per the Step-by-Step Guide.","[2, 3, 4]",False,"```json
+{
+    ""rationale"": ""The screenshots and actions provided do not show the price being reduced by 15%. The price field was clicked on but not updated with the new discounted price, and the 'Save' button was not clicked as per the Step-by-Step Guide."",
+    ""inaccurate_steps"": [2, 3, 4],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['2.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was not followed accurately. The first step instructs to triple click on the text field with the label 'Price' to select the text in it, but the action taken was a single click on the text field labeled 'None'. Additionally, the screenshots do not show the calculation process for the 15% discount, which is a part of step 2. However, the final price entered and the action of saving the product were correct.","[1, 2]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The first step instructs to triple click on the text field with the label 'Price' to select the text in it, but the action taken was a single click on the text field labeled 'None'. Additionally, the screenshots do not show the calculation process for the 15% discount, which is a part of step 2. However, the final price entered and the action of saving the product were correct."",
+    ""inaccurate_steps"": [1, 2],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field to select the text as instructed in step 1. Instead, they clicked on the text field labeled 'None' multiple times, which is not the correct label for the price field. Additionally, the screenshots do not show the calculation process for the 15% discount, but the final price entered does match the correct discounted price. Despite the final outcome being correct, the process did not follow the specified steps exactly.",[1],False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field to select the text as instructed in step 1. Instead, they clicked on the text field labeled 'None' multiple times, which is not the correct label for the price field. Additionally, the screenshots do not show the calculation process for the 15% discount, but the final price entered does match the correct discounted price. Despite the final outcome being correct, the process did not follow the specified steps exactly."",
+    ""inaccurate_steps"": [1],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field with the label 'Price' to select the text in it as instructed in step 1. Instead, they clicked on the text field labeled 'None' multiple times, which is not the correct field and does not follow the instruction to triple click. Additionally, the screenshots do not show the calculation process for the 15% discount, but the final price entered does match the correct discounted price. Despite the final outcome being correct, the process did not follow the specified steps.",[1],False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field with the label 'Price' to select the text in it as instructed in step 1. Instead, they clicked on the text field labeled 'None' multiple times, which is not the correct field and does not follow the instruction to triple click. Additionally, the screenshots do not show the calculation process for the 15% discount, but the final price entered does match the correct discounted price. Despite the final outcome being correct, the process did not follow the specified steps."",
+    ""inaccurate_steps"": [1],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field to select the text as instructed in step 1. Instead, they clicked on the text field labeled 'None' multiple times, which is not the correct field and does not follow the instruction to triple click. Additionally, the user did not perform the calculation for the 15% discount as per step 2; the discounted price was already provided in the instructions. The user did type the correct discounted price into the 'Price' text field and clicked the 'Save' button, but the initial steps were not followed as described.","[1, 2]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The user did not triple click on the text field to select the text as instructed in step 1. Instead, they clicked on the text field labeled 'None' multiple times, which is not the correct field and does not follow the instruction to triple click. Additionally, the user did not perform the calculation for the 15% discount as per step 2; the discounted price was already provided in the instructions. The user did type the correct discounted price into the 'Price' text field and clicked the 'Save' button, but the initial steps were not followed as described."",
+    ""inaccurate_steps"": [1, 2],
+    ""was_accurate"": false
+}
+```",True,shuffle

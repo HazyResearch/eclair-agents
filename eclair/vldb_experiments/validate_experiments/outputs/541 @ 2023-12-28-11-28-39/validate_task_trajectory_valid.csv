@@ -1,0 +1,47 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png', '22.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final shipping address matches the one specified in the workflow.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final shipping address matches the one specified in the workflow."",
+    ""was_accurate"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png', '22.png']","The Step-by-Step Guide was not accurately followed. The user did not perform a search for the order number '000000125' as instructed in steps 3 and 4. Instead, the user directly clicked on the 'View' link without searching. Additionally, the user did not triple click to select all text in the 'Street Address', 'City', and 'Zip/Postal Code' fields before clearing them as instructed in steps 8, 14, and 17.","[3, 4, 8, 14, 17]",False,"```json
+{
+  ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not perform a search for the order number '000000125' as instructed in steps 3 and 4. Instead, the user directly clicked on the 'View' link without searching. Additionally, the user did not triple click to select all text in the 'Street Address', 'City', and 'Zip/Postal Code' fields before clearing them as instructed in steps 8, 14, and 17."",
+  ""inaccurate_steps"": [3, 4, 8, 14, 17],
+  ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '20.png', '21.png', '22.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the updated shipping address as specified in the guide.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the updated shipping address as specified in the guide."",
+    ""was_accurate"": true
+}
+```",False,skip
+3,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png', '22.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the updated shipping address as specified in the workflow.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the updated shipping address as specified in the workflow."",
+    ""was_accurate"": true
+}
+```",False,skip
+4,False,"['0.png', '1.png', '2.png', '8.png', '4.png', '5.png', '6.png', '7.png', '3.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png', '22.png']","The workflow was not followed accurately. The user did not follow the steps in the correct order. Specifically, the user did not perform the search for the order number correctly, as they did not click the magnifying glass to search after typing the order number. Instead, they clicked on the 'Search by keyword' text field multiple times. Additionally, the user did not triple-click to select the text in the 'City' and 'Zip/Postal Code' text fields before clearing them out. The user also did not scroll down to find the 'State/Province' label and instead clicked on the dropdown menu without scrolling.","[4, 13, 14, 16, 17, 10, 11]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not follow the steps in the correct order. Specifically, the user did not perform the search for the order number correctly, as they did not click the magnifying glass to search after typing the order number. Instead, they clicked on the 'Search by keyword' text field multiple times. Additionally, the user did not triple-click to select the text in the 'City' and 'Zip/Postal Code' text fields before clearing them out. The user also did not scroll down to find the 'State/Province' label and instead clicked on the dropdown menu without scrolling."",
+    ""inaccurate_steps"": [
+        4, 13, 14, 16, 17, 10, 11
+    ],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '15.png', '14.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png', '22.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the updated shipping address as specified in the workflow.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final screenshot shows the updated shipping address as specified in the workflow."",
+    ""was_accurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '21.png', '16.png', '17.png', '18.png', '19.png', '20.png', '15.png', '22.png']",The workflow was followed accurately according to the provided Step-by-Step Guide. The address was successfully modified to the new address as specified.,[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. The address was successfully modified to the new address as specified."",
+    ""was_accurate"": true
+}
+```",False,shuffle

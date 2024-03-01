@@ -1,0 +1,89 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Catalog"" button is visible","The 'Catalog' button is visible on the left-hand sidebar, under the Magento logo, and above the 'Customers' button.",True,"```json
+{
+    ""rationale"": ""The 'Catalog' button is visible on the left-hand sidebar, under the Magento logo, and above the 'Customers' button."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Products"" option is visible.",The 'Products' option is visible on the left sidebar within the 'Catalog' section in the UI.,True,"```json
+{
+    ""rationale"": ""The 'Products' option is visible on the left sidebar within the 'Catalog' section in the UI."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Products"" option is visible.","The 'Products' option is not explicitly visible in the current state of the UI. The screenshot shows a Magento admin dashboard with menu options for 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', 'System', and 'Find Partners & Extensions' on the sidebar. However, 'Products' is not listed among the visible options, and it is commonly found under the 'Catalog' section in Magento admin.",False,"```json
+{
+    ""rationale"": ""The 'Products' option is not explicitly visible in the current state of the UI. The screenshot shows a Magento admin dashboard with menu options for 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', 'System', and 'Find Partners & Extensions' on the sidebar. However, 'Products' is not listed among the visible options, and it is commonly found under the 'Catalog' section in Magento admin."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"The ""Search by keyword"" search bar is visible.","The 'Search by keyword' search bar is visible at the top of the Products section, indicating that the condition is satisfied.",True,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar is visible at the top of the Products section, indicating that the condition is satisfied."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""Search by keyword"" search bar is visible.",The 'Search by keyword' search bar is not visible in the current screenshot of the UI.,False,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar is not visible in the current screenshot of the UI."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,The searchbar is focused AND empty,"The search bar appears to be focused due to the blinking cursor inside it, and there is no visible text, indicating that it is empty.",True,"```json
+{
+    ""rationale"": ""The search bar appears to be focused due to the blinking cursor inside it, and there is no visible text, indicating that it is empty."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,The searchbar is focused AND empty,"The search bar in the screenshot does not appear to have the focus on it. Additionally, it is not possible to confirm whether the search bar is empty or not because the actual content of the search bar is not visible in the screenshot.",False,"```json
+{
+    ""rationale"": ""The search bar in the screenshot does not appear to have the focus on it. Additionally, it is not possible to confirm whether the search bar is empty or not because the actual content of the search bar is not visible in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,The magnifying glass is visible,"The magnifying glass icon is visible in the search bar, indicating the search function which can be used to search for products.",True,"```json
+{
+    ""rationale"": ""The magnifying glass icon is visible in the search bar, indicating the search function which can be used to search for products."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,The magnifying glass is visible,"The magnifying glass, typically representing the search function, is visible in the top right corner next to the search bar.",True,"```json
+{
+    ""rationale"": ""The magnifying glass, typically representing the search function, is visible in the top right corner next to the search bar."",
+    ""is_satisfied"": true
+}
+```",False
+9,10,11,5.png,True,"The ""Configurable Product"" is visible and the ""Edit"" link in its row is visible.","The 'Configurable Product' named 'Teton Pullover Hoodie' with ID 78 is visible on the screen, and the 'Edit' link in its row is also visible and clickable.",True,"```json
+{
+    ""rationale"": ""The 'Configurable Product' named 'Teton Pullover Hoodie' with ID 78 is visible on the screen, and the 'Edit' link in its row is also visible and clickable."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"The ""Configurable Product"" is visible and the ""Edit"" link in its row is visible.","Multiple instances of 'Configurable Product' are visible in the UI, and for each one, an 'Edit' link is visible in its corresponding row.",True,"```json
+{
+    ""rationale"": ""Multiple instances of 'Configurable Product' are visible in the UI, and for each one, an 'Edit' link is visible in its corresponding row."",
+    ""is_satisfied"": true
+}
+```",False
+11,12,13,6.png,True,"The ""Enable Product"" toggle is currently green.","The 'Enable Product' toggle is set to green, indicating that it is enabled.",True,"```json
+{
+    ""rationale"": ""The 'Enable Product' toggle is set to green, indicating that it is enabled."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"The ""Enable Product"" toggle is currently green.","The screenshot of the UI shows a product list, but there is no direct visual element such as a 'Enable Product' toggle displayed. The 'Status' column does show the status of products as 'Enabled', but there is no toggle switch visible to derive the color or state.",False,"{
+    ""rationale"": ""The screenshot of the UI shows a product list, but there is no direct visual element such as a 'Enable Product' toggle displayed. The 'Status' column does show the status of products as 'Enabled', but there is no toggle switch visible to derive the color or state."",
+    ""is_satisfied"": false
+}",True
+13,14,15,7.png,True,"The ""Enable Product"" toggle says ""No"", and the ""Save"" button is visible.","The 'Enable Product' toggle is set to 'No', and the 'Save' button is visible in the top right corner of the page.",True,"```json
+{
+    ""rationale"": ""The 'Enable Product' toggle is set to 'No', and the 'Save' button is visible in the top right corner of the page."",
+    ""is_satisfied"": true
+}
+```",True
+14,6,15,3.png,False,"The ""Enable Product"" toggle says ""No"", and the ""Save"" button is visible.","The screenshot does not display an 'Enable Product' toggle or a 'Save' button. The screenshot is of a product listing page in a content management system, likely for an e-commerce platform, and shows a list of products with details such as ID, Name, Type, Attribute Set, SKU, Price, Quantity, and other related information. Both the 'Enable Product' toggle and the 'Save' button are not visible and cannot be validated with the provided information.",False,"```json
+{
+    ""rationale"": ""The screenshot does not display an 'Enable Product' toggle or a 'Save' button. The screenshot is of a product listing page in a content management system, likely for an e-commerce platform, and shows a list of products with details such as ID, Name, Type, Attribute Set, SKU, Price, Quantity, and other related information. Both the 'Enable Product' toggle and the 'Save' button are not visible and cannot be validated with the provided information."",
+    ""is_satisfied"": false
+}
+```",True

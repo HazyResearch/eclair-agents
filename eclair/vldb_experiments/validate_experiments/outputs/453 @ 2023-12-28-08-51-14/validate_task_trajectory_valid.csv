@@ -1,0 +1,48 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final action was to save the changes, which disabled the Teton Pullover Hoodie as required.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final action was to save the changes, which disabled the Teton Pullover Hoodie as required."",
+    ""was_accurate"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final action shows the product being saved with the 'Enable Product' toggle set to 'No', indicating the product has been disabled as required.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. All steps were completed in the correct order, and the final action shows the product being saved with the 'Enable Product' toggle set to 'No', indicating the product has been disabled as required."",
+    ""was_acurate"": true
+}
+```",False,skip
+2,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow was not accurately followed according to the Step-by-Step Guide. The user did not click on the 'Catalog' option in the lefthand sidebar and then 'Products' as instructed in steps 1 and 2. Instead, the user directly used the search bar on the dashboard page. Additionally, the user did not click on the magnifying glass to submit the search query as described in step 4; they typed the search term and then clicked on the 'Search' button. Furthermore, the user did not scroll down to find the 'Configurable Product' type of the Teton pullover hoodie as mentioned in step 5; the search results were already filtered to show the relevant products. Lastly, the user did not click on the blue 'Edit' link as instructed in step 6; instead, they clicked on the 'Edit' link directly from the search results.","[1, 2, 4, 5, 6]",False,"```json
+{
+    ""rationale"": ""The workflow was not accurately followed according to the Step-by-Step Guide. The user did not click on the 'Catalog' option in the lefthand sidebar and then 'Products' as instructed in steps 1 and 2. Instead, the user directly used the search bar on the dashboard page. Additionally, the user did not click on the magnifying glass to submit the search query as described in step 4; they typed the search term and then clicked on the 'Search' button. Furthermore, the user did not scroll down to find the 'Configurable Product' type of the Teton pullover hoodie as mentioned in step 5; the search results were already filtered to show the relevant products. Lastly, the user did not click on the blue 'Edit' link as instructed in step 6; instead, they clicked on the 'Edit' link directly from the search results."",
+    ""inaccurate_steps"": [1, 2, 4, 5, 6],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png', '8.png']","The workflow did not accurately follow the Step-by-Step Guide. The user did not perform step 4, which is to click on the magnifying glass in the 'Search by keyword' search bar to submit the query. Instead, the user directly clicked on the link to edit the Teton Pullover Hoodie without showing the search process. Additionally, the user did not perform step 5, which involves scrolling down to find the product, as the product was accessed directly. All other steps were followed correctly.","[4, 5]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The user did not perform step 4, which is to click on the magnifying glass in the 'Search by keyword' search bar to submit the query. Instead, the user directly clicked on the link to edit the Teton Pullover Hoodie without showing the search process. Additionally, the user did not perform step 5, which involves scrolling down to find the product, as the product was accessed directly. All other steps were followed correctly."",
+    ""inaccurate_steps"": [4, 5],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '4.png', '2.png', '3.png', '1.png', '5.png', '6.png', '7.png', '8.png']","The workflow was not followed accurately. The user did not click on the magnifying glass to submit the search query in step 4. Instead, they clicked on the 'Products' link in the sidebar. Additionally, the user clicked directly on the 'None' text to disable the product instead of the toggle labeled 'Enable Product' as specified in step 6.","[4, 6]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the magnifying glass to submit the search query in step 4. Instead, they clicked on the 'Products' link in the sidebar. Additionally, the user clicked directly on the 'None' text to disable the product instead of the toggle labeled 'Enable Product' as specified in step 6."",
+    ""inaccurate_steps"": [4, 6],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '7.png', '4.png', '5.png', '6.png', '3.png', '8.png']","The workflow was not followed accurately. The user did not click on the magnifying glass to submit the search query after typing 'Teton pullover hoodie' in the search bar. Instead, they navigated directly to the product editing page without showing the search results. Additionally, the user did not click on the 'Enable Product' toggle to disable the product as instructed in step 6. Instead, they clicked on 'None', which is not a step in the guide and does not disable the product.","[4, 6, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the magnifying glass to submit the search query after typing 'Teton pullover hoodie' in the search bar. Instead, they navigated directly to the product editing page without showing the search results. Additionally, the user did not click on the 'Enable Product' toggle to disable the product as instructed in step 6. Instead, they clicked on 'None', which is not a step in the guide and does not disable the product."",
+    ""inaccurate_steps"": [4, 6, 7],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '7.png', '6.png', '8.png']","The workflow was not followed accurately. The user did not click on the 'Enable Product' toggle to disable the product as instructed in step 6. Instead, they clicked on 'None', which is not a step in the guide and does not disable the product. The product remained enabled, which is contrary to the goal of the workflow.",[6],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the 'Enable Product' toggle to disable the product as instructed in step 6. Instead, they clicked on 'None', which is not a step in the guide and does not disable the product. The product remained enabled, which is contrary to the goal of the workflow."",
+    ""inaccurate_steps"": [6],
+    ""was_accurate"": false
+}
+```",True,shuffle

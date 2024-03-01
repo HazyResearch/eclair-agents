@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was to create a shipping report from 08/05/2022 to 03/01/2023. The screenshots show the user navigating through the web application to the Shipping Report section, setting the date range as specified, and then generating the report by clicking 'Show Report'. The final screenshot indicates that 91 records were found, which suggests that the report was successfully created for the given date range.",True,"```json
+{
+    ""rationale"": ""The workflow was to create a shipping report from 08/05/2022 to 03/01/2023. The screenshots show the user navigating through the web application to the Shipping Report section, setting the date range as specified, and then generating the report by clicking 'Show Report'. The final screenshot indicates that 91 records were found, which suggests that the report was successfully created for the given date range."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png']","The workflow has not been completed successfully. The user has navigated to the 'Reports' section and has the 'Shipping' report option available, but there is no evidence in the screenshots provided that the user has actually created a shipping report for the specified date range from 08/05/2022 to 03/01/2023.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed successfully. The user has navigated to the 'Reports' section and has the 'Shipping' report option available, but there is no evidence in the screenshots provided that the user has actually created a shipping report for the specified date range from 08/05/2022 to 03/01/2023."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,['0.png'],"There is only one screenshot provided and no subsequent actions or screenshots to demonstrate the completion of the workflow. The screenshot shows the dashboard of a web application, but it does not show the creation of a shipping report for the specified date range (08/05/2022 to 03/01/2023). Therefore, based on the provided information, the workflow cannot be confirmed as successfully completed.",False,"```json
+{
+    ""rationale"": ""There is only one screenshot provided and no subsequent actions or screenshots to demonstrate the completion of the workflow. The screenshot shows the dashboard of a web application, but it does not show the creation of a shipping report for the specified date range (08/05/2022 to 03/01/2023). Therefore, based on the provided information, the workflow cannot be confirmed as successfully completed."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not successfully completed because the final screenshot shows that the date range for the shipping report has not been set to the specified range of 08/05/2022 to 03/01/2023. The 'From' and 'To' date fields are still empty, and no report has been generated or shown.",False,"```json
+{
+    ""rationale"": ""The workflow was not successfully completed because the final screenshot shows that the date range for the shipping report has not been set to the specified range of 08/05/2022 to 03/01/2023. The 'From' and 'To' date fields are still empty, and no report has been generated or shown."",
+    ""was_completed"": false
+}
+```",True,truncate

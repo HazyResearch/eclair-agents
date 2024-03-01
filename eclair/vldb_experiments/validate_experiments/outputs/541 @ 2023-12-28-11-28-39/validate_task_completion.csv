@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png', '22.png']","The workflow was successfully completed. The address of order #125 was modified to 654 Elm Drive, Apartment 12, Miami, FL, 33101 as requested.",True,"```json
+{
+    ""rationale"": ""The workflow was successfully completed. The address of order #125 was modified to 654 Elm Drive, Apartment 12, Miami, FL, 33101 as requested."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not completed successfully. The last action taken was clicking on the search field, but no search was performed for order #125, and the address was not modified as required by the workflow.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The last action taken was clicking on the search field, but no search was performed for order #125, and the address was not modified as required by the workflow."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png']","The workflow was not completed successfully because the address was not fully updated to the new address '654 Elm Drive, Apartment 12, Miami, FL, 33101'. The street address was updated, but the city and zip code were not changed to 'Miami' and '33101', respectively. The state was incorrectly changed to 'Florida', which is correct, but the city and zip code remain unchanged from the original address.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully because the address was not fully updated to the new address '654 Elm Drive, Apartment 12, Miami, FL, 33101'. The street address was updated, but the city and zip code were not changed to 'Miami' and '33101', respectively. The state was incorrectly changed to 'Florida', which is correct, but the city and zip code remain unchanged from the original address."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png']","The workflow has not been completed successfully. The screenshots show that the user has accessed the 'Sales' section of the web application, but there is no evidence that the user has located order #125 or modified its address to '654 Elm Drive, Apartment 12, Miami, FL, 33101'. The last action taken was clicking on the 'SALES' link, and the subsequent screenshot shows the 'Sales' menu expanded, but no further action has been taken to edit an order's address.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed successfully. The screenshots show that the user has accessed the 'Sales' section of the web application, but there is no evidence that the user has located order #125 or modified its address to '654 Elm Drive, Apartment 12, Miami, FL, 33101'. The last action taken was clicking on the 'SALES' link, and the subsequent screenshot shows the 'Sales' menu expanded, but no further action has been taken to edit an order's address."",
+    ""was_completed"": false
+}
+```",True,truncate

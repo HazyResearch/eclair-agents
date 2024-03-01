@@ -1,0 +1,49 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png']","The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on the 'Issues' icon, selected the 'All' tab, used the search bar to the right of the filters, ensured the 'Sort By' was set to 'Updated date', typed in the keyword 'better', pressed 'Enter', clicked on the first search result with 'better' in the title, and checked the label above the title to see if the issue was 'Open' or 'Closed'.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on the 'Issues' icon, selected the 'All' tab, used the search bar to the right of the filters, ensured the 'Sort By' was set to 'Updated date', typed in the keyword 'better', pressed 'Enter', clicked on the first search result with 'better' in the title, and checked the label above the title to see if the issue was 'Open' or 'Closed'."",
+    ""was_acurate"": true
+}
+```",True,true
+1,False,"['0.png', '3.png', '4.png', '5.png', '6.png']","The user did not start by clicking the 'Issues' icon as instructed in step 1. Instead, they clicked directly into the search field. The 'Sort By' dropdown was not checked or set to 'Updated date' as required by step 4. The user did type the keyword 'better' and pressed 'Enter' to execute the search, which aligns with steps 5 and 6. However, the user did not click on the first search result as instructed in step 7, but rather on the second one. The final step was to report whether the issue is open or closed, which was not done as the user clicked on an issue that was not the most recently updated one.","[1, 4, 7]",False,"```json
+{
+    ""rationale"": ""The user did not start by clicking the 'Issues' icon as instructed in step 1. Instead, they clicked directly into the search field. The 'Sort By' dropdown was not checked or set to 'Updated date' as required by step 4. The user did type the keyword 'better' and pressed 'Enter' to execute the search, which aligns with steps 5 and 6. However, the user did not click on the first search result as instructed in step 7, but rather on the second one. The final step was to report whether the issue is open or closed, which was not done as the user clicked on an issue that was not the most recently updated one."",
+    ""inaccurate_steps"": [1, 4, 7],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '6.png']","The workflow was not followed accurately. The user did not set the 'Sort By' dropdown to 'Updated date' before searching for the keyword 'better'. Instead, they clicked on the first issue with 'better' in the title without sorting, which may not be the latest updated issue.",[4],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not set the 'Sort By' dropdown to 'Updated date' before searching for the keyword 'better'. Instead, they clicked on the first issue with 'better' in the title without sorting, which may not be the latest updated issue."",
+    ""inaccurate_steps"": [4],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['2.png', '3.png', '4.png', '5.png', '6.png']","The workflow was not followed accurately. The user did not start by clicking the 'Issues' icon as described in step 1. Instead, the user started from a page that already had issues listed and directly clicked on the 'All' tab. Additionally, the user did not verify or set the 'Sort By' dropdown to 'Updated date' as described in step 4. The user proceeded to search for the keyword 'better' without ensuring that the issues were sorted by the updated date, which could affect the accuracy of finding the latest updated issue.","[1, 4]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not start by clicking the 'Issues' icon as described in step 1. Instead, the user started from a page that already had issues listed and directly clicked on the 'All' tab. Additionally, the user did not verify or set the 'Sort By' dropdown to 'Updated date' as described in step 4. The user proceeded to search for the keyword 'better' without ensuring that the issues were sorted by the updated date, which could affect the accuracy of finding the latest updated issue."",
+    ""inaccurate_steps"": [1, 4],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png', '6.png']","The workflow did not accurately follow the Step-by-Step Guide. The user clicked on the 'All' link instead of the 'All' tab under Issues as instructed in step 2. Additionally, the user did not verify or set the 'Sort By' dropdown to 'Updated date' as required in step 4 before performing the search.","[2, 4]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The user clicked on the 'All' link instead of the 'All' tab under Issues as instructed in step 2. Additionally, the user did not verify or set the 'Sort By' dropdown to 'Updated date' as required in step 4 before performing the search."",
+    ""inaccurate_steps"": [2, 4],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png', '6.png']","The workflow was not followed accurately. The user did not ensure that the 'Sort By' dropdown was set to 'Updated date' before conducting the search for the keyword 'better'. This step is crucial to ensure that the latest updated issue is the one being opened. Additionally, the user did not report whether the issue was 'Open' or 'Closed' as the final step requires.","[4, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not ensure that the 'Sort By' dropdown was set to 'Updated date' before conducting the search for the keyword 'better'. This step is crucial to ensure that the latest updated issue is the one being opened. Additionally, the user did not report whether the issue was 'Open' or 'Closed' as the final step requires."",
+    ""inaccurate_steps"": [4, 8],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '5.png', '4.png', '3.png', '6.png']","The workflow was not followed accurately. The user did not ensure that the 'Sort By' dropdown was set to 'Updated date' before executing the search. Additionally, the user did not click on the search bar to the right of the filters already present, which caused confusion and required additional steps to correct the search query.","[4, 5]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not ensure that the 'Sort By' dropdown was set to 'Updated date' before executing the search. Additionally, the user did not click on the search bar to the right of the filters already present, which caused confusion and required additional steps to correct the search query."",
+    ""inaccurate_steps"": [4, 5],
+    ""was_accurate"": false
+}
+```",True,shuffle

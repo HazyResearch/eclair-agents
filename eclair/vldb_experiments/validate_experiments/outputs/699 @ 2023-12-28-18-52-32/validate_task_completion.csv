@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png']","The workflow was successfully completed. The user navigated through the web application to the 'Cart Price Rules' section, created a new rule named 'spring sale', set the discount amount to 20 percent, and saved the rule. The final screenshot shows the 'spring sale' rule listed among the cart price rules, indicating that the rule has been successfully added.",True,"```json
+{
+    ""rationale"": ""The workflow was successfully completed. The user navigated through the web application to the 'Cart Price Rules' section, created a new rule named 'spring sale', set the discount amount to 20 percent, and saved the rule. The final screenshot shows the 'spring sale' rule listed among the cart price rules, indicating that the rule has been successfully added."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png']","The workflow has not been completed successfully. The screenshots show that the user has navigated to the 'Marketing' section and is about to click on 'Cart Price Rules', which is likely the next step in creating a new marketing price rule. However, there is no evidence in the screenshots provided that the user has actually created a new marketing price rule offering a 20 percent discount site-wide for all customers.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed successfully. The screenshots show that the user has navigated to the 'Marketing' section and is about to click on 'Cart Price Rules', which is likely the next step in creating a new marketing price rule. However, there is no evidence in the screenshots provided that the user has actually created a new marketing price rule offering a 20 percent discount site-wide for all customers."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow was not completed successfully. The screenshots show the process of creating a new cart price rule, but the rule has not been fully configured yet. The rule name 'spring sale' was entered, but the discount amount, conditions, and other settings necessary to offer a 20 percent discount site-wide for all customers have not been specified or shown in the provided screenshots.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The screenshots show the process of creating a new cart price rule, but the rule has not been fully configured yet. The rule name 'spring sale' was entered, but the discount amount, conditions, and other settings necessary to offer a 20 percent discount site-wide for all customers have not been specified or shown in the provided screenshots."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The workflow was not successfully completed. The task was to draft a new marketing price rule for a spring sale that offers a 20 percent discount site-wide for all customers. The screenshots show the process of creating a new cart price rule, but the discount amount was not set to 20 percent before the workflow demonstration ended.",False,"```json
+{
+    ""rationale"": ""The workflow was not successfully completed. The task was to draft a new marketing price rule for a spring sale that offers a 20 percent discount site-wide for all customers. The screenshots show the process of creating a new cart price rule, but the discount amount was not set to 20 percent before the workflow demonstration ended."",
+    ""was_completed"": false
+}
+```",True,truncate

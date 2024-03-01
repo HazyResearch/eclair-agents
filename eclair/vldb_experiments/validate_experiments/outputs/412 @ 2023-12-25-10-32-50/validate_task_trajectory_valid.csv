@@ -1,0 +1,45 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was accurately followed. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the LICENSE file, edited the file, applied the Apache License 2.0 template, and committed the changes.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the LICENSE file, edited the file, applied the Apache License 2.0 template, and committed the changes."",
+    ""was_accurate"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was not accurately followed. The user did not type in the name of the repo in the search bar as instructed in step 2. Instead, they scrolled through the list of projects. Additionally, the user did not click on the repo from the dropdown menu after typing its name as described in step 3, because the name was never typed into the search bar.","[2, 3]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not type in the name of the repo in the search bar as instructed in step 2. Instead, they scrolled through the list of projects. Additionally, the user did not click on the repo from the dropdown menu after typing its name as described in step 3, because the name was never typed into the search bar."",
+    ""inaccurate_steps"": [2, 3],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '11.png', '12.png']","The Step-by-Step Guide was followed accurately. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the 'LICENSE' file, edited the file by applying the 'Apache License 2.0' template from the dropdown menu, and committed the changes.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was followed accurately. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the 'LICENSE' file, edited the file by applying the 'Apache License 2.0' template from the dropdown menu, and committed the changes."",
+    ""was_accurate"": true
+}
+```",False,skip
+3,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was not followed accurately. The user did not start by clicking on the search bar and typing the name of the repository as indicated in steps 1 and 2. Instead, the user navigated directly to the repository from the project list. Additionally, the user did not scroll down to find the LICENSE file as described in step 4 because it was already visible on the screen without scrolling.","[1, 2, 4]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The user did not start by clicking on the search bar and typing the name of the repository as indicated in steps 1 and 2. Instead, the user navigated directly to the repository from the project list. Additionally, the user did not scroll down to find the LICENSE file as described in step 4 because it was already visible on the screen without scrolling."",
+    ""inaccurate_steps"": [1, 2, 4],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '4.png', '2.png', '3.png', '1.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was followed accurately. The user clicked on the search bar, typed the name of the repository, selected the correct repository from the dropdown, clicked on the LICENSE file, edited the file, applied the Apache License 2.0 template, and committed the changes.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was followed accurately. The user clicked on the search bar, typed the name of the repository, selected the correct repository from the dropdown, clicked on the LICENSE file, edited the file, applied the Apache License 2.0 template, and committed the changes."",
+    ""was_accurate"": true
+}
+```",False,shuffle
+5,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '8.png', '7.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was accurately followed. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the 'LICENSE' file, edited the file by applying the 'Apache License 2.0' template from the 'Apply a template' dropdown, and committed the changes.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the 'LICENSE' file, edited the file by applying the 'Apache License 2.0' template from the 'Apply a template' dropdown, and committed the changes."",
+    ""was_accurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '11.png', '8.png', '9.png', '10.png', '7.png', '12.png']","The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the LICENSE file, edited the file, applied the Apache License 2.0 template, and committed the changes.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on the search bar, typed the name of the repository, selected the repository from the dropdown menu, clicked on the LICENSE file, edited the file, applied the Apache License 2.0 template, and committed the changes."",
+    ""was_acurate"": true
+}
+```",False,shuffle

@@ -1,0 +1,50 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png']","The workflow was not followed accurately. The user did not perform step 7, which instructs to click on the fourth option from the top called 'Label' in the dropdown menu. Instead, the user clicked on the text field labeled 'Search' and then directly typed 'flaky' into the search field. Additionally, the user did not perform step 8, which instructs to click on the equals sign '='. The user also clicked on the wrong UI elements multiple times, such as clicking on '1 year ago' and 'menuitem', which were not part of the steps.","[7, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not perform step 7, which instructs to click on the fourth option from the top called 'Label' in the dropdown menu. Instead, the user clicked on the text field labeled 'Search' and then directly typed 'flaky' into the search field. Additionally, the user did not perform step 8, which instructs to click on the equals sign '='. The user also clicked on the wrong UI elements multiple times, such as clicking on '1 year ago' and 'menuitem', which were not part of the steps."",
+    ""inaccurate_steps"": [7, 8],
+    ""was_accurate"": false
+}
+```",False,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png']","The workflow was not followed accurately. The user did not perform step 2, which is to click on the 'Filter by name' text field. Instead, the user clicked directly on the 'keycloak' text. Additionally, the user did not perform step 8, which is to click on the equals sign '='. Instead, the user typed 'flaky' directly into the search field after selecting the 'Label' option.","[2, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not perform step 2, which is to click on the 'Filter by name' text field. Instead, the user clicked directly on the 'keycloak' text. Additionally, the user did not perform step 8, which is to click on the equals sign '='. Instead, the user typed 'flaky' directly into the search field after selecting the 'Label' option."",
+    ""inaccurate_steps"": [2, 8],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '11.png']","The workflow was not followed accurately. The user did not perform step 7, which is to click on the fourth option from the top called 'Label' in the dropdown menu. Instead, the user clicked on the text field labeled 'Search' and then clicked on a date '1 year ago'. Additionally, the user did not perform step 8, which is to click the equals sign '='. The user also did not perform step 9, which is to type the keyword 'flaky'. Instead, the user clicked on the 'menuitem' which is not a step in the guide. The correct label 'flaky-test' was eventually selected, but the steps to get there were not followed as per the guide.","[7, 8, 9]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not perform step 7, which is to click on the fourth option from the top called 'Label' in the dropdown menu. Instead, the user clicked on the text field labeled 'Search' and then clicked on a date '1 year ago'. Additionally, the user did not perform step 8, which is to click the equals sign '='. The user also did not perform step 9, which is to type the keyword 'flaky'. Instead, the user clicked on the 'menuitem' which is not a step in the guide. The correct label 'flaky-test' was eventually selected, but the steps to get there were not followed as per the guide."",
+    ""inaccurate_steps"": [7, 8, 9],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png']","The user did not follow the Step-by-Step Guide accurately. The user did not click the 'Explore' tab under the 'Projects' header and instead typed 'keycloak' directly into the search bar on the projects page. Additionally, the user did not click on the 'Label' dropdown and select 'flaky-test' from there; instead, they typed 'flaky' directly into the search bar on the issues page.","[1, 7, 8, 9, 10]",False,"```json
+{
+    ""rationale"": ""The user did not follow the Step-by-Step Guide accurately. The user did not click the 'Explore' tab under the 'Projects' header and instead typed 'keycloak' directly into the search bar on the projects page. Additionally, the user did not click on the 'Label' dropdown and select 'flaky-test' from there; instead, they typed 'flaky' directly into the search bar on the issues page."",
+    ""inaccurate_steps"": [1, 7, 8, 9, 10],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '4.png', '2.png', '3.png', '1.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png']","The workflow was not followed accurately. The user clicked on the 'Explore' tab correctly, but then clicked on the 'keycloak' repository directly without using the 'Filter by name' text field. Additionally, the user did not click on the 'Label' dropdown as instructed in step 7, but instead typed 'flaky' directly into the search field. The correct label was eventually selected, and the 'Enter' key was pressed to display the issues.","[2, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user clicked on the 'Explore' tab correctly, but then clicked on the 'keycloak' repository directly without using the 'Filter by name' text field. Additionally, the user did not click on the 'Label' dropdown as instructed in step 7, but instead typed 'flaky' directly into the search field. The correct label was eventually selected, and the 'Enter' key was pressed to display the issues."",
+    ""inaccurate_steps"": [2, 7],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '8.png', '7.png', '9.png', '10.png', '11.png']","The workflow was not followed accurately. The user did not perform step 7, which instructs to click on the 'Label' option from the dropdown menu. Instead, the user clicked directly on the 'Search or filter results...' text field. Additionally, the user did not perform step 8, which involves clicking on the equals sign '=' to specify the label. The user directly typed 'flaky' into the search field without using the label filter correctly.","[7, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not perform step 7, which instructs to click on the 'Label' option from the dropdown menu. Instead, the user clicked directly on the 'Search or filter results...' text field. Additionally, the user did not perform step 8, which involves clicking on the equals sign '=' to specify the label. The user directly typed 'flaky' into the search field without using the label filter correctly."",
+    ""inaccurate_steps"": [7, 8],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '7.png', '6.png', '8.png', '9.png', '10.png', '11.png']","The Step-by-Step Guide was not accurately followed. The user did not perform step 7, which instructs to click on the fourth option from the top called 'Label' within the dropdown menu after clicking the 'Search or filter results...' text field. Instead, the user clicked on the text field labeled 'Search' and then directly typed 'flaky' without selecting 'Label' from the dropdown menu. Additionally, the user did not perform step 8, which instructs to click the equals sign '=' after selecting 'Label'.","[7, 8]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not perform step 7, which instructs to click on the fourth option from the top called 'Label' within the dropdown menu after clicking the 'Search or filter results...' text field. Instead, the user clicked on the text field labeled 'Search' and then directly typed 'flaky' without selecting 'Label' from the dropdown menu. Additionally, the user did not perform step 8, which instructs to click the equals sign '=' after selecting 'Label'."",
+    ""inaccurate_steps"": [7, 8],
+    ""was_accurate"": false
+}
+```",True,shuffle

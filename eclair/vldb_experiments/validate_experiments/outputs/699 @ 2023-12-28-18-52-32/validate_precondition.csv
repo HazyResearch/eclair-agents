@@ -1,0 +1,157 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is the ""Marketing"" tab visible in the left sidebar?",The 'Marketing' tab is visible in the left sidebar of the UI.,True,"```json
+{
+    ""rationale"": ""The 'Marketing' tab is visible in the left sidebar of the UI."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"Is the ""Cart Price Rules"" link under the ""Promotions"" header now visible?",The 'Cart Price Rules' link under the 'Promotions' header is now visible on the left sidebar of the Magento Admin panel.,True,"```json
+{
+    ""rationale"": ""The 'Cart Price Rules' link under the 'Promotions' header is now visible on the left sidebar of the Magento Admin panel."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"Is the ""Cart Price Rules"" link under the ""Promotions"" header now visible?","The UI in the screenshot is showing a Magento Admin Dashboard. The 'Promotions' header or the 'Cart Price Rules' link is not visible in the sections displayed on the left sidebar or the main dashboard area. Therefore, the current state of the UI does not satisfy the condition.",False,"{
+    ""rationale"": ""The UI in the screenshot is showing a Magento Admin Dashboard. The 'Promotions' header or the 'Cart Price Rules' link is not visible in the sections displayed on the left sidebar or the main dashboard area. Therefore, the current state of the UI does not satisfy the condition."",
+    ""is_satisfied"": false
+}",True
+3,4,5,2.png,True,"Is the ""Add New Rule"" button visible?",The 'Add New Rule' button is visible in the top right area within the 'Cart Price Rules' section.,True,"```json
+{
+    ""rationale"": ""The 'Add New Rule' button is visible in the top right area within the 'Cart Price Rules' section."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"Is the ""Add New Rule"" button visible?",The screenshot provided is of a Magento admin dashboard and does not show an 'Add New Rule' button in the visible UI.,False,"```json
+{
+    ""rationale"": ""The screenshot provided is of a Magento admin dashboard and does not show an 'Add New Rule' button in the visible UI."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"Is the ""Rule Name"" text field visible?",The 'Rule Name' text field is visible on the current UI under the section 'Rule Information'.,True,"```json
+{
+    ""rationale"": ""The 'Rule Name' text field is visible on the current UI under the section 'Rule Information'."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is the ""Rule Name"" text field visible?","The 'Rule Name' text field is not visible in the current screenshot. The screenshot shows the Magento Admin dashboard with various marketing options, but no 'Rule Name' text field is displayed.",False,"```json
+{
+    ""rationale"": ""The 'Rule Name' text field is not visible in the current screenshot. The screenshot shows the Magento Admin dashboard with various marketing options, but no 'Rule Name' text field is displayed."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"Is the ""Rule Name"" text field focused?",The 'Rule Name' text field is focused as indicated by the cursor and the highlighted border around the text entry area.,True,"```json
+{
+    ""rationale"": ""The 'Rule Name' text field is focused as indicated by the cursor and the highlighted border around the text entry area."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"Is the ""Rule Name"" text field focused?",The current screenshot shows a Magento Admin Dashboard. There is no 'Rule Name' text field present or focused in the visible UI.,False,"```json
+{
+    ""rationale"": ""The current screenshot shows a Magento Admin Dashboard. There is no 'Rule Name' text field present or focused in the visible UI."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"Is the ""Main Website"" option visible next to the ""Websites"" form label?",The 'Main Website' option is visible and selected in the dropdown menu next to the 'Websites' form label.,True,"```json
+{
+    ""rationale"": ""The 'Main Website' option is visible and selected in the dropdown menu next to the 'Websites' form label."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"Is the ""Main Website"" option visible next to the ""Websites"" form label?",The 'Main Website' option is visible next to the 'Websites' form label in the UI.,True,"```json
+{
+    ""rationale"": ""The 'Main Website' option is visible next to the 'Websites' form label in the UI."",
+    ""is_satisfied"": true
+}
+```",False
+11,12,13,6.png,True,"Is the ""General"" option next to the ""Customer Groups"" form label visible?",The 'General' option next to the 'Customer Groups' form label is clearly visible in the screenshot within the selected options in the multiselect box.,True,"```json
+{
+    ""rationale"": ""The 'General' option next to the 'Customer Groups' form label is clearly visible in the screenshot within the selected options in the multiselect box."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"Is the ""General"" option next to the ""Customer Groups"" form label visible?",The 'General' option next to the 'Customer Groups' form label is visible in the list of options provided under the 'Customer Groups' section.,True,"```json
+{
+    ""rationale"": ""The 'General' option next to the 'Customer Groups' form label is visible in the list of options provided under the 'Customer Groups' section."",
+    ""is_satisfied"": true
+}
+```",False
+13,14,15,7.png,True,"Is the ""Actions"" section still not visible?",The current screenshot shows only the 'Rule Information' section of the 'New Cart Price Rule' page. The 'Actions' section is not visible in the screenshot provided.,True,"```json
+{
+    ""rationale"": ""The current screenshot shows only the 'Rule Information' section of the 'New Cart Price Rule' page. The 'Actions' section is not visible in the screenshot provided."",
+    ""is_satisfied"": true
+}
+```",True
+14,6,15,3.png,False,"Is the ""Actions"" section still not visible?","It appears that the 'Actions' section is not visible in the current state of the UI. The visible sections shown are 'Rule Information' and part of 'Customer Groups', with no indication of an 'Actions' section in the screenshot provided.",True,"```json
+{
+    ""rationale"": ""It appears that the 'Actions' section is not visible in the current state of the UI. The visible sections shown are 'Rule Information' and part of 'Customer Groups', with no indication of an 'Actions' section in the screenshot provided."",
+    ""is_satisfied"": true
+}
+```",False
+15,16,17,8.png,True,"Is the ""Actions"" section still not visible?","The 'Actions' section is currently collapsed and no details are visible under it, satisfying the condition that the 'Actions' section is still not visible.",True,"```json
+{
+    ""rationale"": ""The 'Actions' section is currently collapsed and no details are visible under it, satisfying the condition that the 'Actions' section is still not visible."",
+    ""is_satisfied"": true
+}
+```",True
+16,12,17,6.png,False,"Is the ""Actions"" section still not visible?","The 'Actions' section is not visible in the current state of the UI within the screenshot provided. The visible sections are 'Rule Information' and a part of 'Conditions', but 'Actions' is not in view.",True,"```json
+{
+    ""rationale"": ""The 'Actions' section is not visible in the current state of the UI within the screenshot provided. The visible sections are 'Rule Information' and a part of 'Conditions', but 'Actions' is not in view."",
+    ""is_satisfied"": true
+}
+```",False
+17,18,19,9.png,True,"Is the ""Actions"" sections visible?","The 'Actions' section is visible in the screenshot as indicated by the word 'Actions' itself, but the details within that section are collapsed and not currently displayed.",True,"```json
+{
+    ""rationale"": ""The 'Actions' section is visible in the screenshot as indicated by the word 'Actions' itself, but the details within that section are collapsed and not currently displayed."",
+    ""is_satisfied"": true
+}
+```",True
+18,6,19,3.png,False,"Is the ""Actions"" sections visible?","The 'Actions' section of the interface is not visible in the current screenshot. The screenshot shows the 'Rule Information' section for setting up a 'New Cart Price Rule,' but it does not scroll down to where 'Actions' might be located if it exists further down on the page.",False,"```json
+{
+    ""rationale"": ""The 'Actions' section of the interface is not visible in the current screenshot. The screenshot shows the 'Rule Information' section for setting up a 'New Cart Price Rule,' but it does not scroll down to where 'Actions' might be located if it exists further down on the page."",
+    ""is_satisfied"": false
+}
+```",True
+19,20,21,10.png,True,"Is the ""Discount Amount"" text box visible?","The 'Discount Amount' text box is visible under the Actions section, with a label 'Discount Amount' and an input field with a value set to '0'.",True,"```json
+{
+    ""rationale"": ""The 'Discount Amount' text box is visible under the Actions section, with a label 'Discount Amount' and an input field with a value set to '0'."",
+    ""is_satisfied"": true
+}
+```",True
+20,2,21,1.png,False,"Is the ""Discount Amount"" text box visible?","The 'Discount Amount' text box is not visible in the current screenshot. The screenshot shows a dashboard of a Magento admin panel with various sections like 'Marketing,' 'Bestsellers,' 'Last Search Terms,' etc. The visible areas do not include any text box, specifically one labeled 'Discount Amount.'",False,"```json
+{
+    ""rationale"": ""The 'Discount Amount' text box is not visible in the current screenshot. The screenshot shows a dashboard of a Magento admin panel with various sections like 'Marketing,' 'Bestsellers,' 'Last Search Terms,' etc. The visible areas do not include any text box, specifically one labeled 'Discount Amount.'"",
+    ""is_satisfied"": false
+}
+```",True
+21,22,23,11.png,True,"Is there text visible in the ""Discount Amount"" text box?","The 'Discount Amount' text box is empty, indicating that no text is visible in that field.",False,"```json
+{
+    ""rationale"": ""The 'Discount Amount' text box is empty, indicating that no text is visible in that field."",
+    ""is_satisfied"": false
+}
+```",False
+22,14,23,7.png,False,"Is there text visible in the ""Discount Amount"" text box?","The 'Discount Amount' text box is not visible in the current screenshot. The screenshot shows a 'New Cart Price Rule' page with fields for 'Rule Name', 'Description', 'Active', 'Websites', and 'Customer Groups', but does not display a 'Discount Amount' text box.",False,"{
+    ""rationale"": ""The 'Discount Amount' text box is not visible in the current screenshot. The screenshot shows a 'New Cart Price Rule' page with fields for 'Rule Name', 'Description', 'Active', 'Websites', and 'Customer Groups', but does not display a 'Discount Amount' text box."",
+    ""is_satisfied"": false
+}",True
+23,24,25,12.png,True,"Is the ""Discount Amount"" text box focused?","The 'Discount Amount' text box appears to have a blue outline, which typically indicates focus in web interfaces. Therefore, it seems to be the active element in the UI at the moment the screenshot was taken.",True,"{
+    ""rationale"": ""The 'Discount Amount' text box appears to have a blue outline, which typically indicates focus in web interfaces. Therefore, it seems to be the active element in the UI at the moment the screenshot was taken."",
+    ""is_satisfied"": true
+}",True
+24,0,25,0.png,False,"Is the ""Discount Amount"" text box focused?",The screenshot shows a Magento admin dashboard. There is no 'Discount Amount' text box visible or in focus in the screenshot provided.,False,"```json
+{
+    ""rationale"": ""The screenshot shows a Magento admin dashboard. There is no 'Discount Amount' text box visible or in focus in the screenshot provided."",
+    ""is_satisfied"": false
+}
+```",True
+25,26,27,13.png,True,"Is the ""Save"" button visible?",The 'Save' button is visible in the upper right corner of the UI within the screenshot.,True,"```json
+{
+    ""rationale"": ""The 'Save' button is visible in the upper right corner of the UI within the screenshot."",
+    ""is_satisfied"": true
+}
+```",True
+26,12,27,6.png,False,"Is the ""Save"" button visible?",The 'Save' button is clearly visible in the top right corner of the UI as shown in the screenshot.,True,"```json
+{
+    ""rationale"": ""The 'Save' button is clearly visible in the top right corner of the UI as shown in the screenshot."",
+    ""is_satisfied"": true
+}
+```",False

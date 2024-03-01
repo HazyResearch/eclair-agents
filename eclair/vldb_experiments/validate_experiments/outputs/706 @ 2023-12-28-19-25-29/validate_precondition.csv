@@ -1,0 +1,79 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is the ""Reports"" tab visible in the left sidebar?",The 'Reports' tab is visible in the left sidebar under the 'Content' heading.,True,"```json
+{
+    ""rationale"": ""The 'Reports' tab is visible in the left sidebar under the 'Content' heading."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"Is the ""Refunds"" link under the ""Sales"" column visible?",The 'Refunds' link is clearly visible under the 'Sales' column on the left side of the UI.,True,"```json
+{
+    ""rationale"": ""The 'Refunds' link is clearly visible under the 'Sales' column on the left side of the UI."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"Is the ""Refunds"" link under the ""Sales"" column visible?",The 'Refunds' link under the 'Sales' column is not visible in the current state of the UI shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""The 'Refunds' link under the 'Sales' column is not visible in the current state of the UI shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"Is the ""From"" text field visible?","The 'From' text field is visible in the Filter section of the Refunds Report page, allowing a user to specify the starting date for the report.",True,"```json
+{
+    ""rationale"": ""The 'From' text field is visible in the Filter section of the Refunds Report page, allowing a user to specify the starting date for the report."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"Is the ""From"" text field visible?","There is no 'From' text field visible in the current state of the UI shown in the screenshot. The visible elements are related to dashboard metrics such as sales, orders, and site search results, but no date range or 'From' text field is displayed.",False,"```json
+{
+    ""rationale"": ""There is no 'From' text field visible in the current state of the UI shown in the screenshot. The visible elements are related to dashboard metrics such as sales, orders, and site search results, but no date range or 'From' text field is displayed."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"Is the ""From"" text field focused?","The 'From' text field has a blinking cursor inside, indicating it is the current active element and has focus.",True,"```json
+{
+    ""rationale"": ""The 'From' text field has a blinking cursor inside, indicating it is the current active element and has focus."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is the ""From"" text field focused?","There is no 'From' text field visible in the screenshot, nor is there any indication of a text field being focused.",False,"```json
+{
+    ""rationale"": ""There is no 'From' text field visible in the screenshot, nor is there any indication of a text field being focused."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"Is the ""To"" text field visible?",The 'To' text field is visible in the filter section under the 'Date Used'.,True,"```json
+{
+    ""rationale"": ""The 'To' text field is visible in the filter section under the 'Date Used'."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"Is the ""To"" text field visible?","In the current UI, there is no 'To' text field visible on the screen. The screenshot shows a dashboard of a Magento Admin panel, which includes various statistics and reports, but does not display a 'To' text field.",False,"```json
+{
+    ""rationale"": ""In the current UI, there is no 'To' text field visible on the screen. The screenshot shows a dashboard of a Magento Admin panel, which includes various statistics and reports, but does not display a 'To' text field."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"Is the ""To"" text field focused?","The cursor is blinking inside the 'To' text field, which indicates that the field is currently selected and thus focused.",True,"```json
+{
+    ""rationale"": ""The cursor is blinking inside the 'To' text field, which indicates that the field is currently selected and thus focused."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"Is the ""To"" text field focused?","In the screenshot, it appears that the 'To' text field is focused since it is highlighted with a darker border, indicating that it is the active element ready to receive input.",True,"```json
+{
+    ""rationale"": ""In the screenshot, it appears that the 'To' text field is focused since it is highlighted with a darker border, indicating that it is the active element ready to receive input."",
+    ""is_satisfied"": true
+}
+```",False
+11,12,13,6.png,True,"Is the ""Show Report"" button at the top right of the screen visible?",The 'Show Report' button at the top right of the screen is visible and can be seen clearly.,True,"```json
+{
+    ""rationale"": ""The 'Show Report' button at the top right of the screen is visible and can be seen clearly."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"Is the ""Show Report"" button at the top right of the screen visible?",The 'Show Report' button is visible at the top right side of the screen.,True,"```json
+{
+    ""rationale"": ""The 'Show Report' button is visible at the top right side of the screen."",
+    ""is_satisfied"": true
+}
+```",False

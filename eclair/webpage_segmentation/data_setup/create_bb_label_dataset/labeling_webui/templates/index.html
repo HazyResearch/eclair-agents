@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Labeling Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #imageCanvas {
+            border: 1px solid black;
+            margin-bottom: 10px;
+        }
+        #labelInput {
+            margin-bottom: 10px;
+            width: 200px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #skipButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div id="canvasContainer" style="width: 800px; height: 600px; overflow: auto;">
+            <canvas id="imageCanvas"></canvas>
+        </div>        
+        <!-- <canvas id="imageCanvas"></canvas> -->
+        <input type="text" id="labelInput" placeholder="Click on the ...">
+        <select id="elementSelect">
+            <option value="button">Button</option>
+            <option value="link">Link</option>
+            <option value="textfield">Textfield</option>
+        </select>
+        <button id="skipButton">Skip</button>
+    </div>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

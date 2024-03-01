@@ -1,0 +1,55 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,The user profile icon is visible.,"The user profile icon is visible in the top right corner of the screenshot, showing a circular user avatar next to other icons.",True,"```json
+{
+    ""rationale"": ""The user profile icon is visible in the top right corner of the screenshot, showing a circular user avatar next to other icons."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Set status"" option is visible.",The 'Set status' option is visible in the drop-down menu under the user profile icon on the top right corner.,True,"```json
+{
+    ""rationale"": ""The 'Set status' option is visible in the drop-down menu under the user profile icon on the top right corner."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Set status"" option is visible.","The 'Set status' option is not visible in the current UI screenshot, which shows the GitLab Projects Dashboard. However, the 'Set status' option is usually found in user settings or profile dropdown menu, which is not expanded in the screenshot.",False,"```json
+{
+    ""rationale"": ""The 'Set status' option is not visible in the current UI screenshot, which shows the GitLab Projects Dashboard. However, the 'Set status' option is usually found in user settings or profile dropdown menu, which is not expanded in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"The ""What's your status"" textfield is visible.",The 'What's your status' textfield is visible in the screenshot within the 'Set a status' modal dialog box.,True,"```json
+{
+    ""rationale"": ""The 'What's your status' textfield is visible in the screenshot within the 'Set a status' modal dialog box."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""What's your status"" textfield is visible.","The 'What's your status' textfield is not visible in the current UI shown in the screenshot. The screenshot displays a GitLab projects dashboard with a list of projects and various details associated with them, but there is no textfield visible.",False,"```json
+{
+    ""rationale"": ""The 'What's your status' textfield is not visible in the current UI shown in the screenshot. The screenshot displays a GitLab projects dashboard with a list of projects and various details associated with them, but there is no textfield visible."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"The ""What's your status?"" input box is visible AND focused AND empty.","The 'What's your status?' input box is visible, and the text cursor is blinking inside the box indicating that it is focused. Additionally, there is no text inside the box, confirming that it is empty.",True,"```json
+{
+    ""rationale"": ""The 'What's your status?' input box is visible, and the text cursor is blinking inside the box indicating that it is focused. Additionally, there is no text inside the box, confirming that it is empty."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"The ""What's your status?"" input box is visible AND focused AND empty.","The 'What's your status?' input box is not visible in the current screenshot. The screenshot shows a GitLab projects page, not a status input box.",False,"```json
+{
+    ""rationale"": ""The 'What's your status?' input box is not visible in the current screenshot. The screenshot shows a GitLab projects page, not a status input box."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"The ""Set status"" button is visible.",The 'Set status' button is visible within the 'Set a status' dialog box on the right side of the screen.,True,"```json
+{
+    ""rationale"": ""The 'Set status' button is visible within the 'Set a status' dialog box on the right side of the screen."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The ""Set status"" button is visible.","The 'Set status' button is not visible in the screenshot. The visible portion of the UI shows a GitLab projects dashboard, and does not include the 'Set status' button which is typically found within a user profile or notification area.",False,"```json
+{
+    ""rationale"": ""The 'Set status' button is not visible in the screenshot. The visible portion of the UI shows a GitLab projects dashboard, and does not include the 'Set status' button which is typically found within a user profile or notification area."",
+    ""is_satisfied"": false
+}
+```",True

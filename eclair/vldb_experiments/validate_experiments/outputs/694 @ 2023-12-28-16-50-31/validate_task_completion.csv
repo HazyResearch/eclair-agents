@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was successfully completed. The product named 'Energy-Bulk Women Shirt' was added with a quantity of 50 in stock, available in size S and color blue, and priced at $60 as required by the workflow.",True,"```json
+{
+    ""rationale"": ""The workflow was successfully completed. The product named 'Energy-Bulk Women Shirt' was added with a quantity of 50 in stock, available in size S and color blue, and priced at $60 as required by the workflow."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not completed successfully. The last screenshot shows the 'New Product' page where the product details should be entered. However, the product name, SKU, price, and other details have not been filled in. The workflow requires adding a simple product named 'Energy-Bulk Women Shirt' with 50 in stock, available in size S and color blue, priced at $60. Since the product has not been added with the specified details, the workflow is incomplete.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The last screenshot shows the 'New Product' page where the product details should be entered. However, the product name, SKU, price, and other details have not been filled in. The workflow requires adding a simple product named 'Energy-Bulk Women Shirt' with 50 in stock, available in size S and color blue, priced at $60. Since the product has not been added with the specified details, the workflow is incomplete."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png']","The workflow was to add a simple product named Energy-Bulk Women Shirt with 50 in stock, available in size S and color blue, priced at $60. The screenshots show the process of adding a product with the correct name and price. However, the workflow was not completed because the size and color specified (size S and color blue) were not selected during the configuration process. The last action shows the quantity being set, but there is no evidence that the size and color attributes were correctly set to 'S' and 'blue'.",False,"```json
+{
+    ""rationale"": ""The workflow was to add a simple product named Energy-Bulk Women Shirt with 50 in stock, available in size S and color blue, priced at $60. The screenshots show the process of adding a product with the correct name and price. However, the workflow was not completed because the size and color specified (size S and color blue) were not selected during the configuration process. The last action shows the quantity being set, but there is no evidence that the size and color attributes were correctly set to 'S' and 'blue'."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png']","The workflow has not been completed successfully. The screenshots provided show that the user has accessed the 'Catalog' section of the web application, but there is no evidence that a product has been added. The workflow requires adding a simple product named 'Energy-Bulk Women Shirt' with specific attributes, which has not been demonstrated in the screenshots.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed successfully. The screenshots provided show that the user has accessed the 'Catalog' section of the web application, but there is no evidence that a product has been added. The workflow requires adding a simple product named 'Energy-Bulk Women Shirt' with specific attributes, which has not been demonstrated in the screenshots."",
+    ""was_completed"": false
+}
+```",True,truncate

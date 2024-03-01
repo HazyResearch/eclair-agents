@@ -1,0 +1,47 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The workflow was followed accurately up to step 5. However, the final step, which is to state the RSS feed token, was not demonstrated in the screenshots provided. The token was revealed, but not stated as per the instructions in step 6.",[6],False,"```json
+{
+    ""rationale"": ""The workflow was followed accurately up to step 5. However, the final step, which is to state the RSS feed token, was not demonstrated in the screenshots provided. The token was revealed, but not stated as per the instructions in step 6."",
+    ""inaccurate_steps"": [6],
+    ""was_accurate"": false
+}
+```",False,true
+1,False,"['0.png', '3.png', '4.png', '5.png']","The workflow demonstration did not show the user clicking on the user profile icon or selecting 'Edit Profile' from a dropdown menu. Instead, the user directly accessed the 'Access Tokens' section, which suggests that steps 1 and 2 were skipped or not shown. Additionally, the 'Click to reveal' icon was not clicked, as the token was already visible in the screenshot, indicating that step 5 was not performed as described.","[1, 2, 5]",False,"```json
+{
+    ""rationale"": ""The workflow demonstration did not show the user clicking on the user profile icon or selecting 'Edit Profile' from a dropdown menu. Instead, the user directly accessed the 'Access Tokens' section, which suggests that steps 1 and 2 were skipped or not shown. Additionally, the 'Click to reveal' icon was not clicked, as the token was already visible in the screenshot, indicating that step 5 was not performed as described."",
+    ""inaccurate_steps"": [1, 2, 5],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png']","The workflow demonstration did not accurately follow the Step-by-Step Guide. The user clicked on 'Access Tokens' instead of looking for the 'Feed token' section to reveal the RSS feed token. The 'Feed token' section was not shown in the screenshots, and the 'Click to reveal' action for the RSS token was not performed.","[4, 5, 6]",False,"```json
+{
+    ""rationale"": ""The workflow demonstration did not accurately follow the Step-by-Step Guide. The user clicked on 'Access Tokens' instead of looking for the 'Feed token' section to reveal the RSS feed token. The 'Feed token' section was not shown in the screenshots, and the 'Click to reveal' action for the RSS token was not performed."",
+    ""inaccurate_steps"": [4, 5, 6],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['2.png', '3.png', '4.png', '5.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on the 'Edit Profile' option, then clicked on 'Access Tokens', scrolled down to the 'Feed token' section, and finally clicked on the 'Click to reveal' icon to view the RSS token.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on the 'Edit Profile' option, then clicked on 'Access Tokens', scrolled down to the 'Feed token' section, and finally clicked on the 'Click to reveal' icon to view the RSS token."",
+    ""was_acurate"": true
+}
+```",False,skip
+4,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png']","The workflow did not start with clicking on the user profile icon and selecting 'Edit Profile' from the dropdown menu as described in step 1 and 2. Instead, the user directly clicked on 'Edit profile' from within the user settings page. Additionally, the 'Access Tokens' section was accessed incorrectly by clicking on 'None' instead of the 'Access Tokens' button. The 'Click to reveal' icon for the RSS token was not clicked, and the token was not stated, which means steps 5 and 6 were not completed.","[1, 2, 3, 5, 6]",False,"```json
+{
+    ""rationale"": ""The workflow did not start with clicking on the user profile icon and selecting 'Edit Profile' from the dropdown menu as described in step 1 and 2. Instead, the user directly clicked on 'Edit profile' from within the user settings page. Additionally, the 'Access Tokens' section was accessed incorrectly by clicking on 'None' instead of the 'Access Tokens' button. The 'Click to reveal' icon for the RSS token was not clicked, and the token was not stated, which means steps 5 and 6 were not completed."",
+    ""inaccurate_steps"": [1, 2, 3, 5, 6],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on the user profile icon, selected 'Edit Profile', clicked on 'Access Tokens', scrolled down to the 'Feed token' section, and clicked the 'Click to reveal' icon to view the RSS token.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on the user profile icon, selected 'Edit Profile', clicked on 'Access Tokens', scrolled down to the 'Feed token' section, and clicked the 'Click to reveal' icon to view the RSS token."",
+    ""was_acurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on the user profile icon, selected 'Edit Profile', clicked on 'Access Tokens', scrolled down to the 'Feed token' section, and revealed the RSS token by clicking on the 'Click to reveal' icon.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on the user profile icon, selected 'Edit Profile', clicked on 'Access Tokens', scrolled down to the 'Feed token' section, and revealed the RSS token by clicking on the 'Click to reveal' icon."",
+    ""was_acurate"": true
+}
+```",False,shuffle

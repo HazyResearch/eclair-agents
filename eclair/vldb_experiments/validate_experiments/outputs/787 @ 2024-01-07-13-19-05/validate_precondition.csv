@@ -1,0 +1,31 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is there a list of names displayed beneath the main ""Commits to Master"" timeline plot.","There are individual plots beneath the main 'Commits to Master' timeline plot which display the names and commit activity of different contributors. Specifically, the names 'Henning Leutz' and 'Jérémie Zarca' can be seen with their respective commit bars.",True,"```json
+{
+    ""rationale"": ""There are individual plots beneath the main 'Commits to Master' timeline plot which display the names and commit activity of different contributors. Specifically, the names 'Henning Leutz' and 'Jérémie Zarca' can be seen with their respective commit bars."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,Is the searchbar at the top of the page visible?,"The searchbar is visible at the top of the page, just below the browser's tabs and to the right of the GitLab logo.",True,"```json
+{
+    ""rationale"": ""The searchbar is visible at the top of the page, just below the browser's tabs and to the right of the GitLab logo."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,Is the searchbar at the top of the page visible?,"The search bar at the top of the page is clearly visible in the screenshot provided. It is located in the upper middle portion of the screen, with the placeholder text 'Search GitLab' indicating its purpose.",True,"```json
+{
+    ""rationale"": ""The search bar at the top of the page is clearly visible in the screenshot provided. It is located in the upper middle portion of the screen, with the placeholder text 'Search GitLab' indicating its purpose."",
+    ""is_satisfied"": true
+}
+```",False
+3,4,5,2.png,True,"Is there a dropdown option with the text ""dehenne""?","In the left sidebar, under 'Users', there is a dropdown option showing 'Henning Leutz' with a username 'dehenne' in parentheses, which satisfies the condition.",True,"```json
+{
+    ""rationale"": ""In the left sidebar, under 'Users', there is a dropdown option showing 'Henning Leutz' with a username 'dehenne' in parentheses, which satisfies the condition."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"Is there a dropdown option with the text ""dehenne""?",There is no visible dropdown option with the text 'dehenne' in the current UI state shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""There is no visible dropdown option with the text 'dehenne' in the current UI state shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True

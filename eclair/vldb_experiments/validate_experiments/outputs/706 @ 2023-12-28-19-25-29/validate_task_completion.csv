@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was to generate a refund report for Q1 on the date 3/15/2023. The screenshots show the user navigating to the Refunds Report section, setting the date range from 01/1/2023 to 03/31/2023, which corresponds to the first quarter of the year, and then attempting to show the report. However, the final screenshot does not show the actual report, but rather the same filter settings page, indicating that the report was not displayed or generated. Therefore, the workflow was not completed successfully.",False,"```json
+{
+    ""rationale"": ""The workflow was to generate a refund report for Q1 on the date 3/15/2023. The screenshots show the user navigating to the Refunds Report section, setting the date range from 01/1/2023 to 03/31/2023, which corresponds to the first quarter of the year, and then attempting to show the report. However, the final screenshot does not show the actual report, but rather the same filter settings page, indicating that the report was not displayed or generated. Therefore, the workflow was not completed successfully."",
+    ""was_completed"": false
+}
+```",False,true
+1,False,"['0.png', '1.png']","The workflow has not been completed successfully. The user has navigated to the 'Reports' section and hovered over 'Refunds', but has not yet generated a refund report for Q1.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed successfully. The user has navigated to the 'Reports' section and hovered over 'Refunds', but has not yet generated a refund report for Q1."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,['0.png'],"The provided screenshot does not show the generation of a refund report for Q1. It only shows the dashboard of a web application, specifically a Magento Admin dashboard, with no indication that a report has been generated or that any steps have been taken towards generating such a report.",False,"```json
+{
+    ""rationale"": ""The provided screenshot does not show the generation of a refund report for Q1. It only shows the dashboard of a web application, specifically a Magento Admin dashboard, with no indication that a report has been generated or that any steps have been taken towards generating such a report."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not successfully completed because the user was supposed to generate a refund report for Q1, but the date range for the report was not set. The last action clicked on a text field labeled 'None', but no date was entered to specify the first quarter of the year 2023.",False,"```json
+{
+    ""rationale"": ""The workflow was not successfully completed because the user was supposed to generate a refund report for Q1, but the date range for the report was not set. The last action clicked on a text field labeled 'None', but no date was entered to specify the first quarter of the year 2023."",
+    ""was_completed"": false
+}
+```",True,truncate

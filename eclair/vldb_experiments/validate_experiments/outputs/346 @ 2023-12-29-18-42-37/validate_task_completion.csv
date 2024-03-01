@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was to find out how many reviews the shop received during 2022. After navigating to the 'All Reviews' section and setting the date range from 01/01/2022 to 12/31/2022, the result shows '0 records found', indicating that there were no reviews during the year 2022. Therefore, the workflow was successfully completed as it provided the necessary information to answer the question.",True,"```json
+{
+    ""rationale"": ""The workflow was to find out how many reviews the shop received during 2022. After navigating to the 'All Reviews' section and setting the date range from 01/01/2022 to 12/31/2022, the result shows '0 records found', indicating that there were no reviews during the year 2022. Therefore, the workflow was successfully completed as it provided the necessary information to answer the question."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png']","The workflow has not been completed successfully. The user has navigated to the 'Marketing' section and expanded the menu, but has not yet clicked on 'All Reviews' or any other section that would likely lead to finding the number of reviews the shop received during 2022.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed successfully. The user has navigated to the 'Marketing' section and expanded the menu, but has not yet clicked on 'All Reviews' or any other section that would likely lead to finding the number of reviews the shop received during 2022."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,['0.png'],"The provided screenshot shows the dashboard of a web application, presumably for a shop's admin panel. However, the screenshot does not show any information regarding reviews or a section where reviews could be accessed or counted. The workflow is to determine how many reviews the shop received during 2022, and the current screenshot does not provide any data or means to find that information. Therefore, based on this single screenshot, the workflow has not been successfully completed.",False,"```json
+{
+    ""rationale"": ""The provided screenshot shows the dashboard of a web application, presumably for a shop's admin panel. However, the screenshot does not show any information regarding reviews or a section where reviews could be accessed or counted. The workflow is to determine how many reviews the shop received during 2022, and the current screenshot does not provide any data or means to find that information. Therefore, based on this single screenshot, the workflow has not been successfully completed."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not completed successfully. The user was supposed to find out how many reviews the shop received during 2022. While the user navigated to the 'All Reviews' section and attempted to filter the reviews by date, the 'From' date was not set to the beginning of 2022, and the 'To' date was incorrectly set to a date in 2023. Therefore, the user did not successfully filter the reviews to only show those from 2022.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The user was supposed to find out how many reviews the shop received during 2022. While the user navigated to the 'All Reviews' section and attempted to filter the reviews by date, the 'From' date was not set to the beginning of 2022, and the 'To' date was incorrectly set to a date in 2023. Therefore, the user did not successfully filter the reviews to only show those from 2022."",
+    ""was_completed"": false
+}
+```",True,truncate

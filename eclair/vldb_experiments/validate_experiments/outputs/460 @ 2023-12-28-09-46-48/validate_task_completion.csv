@@ -1,0 +1,21 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The workflow was to reduce the price of the product by 15%. The original price shown in the first screenshot was $69.00. A 15% reduction of $69.00 is $10.35, which when subtracted from the original price equals $58.65. The final screenshot shows the price has been changed to $58.65 and the product has been saved, indicating the workflow was successfully completed.",True,"```json
+{
+    ""rationale"": ""The workflow was to reduce the price of the product by 15%. The original price shown in the first screenshot was $69.00. A 15% reduction of $69.00 is $10.35, which when subtracted from the original price equals $58.65. The final screenshot shows the price has been changed to $58.65 and the product has been saved, indicating the workflow was successfully completed."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,['0.png'],"There is only one screenshot provided, which shows the product 'Ajax Full-Zip Sweatshirt -XL-Red' with a price of $69.00. There are no further screenshots or actions provided that show the price being reduced by 15%. Therefore, based on the information given, it cannot be determined if the workflow was successfully completed.",False,"{
+    ""rationale"": ""There is only one screenshot provided, which shows the product 'Ajax Full-Zip Sweatshirt -XL-Red' with a price of $69.00. There are no further screenshots or actions provided that show the price being reduced by 15%. Therefore, based on the information given, it cannot be determined if the workflow was successfully completed."",
+    ""was_completed"": false
+}",True,truncate
+2,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was to reduce the price of the product by 15%. However, the screenshots provided show that the price field was selected but not changed. There is no evidence in the screenshots that the price was reduced by the specified percentage. Therefore, the workflow was not successfully completed.",False,"```json
+{
+    ""rationale"": ""The workflow was to reduce the price of the product by 15%. However, the screenshots provided show that the price field was selected but not changed. There is no evidence in the screenshots that the price was reduced by the specified percentage. Therefore, the workflow was not successfully completed."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,[],"You have not provided any screenshots or actions that were taken to transition between screenshots. Without this information, I cannot determine whether the workflow was successfully completed.",False,"{
+    ""rationale"": ""You have not provided any screenshots or actions that were taken to transition between screenshots. Without this information, I cannot determine whether the workflow was successfully completed."",
+    ""was_completed"": false
+}",True,truncate

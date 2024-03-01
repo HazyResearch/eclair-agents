@@ -1,0 +1,25 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was successfully completed. The screenshots and actions show that a new group named 'crew' was created and the members ASWATFZLLC, patrickhlauke, westurner, and linkmatrix were successfully added to the group.",True,"```json
+{
+    ""rationale"": ""The workflow was successfully completed. The screenshots and actions show that a new group named 'crew' was created and the members ASWATFZLLC, patrickhlauke, westurner, and linkmatrix were successfully added to the group."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not completed successfully. The last screenshot shows the 'Create group' page where a new group should be named and created. However, the group name 'crew' has not been entered, and the members ASWATFZLLC, patrickhlauke, westurner, linkmatrix have not been added to the group as specified in the workflow. The process has not progressed beyond the initial group creation page.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The last screenshot shows the 'Create group' page where a new group should be named and created. However, the group name 'crew' has not been entered, and the members ASWATFZLLC, patrickhlauke, westurner, linkmatrix have not been added to the group as specified in the workflow. The process has not progressed beyond the initial group creation page."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png']","The workflow was not completed successfully. The task was to create a new group 'crew' with members ASWATFZLLC, patrickhlauke, westurner, linkmatrix. The screenshots show the creation of the group 'crew' and the invitation of ASWATFZLLC, patrickhlauke, and westurner, but there is no evidence that the member 'linkmatrix' was invited to the group.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The task was to create a new group 'crew' with members ASWATFZLLC, patrickhlauke, westurner, linkmatrix. The screenshots show the creation of the group 'crew' and the invitation of ASWATFZLLC, patrickhlauke, and westurner, but there is no evidence that the member 'linkmatrix' was invited to the group."",
+    ""was_completed"": false
+}
+```",True,truncate
+3,False,"['0.png', '1.png']","The workflow was not completed successfully. The screenshots show the user navigating to the option to create a new group, but there is no evidence that the group 'crew' was created or that the members ASWATFZLLC, patrickhlauke, westurner, and linkmatrix were added to it.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The screenshots show the user navigating to the option to create a new group, but there is no evidence that the group 'crew' was created or that the members ASWATFZLLC, patrickhlauke, westurner, and linkmatrix were added to it."",
+    ""was_completed"": false
+}
+```",True,truncate

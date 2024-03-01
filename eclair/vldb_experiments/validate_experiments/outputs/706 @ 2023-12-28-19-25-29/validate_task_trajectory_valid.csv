@@ -1,0 +1,48 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on 'Reports', then 'Refunds', entered the correct 'From' and 'To' dates for Q1, and clicked on 'Show Report'.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the Step-by-Step Guide. The user clicked on 'Reports', then 'Refunds', entered the correct 'From' and 'To' dates for Q1, and clicked on 'Show Report'."",
+    ""was_acurate"": true
+}
+```",True,true
+1,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The screenshots and actions provided do not show the user clicking on the 'Reports' option in the sidebar or selecting the 'Refunds' option from the popup menu. The workflow jumps directly to the Refunds Report page. Additionally, the 'From' date was incorrectly entered as '1/1/23' instead of '01/01/2023' and the 'To' date was entered as '3/31/23' instead of '03/31/2023'. The date format inconsistency could potentially lead to errors in the report generation. Lastly, the user clicked the 'Show Report' button, but the screenshot did not change, indicating that the report might not have been generated successfully.","[1, 2, 4, 6, 7]",False,"```json
+{
+    ""rationale"": ""The screenshots and actions provided do not show the user clicking on the 'Reports' option in the sidebar or selecting the 'Refunds' option from the popup menu. The workflow jumps directly to the Refunds Report page. Additionally, the 'From' date was incorrectly entered as '1/1/23' instead of '01/01/2023' and the 'To' date was entered as '3/31/23' instead of '03/31/2023'. The date format inconsistency could potentially lead to errors in the report generation. Lastly, the user clicked the 'Show Report' button, but the screenshot did not change, indicating that the report might not have been generated successfully."",
+    ""inaccurate_steps"": [1, 2, 4, 6, 7],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png']","The Step-by-Step Guide was not accurately followed. The 'From' date was incorrectly entered as '01/1/2023' instead of '01/01/2023'. The format should match the 'To' date format which is '03/31/2023'. Additionally, the 'To' date was initially entered incorrectly as 'None' and then corrected to '03/31/2023', but the 'From' date was not corrected to the proper format.",[4],False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The 'From' date was incorrectly entered as '01/1/2023' instead of '01/01/2023'. The format should match the 'To' date format which is '03/31/2023'. Additionally, the 'To' date was initially entered incorrectly as 'None' and then corrected to '03/31/2023', but the 'From' date was not corrected to the proper format."",
+    ""inaccurate_steps"": [4],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The user did not complete step 6 of the Step-by-Step Guide, which is to type '03/31/2023' into the 'To' text field. Instead, the user clicked on the text field labeled 'None' but did not input the required date for the end of Q1.",[6],False,"```json
+{
+    ""rationale"": ""The user did not complete step 6 of the Step-by-Step Guide, which is to type '03/31/2023' into the 'To' text field. Instead, the user clicked on the text field labeled 'None' but did not input the required date for the end of Q1."",
+    ""inaccurate_steps"": [6],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['6.png', '1.png', '2.png', '3.png', '4.png', '5.png', '0.png', '7.png']","The workflow was not followed accurately. After clicking 'Show Report', the user was taken to the dashboard instead of displaying the refund report for the specified date range. The user then clicked on 'REPORTS' in the sidebar, which was not part of the required steps and did not lead to the generation of the refund report.",[7],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. After clicking 'Show Report', the user was taken to the dashboard instead of displaying the refund report for the specified date range. The user then clicked on 'REPORTS' in the sidebar, which was not part of the required steps and did not lead to the generation of the refund report."",
+    ""inaccurate_steps"": [7],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was not followed accurately. The user clicked on the wrong text field in the first action, which led to navigating away from the Refunds Report page. The correct sequence was resumed from the second action onwards, but the initial mistake constitutes a deviation from the Step-by-Step Guide.",[1],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user clicked on the wrong text field in the first action, which led to navigating away from the Refunds Report page. The correct sequence was resumed from the second action onwards, but the initial mistake constitutes a deviation from the Step-by-Step Guide."",
+    ""inaccurate_steps"": [1],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png', '6.png', '7.png']","The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Reports', then 'Refunds', entered the correct 'From' and 'To' dates for Q1, and clicked on 'Show Report'.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided Step-by-Step Guide. The user clicked on 'Reports', then 'Refunds', entered the correct 'From' and 'To' dates for Q1, and clicked on 'Show Report'."",
+    ""was_acurate"": true
+}
+```",False,shuffle

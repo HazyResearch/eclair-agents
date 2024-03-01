@@ -1,0 +1,23 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png']",The workflow 'Cancel order 307' was successfully completed. The final screenshot shows a notification stating 'We canceled 1 order(s).' and the status of order ID 000000307 is listed as 'Canceled'.,True,"```json
+{
+    ""rationale"": ""The workflow 'Cancel order 307' was successfully completed. The final screenshot shows a notification stating 'We canceled 1 order(s).' and the status of order ID 000000307 is listed as 'Canceled'."",
+    ""was_completed"": true
+}
+```",True,true
+1,False,"['0.png', '1.png']","The workflow has not been completed successfully. The user clicked on the 'SALES' link, which opened a dropdown menu with options such as 'Orders', 'Invoices', 'Shipments', etc. However, the user has not yet navigated to the 'Orders' section to find and cancel order 307.",False,"```json
+{
+    ""rationale"": ""The workflow has not been completed successfully. The user clicked on the 'SALES' link, which opened a dropdown menu with options such as 'Orders', 'Invoices', 'Shipments', etc. However, the user has not yet navigated to the 'Orders' section to find and cancel order 307."",
+    ""was_completed"": false
+}
+```",True,truncate
+2,False,['0.png'],"There is only one screenshot provided which shows the dashboard of a web application. There are no further screenshots or actions provided that demonstrate the workflow of cancelling order 307. Therefore, it is not possible to determine from the given information whether the workflow was successfully completed.",False,"{
+    ""rationale"": ""There is only one screenshot provided which shows the dashboard of a web application. There are no further screenshots or actions provided that demonstrate the workflow of cancelling order 307. Therefore, it is not possible to determine from the given information whether the workflow was successfully completed."",
+    ""was_completed"": false
+}",True,truncate
+3,False,"['0.png', '1.png', '2.png', '3.png']","The workflow was not completed successfully. The user was supposed to cancel order 307, but instead of searching for order 307, the user typed 'Hollister' into the search field, which does not correspond to the order number that needed to be cancelled.",False,"```json
+{
+    ""rationale"": ""The workflow was not completed successfully. The user was supposed to cancel order 307, but instead of searching for order 307, the user typed 'Hollister' into the search field, which does not correspond to the order number that needed to be cancelled."",
+    ""was_completed"": false
+}
+```",True,truncate

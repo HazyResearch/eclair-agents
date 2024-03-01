@@ -1,0 +1,48 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The Step-by-Step Guide was accurately followed. The user clicked on 'Marketing', then 'All Reviews', focused on the 'From' text field, typed in '01/01/2022', clicked on the 'To' text field, typed in '12/31/2022', and pressed 'Enter'. The number of records found should have been displayed, but the screenshot shows '0 records found', indicating that there were no reviews in the specified date range.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on 'Marketing', then 'All Reviews', focused on the 'From' text field, typed in '01/01/2022', clicked on the 'To' text field, typed in '12/31/2022', and pressed 'Enter'. The number of records found should have been displayed, but the screenshot shows '0 records found', indicating that there were no reviews in the specified date range."",
+    ""was_acurate"": true
+}
+```",True,true
+1,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or selecting 'All Reviews' from the dropdown menu. The workflow begins with the user already on the 'Reviews' page, which skips the first two steps of the guide. Additionally, the screenshots do not show the number of records found after filtering the reviews, which is the final step required to complete the workflow.","[1, 2, 8]",False,"```json
+{
+    ""rationale"": ""The provided screenshots and actions do not show the user clicking on the 'Marketing' icon or selecting 'All Reviews' from the dropdown menu. The workflow begins with the user already on the 'Reviews' page, which skips the first two steps of the guide. Additionally, the screenshots do not show the number of records found after filtering the reviews, which is the final step required to complete the workflow."",
+    ""inaccurate_steps"": [1, 2, 8],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png']","The Step-by-Step Guide was not accurately followed. The user did not type in '01/01/2022' into the 'From' text field as instructed in step 4. Instead, the user typed '12/31/2022' into the 'To' text field without setting the 'From' date, which led to no records being found when the 'Enter' key was pressed.",[4],False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not type in '01/01/2022' into the 'From' text field as instructed in step 4. Instead, the user typed '12/31/2022' into the 'To' text field without setting the 'From' date, which led to no records being found when the 'Enter' key was pressed."",
+    ""inaccurate_steps"": [4],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png']","The Step-by-Step Guide was not accurately followed. The date entered in the 'To' field was '04/30/2023' instead of the required '12/31/2022'. Therefore, the workflow did not correctly filter the reviews to only include those from the year 2022.",[6],False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The date entered in the 'To' field was '04/30/2023' instead of the required '12/31/2022'. Therefore, the workflow did not correctly filter the reviews to only include those from the year 2022."",
+    ""inaccurate_steps"": [6],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['6.png', '1.png', '2.png', '3.png', '4.png', '5.png', '0.png', '7.png']","The Step-by-Step Guide was not accurately followed. The user did not press the 'Enter' key to show all results after entering the date range. Instead, the user navigated away from the page, which resulted in not being able to see the number of records found for the specified date range.","[7, 8]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not press the 'Enter' key to show all results after entering the date range. Instead, the user navigated away from the page, which resulted in not being able to see the number of records found for the specified date range."",
+    ""inaccurate_steps"": [7, 8],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['2.png', '1.png', '0.png', '3.png', '4.png', '5.png', '6.png', '7.png']","The workflow was not followed accurately. The user did not click inside the 'From' text field to focus it before typing the start date as instructed in step 3. Instead, they clicked on the 'From' text field after typing the date. Additionally, the user did not press the 'Enter' key after typing the end date in the 'To' field as instructed in step 7. Instead, they clicked on the 'To' text field.","[3, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click inside the 'From' text field to focus it before typing the start date as instructed in step 3. Instead, they clicked on the 'From' text field after typing the date. Additionally, the user did not press the 'Enter' key after typing the end date in the 'To' field as instructed in step 7. Instead, they clicked on the 'To' text field."",
+    ""inaccurate_steps"": [3, 7],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '4.png', '3.png', '5.png', '6.png', '7.png']","The Step-by-Step Guide was accurately followed. The user clicked on 'Marketing', then 'All Reviews', focused on the 'From' text field, entered '01/01/2022', clicked on the 'To' text field, entered '12/31/2022', and pressed 'Enter'. The number of records found was then displayed as '0 records found', indicating that there were no reviews during the year 2022.",[],True,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was accurately followed. The user clicked on 'Marketing', then 'All Reviews', focused on the 'From' text field, entered '01/01/2022', clicked on the 'To' text field, entered '12/31/2022', and pressed 'Enter'. The number of records found was then displayed as '0 records found', indicating that there were no reviews during the year 2022."",
+    ""was_accurate"": true
+}
+```",False,shuffle

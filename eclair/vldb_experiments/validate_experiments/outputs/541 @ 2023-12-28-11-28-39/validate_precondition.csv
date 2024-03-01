@@ -1,0 +1,255 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Sales"" button is visible.",The 'Sales' button is visible on the left side vertical menu bar in the user interface.,True,"```json
+{
+    ""rationale"": ""The 'Sales' button is visible on the left side vertical menu bar in the user interface."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Orders"" button is visible.",The 'Orders' button is visible in the sidebar on the left-hand side under the 'SALES' category.,True,"{
+    ""rationale"": ""The 'Orders' button is visible in the sidebar on the left-hand side under the 'SALES' category."",
+    ""is_satisfied"": true
+}",True
+2,0,3,0.png,False,"The ""Orders"" button is visible.",The 'Orders' button is not visible in the current screenshot of the Magento admin dashboard.,False,"```json
+{
+    ""rationale"": ""The 'Orders' button is not visible in the current screenshot of the Magento admin dashboard."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"The ""Search by keyword"" text field is visible.","The 'Search by keyword' text field is visible in the upper left part of the Orders screen, right above the 'Actions' button and the records table.",True,"```json
+{
+    ""rationale"": ""The 'Search by keyword' text field is visible in the upper left part of the Orders screen, right above the 'Actions' button and the records table."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""Search by keyword"" text field is visible.","The 'Search by keyword' text field is not visible in the screenshot provided. The UI displays various elements related to a Magento admin dashboard such as Lifetime Sales, Average Order, Last Orders, Bestsellers, Most Viewed Products, etc. However, there is no specific text field visible that is labeled as 'Search by keyword'.",False,"```json
+{
+    ""rationale"": ""The 'Search by keyword' text field is not visible in the screenshot provided. The UI displays various elements related to a Magento admin dashboard such as Lifetime Sales, Average Order, Last Orders, Bestsellers, Most Viewed Products, etc. However, there is no specific text field visible that is labeled as 'Search by keyword'."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"The ""Search by keyword"" text field is focused AND empty.","The screenshot shows a web interface with a 'Search by keyword' text field. The text field appears to have a blinking cursor, indicating that it is focused. Since there is no visible text within the field, it can be concluded that the field is empty.",True,"```json
+{
+    ""rationale"": ""The screenshot shows a web interface with a 'Search by keyword' text field. The text field appears to have a blinking cursor, indicating that it is focused. Since there is no visible text within the field, it can be concluded that the field is empty."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"The ""Search by keyword"" text field is focused AND empty.","The screenshot shows the Magento Admin Dashboard, where several sections like 'Sales', 'Last Search Terms', and 'Bestsellers' are visible. However, there is no visible text field labeled 'Search by keyword', nor is there any indication that any text field is focused. Therefore, it cannot be determined from the provided screenshot if the 'Search by keyword' text field is focused and empty.",False,"```json
+{
+    ""rationale"": ""The screenshot shows the Magento Admin Dashboard, where several sections like 'Sales', 'Last Search Terms', and 'Bestsellers' are visible. However, there is no visible text field labeled 'Search by keyword', nor is there any indication that any text field is focused. Therefore, it cannot be determined from the provided screenshot if the 'Search by keyword' text field is focused and empty."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"The magnifying glass in the ""Search by keyword"" text field is visible.",The magnifying glass icon is visible inside the 'Search by keyword' text field in the upper left portion of the UI.,True,"```json
+{
+    ""rationale"": ""The magnifying glass icon is visible inside the 'Search by keyword' text field in the upper left portion of the UI."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The magnifying glass in the ""Search by keyword"" text field is visible.","The 'Search by keyword' text field is not visible in the provided screenshot, therefore the magnifying glass icon that would typically be found within that field cannot be verified as visible.",False,"```json
+{
+    ""rationale"": ""The 'Search by keyword' text field is not visible in the provided screenshot, therefore the magnifying glass icon that would typically be found within that field cannot be verified as visible."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"The row for order ""000000125"" is visible.","The row for order '000000125' is visible on the screen under the ID column, confirming that the specified condition is satisfied.",True,"```json
+{
+    ""rationale"": ""The row for order '000000125' is visible on the screen under the ID column, confirming that the specified condition is satisfied."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"The row for order ""000000125"" is visible.","The rows visible in the screenshot show order IDs ranging from 000000301 to 000000306, and do not include the order ID 000000125.",False,"```json
+{
+    ""rationale"": ""The rows visible in the screenshot show order IDs ranging from 000000301 to 000000306, and do not include the order ID 000000125."",
+    ""is_satisfied"": false
+}
+```",True
+11,12,13,6.png,True,"The blue ""Edit"" link is visible.",The blue 'Edit' link is visible next to the Shipping Address section on the right side of the screenshot.,True,"```json
+{
+    ""rationale"": ""The blue 'Edit' link is visible next to the Shipping Address section on the right side of the screenshot."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"The blue ""Edit"" link is visible.",There is no visible blue 'Edit' link in the current UI of the screenshot provided.,False,"```json
+{
+    ""rationale"": ""There is no visible blue 'Edit' link in the current UI of the screenshot provided."",
+    ""is_satisfied"": false
+}
+```",True
+13,14,15,7.png,True,"The ""Street Address"" text box is visible.","The 'Street Address' text box is visible on the UI, as evidenced by the information filled out with '123 Peachtree St'.",True,"```json
+{
+    ""rationale"": ""The 'Street Address' text box is visible on the UI, as evidenced by the information filled out with '123 Peachtree St'."",
+    ""is_satisfied"": true
+}
+```",True
+14,6,15,3.png,False,"The ""Street Address"" text box is visible.","In the current state of the UI shown in the screenshot, there is no 'Street Address' text box visible. The UI shows a table of orders with information such as ID, Purchase Date, Bill-to Name, Ship-to Name, Grand Total (Base), Grand Total (Purchased), Status, Action, Allocated sources, and Braintree Transaction Source. No individual order details are open that might display a 'Street Address' text box.",False,"```json
+{
+    ""rationale"": ""In the current state of the UI shown in the screenshot, there is no 'Street Address' text box visible. The UI shows a table of orders with information such as ID, Purchase Date, Bill-to Name, Ship-to Name, Grand Total (Base), Grand Total (Purchased), Status, Action, Allocated sources, and Braintree Transaction Source. No individual order details are open that might display a 'Street Address' text box."",
+    ""is_satisfied"": false
+}
+```",True
+15,16,17,8.png,True,"The ""Street Address"" text box is visible.",The 'Street Address' text box is visible on the screenshot showing the Magento Admin order address information page.,True,"```json
+{
+    ""rationale"": ""The 'Street Address' text box is visible on the screenshot showing the Magento Admin order address information page."",
+    ""is_satisfied"": true
+}
+```",True
+16,12,17,6.png,False,"The ""Street Address"" text box is visible.","The 'Street Address' text box itself is not visible in the current state of the UI. Instead, the screenshot shows the billing and shipping addresses in a read-only state with the address information displayed as static text.",False,"```json
+{
+    ""rationale"": ""The 'Street Address' text box itself is not visible in the current state of the UI. Instead, the screenshot shows the billing and shipping addresses in a read-only state with the address information displayed as static text."",
+    ""is_satisfied"": false
+}
+```",True
+17,18,19,9.png,True,"The ""Street Address"" text box is visible.","The 'Street Address' text box is clearly visible in the screenshot, with the address '123 Peachtree St' entered into the field.",True,"```json
+{
+    ""rationale"": ""The 'Street Address' text box is clearly visible in the screenshot, with the address '123 Peachtree St' entered into the field."",
+    ""is_satisfied"": true
+}
+```",True
+18,6,19,3.png,False,"The ""Street Address"" text box is visible.","The screenshot shows an order management interface, specifically a list of orders. There is no 'Street Address' text box visible in the current view of the UI.",False,"```json
+{
+    ""rationale"": ""The screenshot shows an order management interface, specifically a list of orders. There is no 'Street Address' text box visible in the current view of the UI."",
+    ""is_satisfied"": false
+}
+```",True
+19,20,21,10.png,True,"The ""Street Address"" text box is focused AND empty.",The 'Street Address' text box is not empty. It contains the address '123 Peachtree St'.,False,"```json
+{
+    ""rationale"": ""The 'Street Address' text box is not empty. It contains the address '123 Peachtree St'."",
+    ""is_satisfied"": false
+}
+```",False
+20,2,21,1.png,False,"The ""Street Address"" text box is focused AND empty.","The current UI shown in the screenshot is the dashboard of a Magento Admin Panel, specifically displaying sales information. There is no 'Street Address' text box visible nor focused in this screenshot.",False,"```json
+{
+    ""rationale"": ""The current UI shown in the screenshot is the dashboard of a Magento Admin Panel, specifically displaying sales information. There is no 'Street Address' text box visible nor focused in this screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+21,22,23,11.png,True,"The page is loaded and the ""State/Province"" label is not already visible.","The page appears to be fully loaded, and the 'State/Province' label is clearly visible within the UI under the 'Country' dropdown menu. The label is right above the dropdown menu from which 'Georgia' is selected.",False,"```json
+{
+    ""rationale"": ""The page appears to be fully loaded, and the 'State/Province' label is clearly visible within the UI under the 'Country' dropdown menu. The label is right above the dropdown menu from which 'Georgia' is selected."",
+    ""is_satisfied"": false
+}
+```",False
+22,14,23,7.png,False,"The page is loaded and the ""State/Province"" label is not already visible.","The page is fully loaded, and the 'State/Province' label is visible underneath the 'Country' field. The dropdown menu directly under 'State/Province' is set to 'Georgia'.",False,"```json
+{
+    ""rationale"": ""The page is fully loaded, and the 'State/Province' label is visible underneath the 'Country' field. The dropdown menu directly under 'State/Province' is set to 'Georgia'."",
+    ""is_satisfied"": false
+}
+```",True
+23,24,25,12.png,True,"The ""State/Province"" label is visible.",The label 'State/Province' is visible next to the dropdown menu that currently has 'Georgia' selected.,True,"```json
+{
+    ""rationale"": ""The label 'State/Province' is visible next to the dropdown menu that currently has 'Georgia' selected."",
+    ""is_satisfied"": true
+}
+```",True
+24,0,25,0.png,False,"The ""State/Province"" label is visible.","The screenshot provided is a view of the Magento Admin Dashboard. However, the 'State/Province' label is not visible in any part of the visible UI. The dashboard elements displayed include sales-related information such as 'Lifetime Sales', 'Average Order', 'Last Orders', and 'Bestsellers', as well as 'Last Search Terms', but there is no 'State/Province' label in the visible area.",False,"```json
+{
+    ""rationale"": ""The screenshot provided is a view of the Magento Admin Dashboard. However, the 'State/Province' label is not visible in any part of the visible UI. The dashboard elements displayed include sales-related information such as 'Lifetime Sales', 'Average Order', 'Last Orders', and 'Bestsellers', as well as 'Last Search Terms', but there is no 'State/Province' label in the visible area."",
+    ""is_satisfied"": false
+}
+```",True
+25,26,27,13.png,True,"The ""Florida"" option is visible in the dropdown menu.",The 'Florida' option is clearly visible in the dropdown menu for the 'State/Province' field.,True,"```json
+{
+    ""rationale"": ""The 'Florida' option is clearly visible in the dropdown menu for the 'State/Province' field."",
+    ""is_satisfied"": true
+}
+```",True
+26,12,27,6.png,False,"The ""Florida"" option is visible in the dropdown menu.","The screenshot provided displays an order details page with various sections such as Order & Account Information, Address Information, and Payment & Shipping Method. There is no dropdown menu visible in the provided screenshot, and as such, it is not possible to verify the presence of the 'Florida' option within a dropdown menu.",False,"{
+    ""rationale"": ""The screenshot provided displays an order details page with various sections such as Order & Account Information, Address Information, and Payment & Shipping Method. There is no dropdown menu visible in the provided screenshot, and as such, it is not possible to verify the presence of the 'Florida' option within a dropdown menu."",
+    ""is_satisfied"": false
+}",True
+27,28,29,14.png,True,"The ""City"" text box is visible.","The 'City' text box is visible in the screenshot, with the text 'Atlanta' filled into it, which is located below the 'State/Province' dropdown and above the 'Zip/Postal Code' text box.",True,"```json
+{
+    ""rationale"": ""The 'City' text box is visible in the screenshot, with the text 'Atlanta' filled into it, which is located below the 'State/Province' dropdown and above the 'Zip/Postal Code' text box."",
+    ""is_satisfied"": true
+}
+```",True
+28,12,29,6.png,False,"The ""City"" text box is visible.","The 'City' text box is not visible in the current state of the UI as there are no interactive text boxes displayed. The 'City' information can be seen within the 'Billing Address' and 'Shipping Address' sections where it lists 'Atlanta,' but these are static text fields and not text boxes.",False,"```json
+{
+    ""rationale"": ""The 'City' text box is not visible in the current state of the UI as there are no interactive text boxes displayed. The 'City' information can be seen within the 'Billing Address' and 'Shipping Address' sections where it lists 'Atlanta,' but these are static text fields and not text boxes."",
+    ""is_satisfied"": false
+}
+```",True
+29,30,31,15.png,True,"The ""City"" text box is visible.","The 'City' text box is visible in the screenshot, indicated by the label 'City' followed by a text field with the placeholder text 'Atlanta'.",True,"```json
+{
+    ""rationale"": ""The 'City' text box is visible in the screenshot, indicated by the label 'City' followed by a text field with the placeholder text 'Atlanta'."",
+    ""is_satisfied"": true
+}
+```",True
+30,18,31,9.png,False,"The ""City"" text box is visible.","The 'City' text box is not visible in the screenshot. Only the 'First Name', 'Last Name', 'Street Address', 'Country', and 'State/Province' fields are shown.",False,"```json
+{
+    ""rationale"": ""The 'City' text box is not visible in the screenshot. Only the 'First Name', 'Last Name', 'Street Address', 'Country', and 'State/Province' fields are shown."",
+    ""is_satisfied"": false
+}
+```",True
+31,32,33,16.png,True,"The ""City"" text box is visible.",The 'City' text box is clearly visible in the screenshot provided under the 'State/Province' dropdown menu and is currently filled with the text 'Atlanta'.,True,"```json
+{
+    ""rationale"": ""The 'City' text box is clearly visible in the screenshot provided under the 'State/Province' dropdown menu and is currently filled with the text 'Atlanta'."",
+    ""is_satisfied"": true
+}
+```",True
+32,0,33,0.png,False,"The ""City"" text box is visible.",The current UI shown in the screenshot is a dashboard view of a Magento admin panel. There is no 'City' text box visible in the provided screenshot.,False,"```json
+{
+    ""rationale"": ""The current UI shown in the screenshot is a dashboard view of a Magento admin panel. There is no 'City' text box visible in the provided screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+33,34,35,17.png,True,"The ""City"" text box is focused AND empty.","The 'City' text box is not empty; it contains the text 'Atlanta'. Therefore, the condition that the 'City' text box be both focused and empty is not met.",False,"```json
+{
+    ""rationale"": ""The 'City' text box is not empty; it contains the text 'Atlanta'. Therefore, the condition that the 'City' text box be both focused and empty is not met."",
+    ""is_satisfied"": false
+}
+```",False
+34,28,35,14.png,False,"The ""City"" text box is focused AND empty.","The 'City' text box is not empty, as it contains the misspelled word 'Atlata'. Therefore, the condition of being both focused and empty is not satisfied.",False,"```json
+{
+    ""rationale"": ""The 'City' text box is not empty, as it contains the misspelled word 'Atlata'. Therefore, the condition of being both focused and empty is not satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+35,36,37,18.png,True,"The ""Zip/Postal Code"" text field is visible.",The 'Zip/Postal Code' text field is visible in the screenshot under the 'City' field.,True,"```json
+{
+    ""rationale"": ""The 'Zip/Postal Code' text field is visible in the screenshot under the 'City' field."",
+    ""is_satisfied"": true
+}
+```",True
+36,16,37,8.png,False,"The ""Zip/Postal Code"" text field is visible.","In the screenshot provided, the 'Zip/Postal Code' text field is not visible, so the condition is not satisfied.",False,"```json
+{
+    ""rationale"": ""In the screenshot provided, the 'Zip/Postal Code' text field is not visible, so the condition is not satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+37,38,39,19.png,True,"The ""Zip/Postal Code"" text field is visible.",The 'Zip/Postal Code' text field is clearly visible in the screenshot.,True,"```json
+{
+    ""rationale"": ""The 'Zip/Postal Code' text field is clearly visible in the screenshot."",
+    ""is_satisfied"": true
+}
+```",True
+38,14,39,7.png,False,"The ""Zip/Postal Code"" text field is visible.",The 'Zip/Postal Code' text field is not visible in the provided screenshot.,False,"```json
+{
+    ""rationale"": ""The 'Zip/Postal Code' text field is not visible in the provided screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+39,40,41,20.png,True,"The ""Zip/Postal Code"" text box is focused AND empty.","The 'Zip/Postal Code' text box is not empty as it contains the numbers 30308. Moreover, it does not appear to be focused since no cursor or text selection is visible in the screenshot.",False,"```json
+{
+    ""rationale"": ""The 'Zip/Postal Code' text box is not empty as it contains the numbers 30308. Moreover, it does not appear to be focused since no cursor or text selection is visible in the screenshot."",
+    ""is_satisfied"": false
+}
+```",False
+40,36,41,18.png,False,"The ""Zip/Postal Code"" text box is focused AND empty.","The 'Zip/Postal Code' text box is not focused. The focus appears to be on the 'State/Province' drop-down menu, and the 'Zip/Postal Code' text box has a value of '30308' entered into it, so it is not empty.",False,"```json
+{
+    ""rationale"": ""The 'Zip/Postal Code' text box is not focused. The focus appears to be on the 'State/Province' drop-down menu, and the 'Zip/Postal Code' text box has a value of '30308' entered into it, so it is not empty."",
+    ""is_satisfied"": false
+}
+```",True
+41,42,43,21.png,True,"The orange ""Save Order Address"" button is visible. All of the form elements for the address ""654 Elm Drive, Apartment 12, Miami, FL, 33101"" were correctly filled out.","The orange 'Save Order Address' button is visible in the screenshot, and the address fields such as street address, city, state/province, country, and zip/postal code are filled with the address '654 Elm Drive, Apartment 12, Miami, FL, 33101' respectively. Thus, all form elements for the specified address are correctly filled out.",True,"```json
+{
+    ""rationale"": ""The orange 'Save Order Address' button is visible in the screenshot, and the address fields such as street address, city, state/province, country, and zip/postal code are filled with the address '654 Elm Drive, Apartment 12, Miami, FL, 33101' respectively. Thus, all form elements for the specified address are correctly filled out."",
+    ""is_satisfied"": true
+}
+```",True
+42,6,43,3.png,False,"The orange ""Save Order Address"" button is visible. All of the form elements for the address ""654 Elm Drive, Apartment 12, Miami, FL, 33101"" were correctly filled out.","The current UI screenshot shows an orders list from an ecommerce platform, not an address form or a 'Save Order Address' button.",False,"```json
+{
+    ""rationale"": ""The current UI screenshot shows an orders list from an ecommerce platform, not an address form or a 'Save Order Address' button."",
+    ""is_satisfied"": false
+}
+```",True

@@ -1,0 +1,89 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Explore"" link is visible.","The 'Explore' link is visible in the top menu bar, between the 'Starred' link and 'Topics' link.",True,"```json
+{
+    ""rationale"": ""The 'Explore' link is visible in the top menu bar, between the 'Starred' link and 'Topics' link."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Filter by name"" search box is visible","The 'Filter by name' search box is visible on the top right side just above the list of projects, indicating that the condition is satisfied.",True,"```json
+{
+    ""rationale"": ""The 'Filter by name' search box is visible on the top right side just above the list of projects, indicating that the condition is satisfied."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Filter by name"" search box is visible","The 'Filter by name' search box is visible in the top right section of the 'Projects' page, just above the list of projects.",True,"```json
+{
+    ""rationale"": ""The 'Filter by name' search box is visible in the top right section of the 'Projects' page, just above the list of projects."",
+    ""is_satisfied"": true
+}
+```",False
+3,4,5,2.png,True,The search box is focused AND empty.,"The search box appears to have a blinking cursor indicating that it is focused, but it is not empty as it contains the text 'Filter by name'.",False,"```json
+{
+    ""rationale"": ""The search box appears to have a blinking cursor indicating that it is focused, but it is not empty as it contains the text 'Filter by name'."",
+    ""is_satisfied"": false
+}
+```",False
+4,0,5,0.png,False,The search box is focused AND empty.,"The screenshot shows that the search box does not have a blinking cursor or any indication that it is currently selected or focused. Additionally, there's no visible text inside the search box which suggests it might be empty, but the lack of focus cannot be confirmed solely based on this screenshot.",False,"```json
+{
+    ""rationale"": ""The screenshot shows that the search box does not have a blinking cursor or any indication that it is currently selected or focused. Additionally, there's no visible text inside the search box which suggests it might be empty, but the lack of focus cannot be confirmed solely based on this screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"A project named ""Convex Eggtart / Chatgpt"" is visible.","The screenshot displays the GitLab Projects page with a single project visible. The visible project is named 'Convex Eggtart / Chatgpt', which matches the name specified in the condition.",True,"```json
+{
+    ""rationale"": ""The screenshot displays the GitLab Projects page with a single project visible. The visible project is named 'Convex Eggtart / Chatgpt', which matches the name specified in the condition."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"A project named ""Convex Eggtart / Chatgpt"" is visible.",The project named 'Convex Eggtart / Chatgpt' is not visible in the screenshot of the UI.,False,"```json
+{
+    ""rationale"": ""The project named 'Convex Eggtart / Chatgpt' is not visible in the screenshot of the UI."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"The ""Fork"" button is visible.","The 'Fork' button is visible at the top of the GitLab repository page, next to the 'Star' button.",True,"```json
+{
+    ""rationale"": ""The 'Fork' button is visible at the top of the GitLab repository page, next to the 'Star' button."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The ""Fork"" button is visible.","The 'Fork' button is not visible in the current UI screenshot. The screenshot shows a list of projects with various project actions like 'Star' and 'Issues', but the 'Fork' button is not shown.",False,"```json
+{
+    ""rationale"": ""The 'Fork' button is not visible in the current UI screenshot. The screenshot shows a list of projects with various project actions like 'Star' and 'Issues', but the 'Fork' button is not shown."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"The ""Select a namespace"" button is visible.",The 'Select a namespace' dropdown is visible in the screenshot next to the Project URL field.,True,"```json
+{
+    ""rationale"": ""The 'Select a namespace' dropdown is visible in the screenshot next to the Project URL field."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"The ""Select a namespace"" button is visible.",The 'Select a namespace' button is not visible in the current state of the UI shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""The 'Select a namespace' button is not visible in the current state of the UI shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+11,12,13,6.png,True,"A ""byteblaze"" option is visible",The 'byteblaze' option is visible in the 'Namespaces' dropdown menu.,True,"```json
+{
+    ""rationale"": ""The 'byteblaze' option is visible in the 'Namespaces' dropdown menu."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"A ""byteblaze"" option is visible",The term 'byteblaze' is not visible anywhere in the current state of the UI shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""The term 'byteblaze' is not visible anywhere in the current state of the UI shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+13,14,15,7.png,True,"The blue ""Fork project"" button is visible.",The blue 'Fork project' button is clearly visible at the bottom of the 'Fork project' form in the screenshot.,True,"```json
+{
+    ""rationale"": ""The blue 'Fork project' button is clearly visible at the bottom of the 'Fork project' form in the screenshot."",
+    ""is_satisfied"": true
+}
+```",True
+14,6,15,3.png,False,"The blue ""Fork project"" button is visible.","No 'Fork project' button is visible in the provided screenshot. The screenshot shows the project list with a single project named 'Convex Egg tart / ChatGPT', but there is no visible 'Fork project' button in the UI elements displayed.",False,"{
+    ""rationale"": ""No 'Fork project' button is visible in the provided screenshot. The screenshot shows the project list with a single project named 'Convex Egg tart / ChatGPT', but there is no visible 'Fork project' button in the UI elements displayed."",
+    ""is_satisfied"": false
+}",True

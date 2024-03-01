@@ -1,0 +1,19 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Merge Requests"" icon is visible","The 'Merge Requests' icon, represented by an icon that looks like branches merging, is visible in the toolbar at the top of the screenshot, as indicated by the number '8' next to it, signifying there are 8 merge requests.",True,"```json
+{
+    ""rationale"": ""The 'Merge Requests' icon, represented by an icon that looks like branches merging, is visible in the toolbar at the top of the screenshot, as indicated by the number '8' next to it, signifying there are 8 merge requests."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Assigned to you"" link is visible","The 'Assigned to you' link is visible in the top right section of the GitLab interface, displaying the number '3' next to it, indicating that there are 3 items assigned to the user.",True,"```json
+{
+    ""rationale"": ""The 'Assigned to you' link is visible in the top right section of the GitLab interface, displaying the number '3' next to it, indicating that there are 3 items assigned to the user."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Assigned to you"" link is visible",The 'Assigned to you' link is not visible in the current state of the UI shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""The 'Assigned to you' link is not visible in the current state of the UI shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True

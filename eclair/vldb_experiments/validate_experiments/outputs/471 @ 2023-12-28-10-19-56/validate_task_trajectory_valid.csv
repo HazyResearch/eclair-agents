@@ -1,0 +1,53 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as instructed in step 7. Instead, the user clicked on the text field labeled 'None', which is not a step in the guide. Additionally, the user did not click on the magnifying glass to run the query after typing the order ID into the search bar, which was required in step 5.","[5, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as instructed in step 7. Instead, the user clicked on the text field labeled 'None', which is not a step in the guide. Additionally, the user did not click on the magnifying glass to run the query after typing the order ID into the search bar, which was required in step 5."",
+    ""inaccurate_steps"": [5, 7],
+    ""was_accurate"": false
+}
+```",False,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as instructed in step 7. Instead, the user clicked on the text field labeled 'None', which is not a step in the guide. Additionally, the user did not click on the 'Orders' option at the top of the popup menu after clicking 'Sales' as instructed in step 2.","[2, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as instructed in step 7. Instead, the user clicked on the text field labeled 'None', which is not a step in the guide. Additionally, the user did not click on the 'Orders' option at the top of the popup menu after clicking 'Sales' as instructed in step 2."",
+    ""inaccurate_steps"": [2, 7],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png']","The workflow did not start with clicking on the 'Sales' link in the left sidebar, and the 'Orders' option was not selected from the popup menu as described in steps 1 and 2. Instead, the workflow began at the 'Orders' page. Additionally, the user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as described in step 7. The 'Actions' dropdown menu was clicked without selecting the order checkbox.","[1, 2, 7]",False,"```json
+{
+    ""rationale"": ""The workflow did not start with clicking on the 'Sales' link in the left sidebar, and the 'Orders' option was not selected from the popup menu as described in steps 1 and 2. Instead, the workflow began at the 'Orders' page. Additionally, the user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as described in step 7. The 'Actions' dropdown menu was clicked without selecting the order checkbox."",
+    ""inaccurate_steps"": [1, 2, 7],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png', '8.png']","The workflow was not followed accurately. The user did not type '000000307' into the 'Search by keyword' searchbar as instructed in step 4. Instead, they typed 'Hollister'. Additionally, the user did not click on the magnifying glass to run the query as instructed in step 5. Furthermore, the user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as instructed in step 7.","[4, 5, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not type '000000307' into the 'Search by keyword' searchbar as instructed in step 4. Instead, they typed 'Hollister'. Additionally, the user did not click on the magnifying glass to run the query as instructed in step 5. Furthermore, the user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as instructed in step 7."",
+    ""inaccurate_steps"": [4, 5, 7],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '4.png', '2.png', '3.png', '1.png', '5.png', '6.png', '7.png', '8.png']","The workflow did not accurately follow the Step-by-Step Guide. The user did not click on the magnifying glass to run the query after typing the order number into the search bar, as specified in step 5. Instead, the user clicked on the 'Search' button, which is not mentioned in the guide. Additionally, the user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as specified in step 7. Instead, the user clicked on the text field labeled 'None', which is not a step in the guide.","[5, 7]",False,"```json
+{
+    ""rationale"": ""The workflow did not accurately follow the Step-by-Step Guide. The user did not click on the magnifying glass to run the query after typing the order number into the search bar, as specified in step 5. Instead, the user clicked on the 'Search' button, which is not mentioned in the guide. Additionally, the user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' as specified in step 7. Instead, the user clicked on the text field labeled 'None', which is not a step in the guide."",
+    ""inaccurate_steps"": [
+        5,
+        7
+    ],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '7.png', '4.png', '5.png', '6.png', '3.png', '8.png']","The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' before attempting to cancel the order. Instead, the user attempted to cancel the order without selecting it, which is not in accordance with the provided Step-by-Step Guide.",[7],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' before attempting to cancel the order. Instead, the user attempted to cancel the order without selecting it, which is not in accordance with the provided Step-by-Step Guide."",
+    ""inaccurate_steps"": [7],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '7.png', '6.png', '8.png']",The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' before selecting 'Cancel' from the 'Actions' dropdown menu.,[7],False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on the checkbox on the far left-hand side of the row corresponding to the order with ID '000000307' before selecting 'Cancel' from the 'Actions' dropdown menu."",
+    ""inaccurate_steps"": [7],
+    ""was_accurate"": false
+}
+```",True,shuffle

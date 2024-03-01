@@ -1,0 +1,55 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is the ""Marketing"" tab visible in the left sidebar?",The 'Marketing' tab is clearly visible in the left sidebar of the dashboard UI.,True,"```json
+{
+    ""rationale"": ""The 'Marketing' tab is clearly visible in the left sidebar of the dashboard UI."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"Is the ""All Reviews"" tab visible in the popup menu?",The 'All Reviews' tab is visible in the popup menu under the 'User Content' section in the 'Marketing' menu.,True,"```json
+{
+    ""rationale"": ""The 'All Reviews' tab is visible in the popup menu under the 'User Content' section in the 'Marketing' menu."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"Is the ""All Reviews"" tab visible in the popup menu?",The 'All Reviews' tab is not visible in the popup menu or anywhere else on the current state of the UI shown in the screenshot.,False,"```json
+{
+    ""rationale"": ""The 'All Reviews' tab is not visible in the popup menu or anywhere else on the current state of the UI shown in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"Is the textbox under ""Review"" empty?","The textbox under the 'Review' column is not empty, it contains text from a review.",False,"```json
+{
+    ""rationale"": ""The textbox under the 'Review' column is not empty, it contains text from a review."",
+    ""is_satisfied"": false
+}
+```",False
+4,0,5,0.png,False,"Is the textbox under ""Review"" empty?","There is no textbox visible under 'Review' in the screenshot provided. The screenshot shows a dashboard of a Magento admin panel where sections like 'Advanced Reporting', 'Lifetime Sales', 'Average Order', and others are visible. No section titled 'Review' is shown, and consequently, no textbox associated with it can be assessed.",False,"```json
+{
+    ""rationale"": ""There is no textbox visible under 'Review' in the screenshot provided. The screenshot shows a dashboard of a Magento admin panel where sections like 'Advanced Reporting', 'Lifetime Sales', 'Average Order', and others are visible. No section titled 'Review' is shown, and consequently, no textbox associated with it can be assessed."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"Is the textbox under ""Review"" focused?","There is a blinking cursor in the textbox under the 'Review' column, indicating that the textbox is currently focused.",True,"```json
+{
+    ""rationale"": ""There is a blinking cursor in the textbox under the 'Review' column, indicating that the textbox is currently focused."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is the textbox under ""Review"" focused?","In the screenshot provided, there is no visible indication of a textbox under 'Review' being focused. The 'Review' section is not expanded and there are no visual cues such as a blinking cursor or highlighted box that would indicate focus on a specific textbox.",False,"```json
+{
+    ""rationale"": ""In the screenshot provided, there is no visible indication of a textbox under 'Review' being focused. The 'Review' section is not expanded and there are no visual cues such as a blinking cursor or highlighted box that would indicate focus on a specific textbox."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"Is the ""Search"" button in the upper left of the page visible?",The 'Search' button is visible to the left of the 'Reset Filter' button in the upper left side of the Reviews page.,True,"```json
+{
+    ""rationale"": ""The 'Search' button is visible to the left of the 'Reset Filter' button in the upper left side of the Reviews page."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"Is the ""Search"" button in the upper left of the page visible?","The 'Search' button is not visible in the upper left of the page. The upper left of the page displays the Magento logo and the main navigation menu for 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', 'System', and 'Find Partners & Extensions'.",False,"```json
+{
+    ""rationale"": ""The 'Search' button is not visible in the upper left of the page. The upper left of the page displays the Magento logo and the main navigation menu for 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', 'System', and 'Find Partners & Extensions'."",
+    ""is_satisfied"": false
+}
+```",True

@@ -1,0 +1,58 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was not followed accurately. The user did not check the 'Blue' checkbox and the 'S' checkbox for color and size respectively during the configuration step. Instead, the user clicked on the text field labeled 'None' which is not part of the provided steps. Additionally, the user did not apply a single set of images to all SKUs or skip image uploading, which, while not explicitly stated in the steps, could be considered a deviation from the expected workflow.","[12, 13]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not check the 'Blue' checkbox and the 'S' checkbox for color and size respectively during the configuration step. Instead, the user clicked on the text field labeled 'None' which is not part of the provided steps. Additionally, the user did not apply a single set of images to all SKUs or skip image uploading, which, while not explicitly stated in the steps, could be considered a deviation from the expected workflow."",
+    ""inaccurate_steps"": [12, 13],
+    ""was_accurate"": false
+}
+```",False,true
+1,False,"['0.png', '1.png', '2.png', '3.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was followed accurately according to the provided step-by-step guide. All steps were completed in the correct order, and the final product matches the description of the product to be added.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided step-by-step guide. All steps were completed in the correct order, and the final product matches the description of the product to be added."",
+    ""was_accurate"": true
+}
+```",False,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '20.png', '21.png']","The workflow was not accurately followed. The user did not select the 'S' size for the product, instead, the size was left as '55 cm'. Additionally, the user did not select the 'Blue' color; no color selection was shown in the screenshots. The quantity was correctly set to 50, but due to the incorrect or missing attribute selections, the workflow did not follow the Step-by-Step Guide accurately.","[12, 13]",False,"```json
+{
+    ""rationale"": ""The workflow was not accurately followed. The user did not select the 'S' size for the product, instead, the size was left as '55 cm'. Additionally, the user did not select the 'Blue' color; no color selection was shown in the screenshots. The quantity was correctly set to 50, but due to the incorrect or missing attribute selections, the workflow did not follow the Step-by-Step Guide accurately."",
+    ""inaccurate_steps"": [
+        12, 
+        13
+    ],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was not followed accurately. The user did not click on 'Products' after clicking on 'Catalog' as specified in step 2. Instead, they clicked on a text field labeled 'None'. Additionally, the user did not click on the 'Add Product' button as specified in step 3. The user also skipped step 7, which instructs to scroll down to find the 'Create Configurations' button, and instead clicked directly on 'Create Configurations'. Furthermore, the user did not perform steps 9 and 10 to check the 'color' and 'size' checkboxes; they clicked on text fields labeled 'None' instead. The user also did not perform steps 12 and 13 to check the 'Blue' and 'S' checkboxes for color and size, respectively. Instead, they clicked on the 'Next' button without making these selections.","[2, 3, 7, 9, 10, 12, 13]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not click on 'Products' after clicking on 'Catalog' as specified in step 2. Instead, they clicked on a text field labeled 'None'. Additionally, the user did not click on the 'Add Product' button as specified in step 3. The user also skipped step 7, which instructs to scroll down to find the 'Create Configurations' button, and instead clicked directly on 'Create Configurations'. Furthermore, the user did not perform steps 9 and 10 to check the 'color' and 'size' checkboxes; they clicked on text fields labeled 'None' instead. The user also did not perform steps 12 and 13 to check the 'Blue' and 'S' checkboxes for color and size, respectively. Instead, they clicked on the 'Next' button without making these selections."",
+    ""inaccurate_steps"": [2, 3, 7, 9, 10, 12, 13],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '1.png', '2.png', '8.png', '4.png', '5.png', '6.png', '7.png', '3.png', '9.png', '10.png', '11.png', '12.png', '13.png', '14.png', '15.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was not followed accurately. The user clicked 'Create Configurations' instead of entering the price and quantity first. Additionally, the user did not select the 'Blue' color and 'S' size options during the configuration process as specified in the steps. The 'Generate Products' button was clicked without setting the specific attributes for color and size.","[6, 12, 13]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user clicked 'Create Configurations' instead of entering the price and quantity first. Additionally, the user did not select the 'Blue' color and 'S' size options during the configuration process as specified in the steps. The 'Generate Products' button was clicked without setting the specific attributes for color and size."",
+    ""inaccurate_steps"": [6, 12, 13],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png', '13.png', '15.png', '14.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was followed accurately according to the provided step-by-step guide. All steps were completed in the correct order, and the final product matches the specifications given in the workflow.",[],True,"```json
+{
+    ""rationale"": ""The workflow was followed accurately according to the provided step-by-step guide. All steps were completed in the correct order, and the final product matches the specifications given in the workflow."",
+    ""was_accurate"": true
+}
+```",False,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '15.png', '13.png', '14.png', '12.png', '16.png', '17.png', '18.png', '19.png', '20.png', '21.png']","The workflow was not accurately followed. The user skipped steps 9 and 10, which involved selecting the 'color' and 'size' attributes before creating configurations. Instead, the user directly clicked on 'Create Configurations'. Additionally, the user did not perform steps 12 and 13, which involved selecting the specific 'Blue' color and 'S' size for the product. The user also skipped step 15, which involved applying a single quantity to each SKU, and instead, the user initially selected 'Skip quantity at this time' before correcting it. Finally, the user did not perform step 19, which involved clicking on 'Generate Products' before saving.","[9, 10, 12, 13, 15, 19]",False,"```json
+{
+    ""rationale"": ""The workflow was not accurately followed. The user skipped steps 9 and 10, which involved selecting the 'color' and 'size' attributes before creating configurations. Instead, the user directly clicked on 'Create Configurations'. Additionally, the user did not perform steps 12 and 13, which involved selecting the specific 'Blue' color and 'S' size for the product. The user also skipped step 15, which involved applying a single quantity to each SKU, and instead, the user initially selected 'Skip quantity at this time' before correcting it. Finally, the user did not perform step 19, which involved clicking on 'Generate Products' before saving."",
+    ""inaccurate_steps"": [
+        9,
+        10,
+        12,
+        13,
+        15,
+        19
+    ],
+    ""was_accurate"": false
+}
+```",True,shuffle

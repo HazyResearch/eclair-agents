@@ -1,0 +1,187 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Catalog"" button is visible.",The 'Catalog' button is visible on the left sidebar under the 'DASHBOARD' section.,True,"```json
+{
+    ""rationale"": ""The 'Catalog' button is visible on the left sidebar under the 'DASHBOARD' section."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Products"" button is visible.",The 'Products' button is clearly visible on the left sidebar under the 'CATALOG' section.,True,"```json
+{
+    ""rationale"": ""The 'Products' button is clearly visible on the left sidebar under the 'CATALOG' section."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Products"" button is visible.","The screenshot displays the Magento Admin Dashboard. However, a 'Products' button is not explicitly visible in any of the panels or side menus. The visible sections include 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', 'System', 'Find Partners & Extensions'. If 'Products' is meant to be part of 'Catalog' or another section, it is not separately labelled as 'Products' on the main visible part of the screen, and thus the condition is not satisfied.",False,"```json
+{
+    ""rationale"": ""The screenshot displays the Magento Admin Dashboard. However, a 'Products' button is not explicitly visible in any of the panels or side menus. The visible sections include 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', 'System', 'Find Partners & Extensions'. If 'Products' is meant to be part of 'Catalog' or another section, it is not separately labelled as 'Products' on the main visible part of the screen, and thus the condition is not satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"The ""Search by keyword"" search bar is visible.",The 'Search by keyword' search bar is visible in the top center portion of the UI just above the list of products.,True,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar is visible in the top center portion of the UI just above the list of products."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""Search by keyword"" search bar is visible.",The 'Search by keyword' search bar is not visible in the current UI screenshot.,False,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar is not visible in the current UI screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"The ""Search by keyword"" search bar is focused AND empty.","The 'Search by keyword' search bar appears to be focused as indicated by the cursor blinking inside it. However, it is not empty; there is some text that seems to be a placeholder or partially entered text that is not legible in the screenshot provided.",False,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar appears to be focused as indicated by the cursor blinking inside it. However, it is not empty; there is some text that seems to be a placeholder or partially entered text that is not legible in the screenshot provided."",
+    ""is_satisfied"": false
+}
+```",False
+6,2,7,1.png,False,"The ""Search by keyword"" search bar is focused AND empty.","The screenshot displays a Magento Admin Dashboard, but the 'Search by keyword' search bar is not in focus, nor can we confirm it is empty since that part of the UI is not visible in the screenshot.",False,"```json
+{
+    ""rationale"": ""The screenshot displays a Magento Admin Dashboard, but the 'Search by keyword' search bar is not in focus, nor can we confirm it is empty since that part of the UI is not visible in the screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"The magnifying glass in the ""Search by keyword"" search bar is visible.",The magnifying glass icon in the 'Search by keyword' search bar is clearly visible to the left inside the search input field.,True,"```json
+{
+    ""rationale"": ""The magnifying glass icon in the 'Search by keyword' search bar is clearly visible to the left inside the search input field."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The magnifying glass in the ""Search by keyword"" search bar is visible.","The screenshot does not show a 'Search by keyword' search bar or a magnifying glass within such a bar, therefore the condition cannot be confirmed as satisfied.",False,"```json
+{
+    ""rationale"": ""The screenshot does not show a 'Search by keyword' search bar or a magnifying glass within such a bar, therefore the condition cannot be confirmed as satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,Page is loaded,"The page is visible and items are listed with their details such as ID, Thumbnail, Name, Type, Attribute Set, SKU, Price, Quantity, Salable Quantity, Visibility, Status, Websites, and Last Updated At. Furthermore, the active filters show a search has been performed for 'Phoebe Zipper Sweatshirt' with 18 records found which indicates that the page has loaded relevant data.",True,"```json
+{
+    ""rationale"": ""The page is visible and items are listed with their details such as ID, Thumbnail, Name, Type, Attribute Set, SKU, Price, Quantity, Salable Quantity, Visibility, Status, Websites, and Last Updated At. Furthermore, the active filters show a search has been performed for 'Phoebe Zipper Sweatshirt' with 18 records found which indicates that the page has loaded relevant data."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,Page is loaded,"The page appears to be loaded, as the product list is fully visible with all details such as ID, Type, Attribute Set, SKU, Price, Quantity, Salable Quantity, Visibility, Status, Websites, and Last Updated At. There is also a notification at the top indicating a synchronization issue, but this does not imply that the page itself has not loaded.",True,"```json
+{
+    ""rationale"": ""The page appears to be loaded, as the product list is fully visible with all details such as ID, Type, Attribute Set, SKU, Price, Quantity, Salable Quantity, Visibility, Status, Websites, and Last Updated At. There is also a notification at the top indicating a synchronization issue, but this does not imply that the page itself has not loaded."",
+    ""is_satisfied"": true
+}
+```",False
+11,12,13,6.png,True,"The ""Configurable Product"" row is visible.","The 'Configurable Product' row is visible in the screenshot within the product list. It is listed with the ID 1130, Name 'Phoebe Zipper Sweatshirt', Type 'Configurable Product', and Attribute Set 'Top'.",True,"```json
+{
+    ""rationale"": ""The 'Configurable Product' row is visible in the screenshot within the product list. It is listed with the ID 1130, Name 'Phoebe Zipper Sweatshirt', Type 'Configurable Product', and Attribute Set 'Top'."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"The ""Configurable Product"" row is visible.","In the screenshot provided, there is no row with the type 'Configurable Product'. All listed items under the 'Type' column are listed as 'Simple Product'.",False,"```json
+{
+    ""rationale"": ""In the screenshot provided, there is no row with the type 'Configurable Product'. All listed items under the 'Type' column are listed as 'Simple Product'."",
+    ""is_satisfied"": false
+}
+```",True
+13,14,15,7.png,True,"Page is loaded AND is for the ""Phoebe"" product","The page is successfully loaded as shown by the full rendering of the user interface elements, and it is indeed for the 'Phoebe' product, as indicated by the 'Product Name' field which reads 'Phoebe Zipper Sweatshirt'.",True,"```json
+{
+    ""rationale"": ""The page is successfully loaded as shown by the full rendering of the user interface elements, and it is indeed for the 'Phoebe' product, as indicated by the 'Product Name' field which reads 'Phoebe Zipper Sweatshirt'."",
+    ""is_satisfied"": true
+}
+```",True
+14,6,15,3.png,False,"Page is loaded AND is for the ""Phoebe"" product","The page is loaded with the 'Products' section visible, showing a list of items. However, there is no 'Phoebe' product listed on the current view. The visible products have different names such as 'Radiant Tee', 'Selene Yoga Hoodie', and 'Hollister'. Therefore, the condition that the page is for the 'Phoebe' product is not satisfied.",False,"```json
+{
+    ""rationale"": ""The page is loaded with the 'Products' section visible, showing a list of items. However, there is no 'Phoebe' product listed on the current view. The visible products have different names such as 'Radiant Tee', 'Selene Yoga Hoodie', and 'Hollister'. Therefore, the condition that the page is for the 'Phoebe' product is not satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+15,16,17,8.png,True,"The ""Edit Configurations"" button is visible.",The 'Edit Configurations' button is visible on the right side of the 'Configurations' section.,True,"```json
+{
+    ""rationale"": ""The 'Edit Configurations' button is visible on the right side of the 'Configurations' section."",
+    ""is_satisfied"": true
+}
+```",True
+16,12,17,6.png,False,"The ""Edit Configurations"" button is visible.",There is no 'Edit Configurations' button visible in the screenshot. The visible buttons read 'Edit' for individual products.,False,"```json
+{
+    ""rationale"": ""There is no 'Edit Configurations' button visible in the screenshot. The visible buttons read 'Edit' for individual products."",
+    ""is_satisfied"": false
+}
+```",True
+17,18,19,9.png,True,"The orange ""Next"" button is visible.",The orange 'Next' button is visible in the top right corner of the 'Create Product Configurations' modal window.,True,"```json
+{
+    ""rationale"": ""The orange 'Next' button is visible in the top right corner of the 'Create Product Configurations' modal window."",
+    ""is_satisfied"": true
+}
+```",True
+18,6,19,3.png,False,"The orange ""Next"" button is visible.","There is no orange 'Next' button visible on the current screen. The screenshot shows pagination controls at the bottom, but the 'Next' button is not visible and not orange.",False,"```json
+{
+    ""rationale"": ""There is no orange 'Next' button visible on the current screen. The screenshot shows pagination controls at the bottom, but the 'Next' button is not visible and not orange."",
+    ""is_satisfied"": false
+}
+```",True
+19,20,21,10.png,True,"The ""S"" checkbox is visible AND was not already checked",The 'S' checkbox is visible and it is not checked.,True,"```json
+{
+    ""rationale"": ""The 'S' checkbox is visible and it is not checked."",
+    ""is_satisfied"": true
+}
+```",True
+20,2,21,1.png,False,"The ""S"" checkbox is visible AND was not already checked","The 'S' checkbox is not visible in the screenshot provided. The screenshot shows a Magento Admin dashboard, but there is no visible checkbox marked 'S' or any checkbox in the visible UI elements.",False,"```json
+{
+    ""rationale"": ""The 'S' checkbox is not visible in the screenshot provided. The screenshot shows a Magento Admin dashboard, but there is no visible checkbox marked 'S' or any checkbox in the visible UI elements."",
+    ""is_satisfied"": false
+}
+```",True
+21,22,23,11.png,True,"The ""Brown"" checkbox was not already checked","In the screenshot, under the 'Color' section, the 'Brown' checkbox is not checked.",True,"```json
+{
+    ""rationale"": ""In the screenshot, under the 'Color' section, the 'Brown' checkbox is not checked."",
+    ""is_satisfied"": true
+}
+```",True
+22,14,23,7.png,False,"The ""Brown"" checkbox was not already checked","The current screenshot does not show any checkboxes or options related to color selection, such as 'Brown'. Therefore, without additional context or visibility into other parts of the UI where such a checkbox might be located, it is not possible to determine the state of the 'Brown' checkbox from the provided information.",True,"```json
+{
+    ""rationale"": ""The current screenshot does not show any checkboxes or options related to color selection, such as 'Brown'. Therefore, without additional context or visibility into other parts of the UI where such a checkbox might be located, it is not possible to determine the state of the 'Brown' checkbox from the provided information."",
+    ""is_satisfied"": true
+}
+```",False
+23,24,25,12.png,True,"The ""S"" size and ""Brown"" color checkboxes are the only ones on the page that are checked.","The 'S' size checkbox is checked, but the 'Brown' color checkbox is not checked. Instead, the 'Blue' color checkbox is checked. Therefore, the condition is not satisfied because both the 'S' size and 'Brown' color checkboxes are not the only ones checked.",False,"```json
+{
+    ""rationale"": ""The 'S' size checkbox is checked, but the 'Brown' color checkbox is not checked. Instead, the 'Blue' color checkbox is checked. Therefore, the condition is not satisfied because both the 'S' size and 'Brown' color checkboxes are not the only ones checked."",
+    ""is_satisfied"": false
+}
+```",False
+24,0,25,0.png,False,"The ""S"" size and ""Brown"" color checkboxes are the only ones on the page that are checked.","The screenshot provided is of a dashboard and does not display any checkboxes related to size or color. Therefore, it is impossible to determine if the specific condition regarding 'S' size and 'Brown' color checkboxes is satisfied.",False,"```json
+{
+    ""rationale"": ""The screenshot provided is of a dashboard and does not display any checkboxes related to size or color. Therefore, it is impossible to determine if the specific condition regarding 'S' size and 'Brown' color checkboxes is satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+25,26,27,13.png,True,"The orange ""Next"" button is visible.",The orange 'Next' button is visible in the top right corner of the UI inside the screenshot.,True,"```json
+{
+    ""rationale"": ""The orange 'Next' button is visible in the top right corner of the UI inside the screenshot."",
+    ""is_satisfied"": true
+}
+```",True
+26,12,27,6.png,False,"The orange ""Next"" button is visible.","The 'Next' button typically appears as part of the pagination controls at the bottom of a table or list when there are more items than can fit on one page. In the current UI, there is no visible 'Next' button at the bottom of the product list or anywhere else, which indicates that the condition is not satisfied.",False,"```json
+{
+    ""rationale"": ""The 'Next' button typically appears as part of the pagination controls at the bottom of a table or list when there are more items than can fit on one page. In the current UI, there is no visible 'Next' button at the bottom of the product list or anywhere else, which indicates that the condition is not satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+27,28,29,14.png,True,"The orange ""Generate Product"" button is visible.",The orange 'Generate Products' button is clearly visible in the top right corner of the modal window.,True,"```json
+{
+    ""rationale"": ""The orange 'Generate Products' button is clearly visible in the top right corner of the modal window."",
+    ""is_satisfied"": true
+}
+```",True
+28,12,29,6.png,False,"The orange ""Generate Product"" button is visible.","The button visible in the screenshot is labeled 'Add Product' rather than 'Generate Product'. Therefore, the 'Generate Product' button is not visible.",False,"```json
+{
+    ""rationale"": ""The button visible in the screenshot is labeled 'Add Product' rather than 'Generate Product'. Therefore, the 'Generate Product' button is not visible."",
+    ""is_satisfied"": false
+}
+```",True
+29,30,31,15.png,True,"The orange ""Save"" button is visible.",The orange 'Save' button is visible in the top right corner of the UI.,True,"```json
+{
+    ""rationale"": ""The orange 'Save' button is visible in the top right corner of the UI."",
+    ""is_satisfied"": true
+}
+```",True
+30,18,31,9.png,False,"The orange ""Save"" button is visible.",There is no orange 'Save' button visible in the current state of the UI shown in the screenshot. The only button with an orange background visible is the 'Next' button.,False,"```json
+{
+    ""rationale"": ""There is no orange 'Save' button visible in the current state of the UI shown in the screenshot. The only button with an orange background visible is the 'Next' button."",
+    ""is_satisfied"": false
+}
+```",True

@@ -1,0 +1,50 @@
+,gt_is_met,paths_to_screenshots,pred_rationale,pred_inaccurate_steps,pred_is_met,pred_raw_response,is_correct,task_type
+0,True,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was not accurately followed. The user did not type the name of the second user 'R1kk3r' into the search bar after following the first user 'ghost'. Instead, the user clicked on the search bar without typing the name. Additionally, the user did not type the name of the third user 'Abishek' into the search bar after following the second user 'R1kk3r'. The user clicked on the search bar without typing the name again.","[5, 8]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. The user did not type the name of the second user 'R1kk3r' into the search bar after following the first user 'ghost'. Instead, the user clicked on the search bar without typing the name. Additionally, the user did not type the name of the third user 'Abishek' into the search bar after following the second user 'R1kk3r'. The user clicked on the search bar without typing the name again."",
+    ""inaccurate_steps"": [5, 8],
+    ""was_accurate"": false
+}
+```",False,true
+1,False,"['0.png', '1.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The workflow was not followed accurately. The user did not type the name of the first user 'ghost' into the search bar as instructed in step 2. Instead, they clicked on a text labeled 'Follow' without searching for the user. Additionally, the user did not perform step 5, which is to type the name of the second user 'R1kk3r' into the search bar. They clicked on the search bar but did not type the name. The user also did not perform step 8, which is to type the name of the third user 'Abishek' into the search bar. They clicked on the search bar but did not type the name.","[2, 5, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not type the name of the first user 'ghost' into the search bar as instructed in step 2. Instead, they clicked on a text labeled 'Follow' without searching for the user. Additionally, the user did not perform step 5, which is to type the name of the second user 'R1kk3r' into the search bar. They clicked on the search bar but did not type the name. The user also did not perform step 8, which is to type the name of the third user 'Abishek' into the search bar. They clicked on the search bar but did not type the name."",
+    ""inaccurate_steps"": [2, 5, 8],
+    ""was_accurate"": false
+}
+```",True,skip
+2,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '11.png', '12.png']","The workflow was not followed accurately. The user did not type the name of the second user 'R1kk3r' into the search bar as instructed in step 5. Instead, they clicked on the text field labeled 'Search GitLab' after following the first user 'ghost'. Additionally, the user did not type the name of the third user 'Abishek' into the search bar as instructed in step 8. Instead, they clicked on the text labeled 'Abishek S' which was not part of the dropdown under the 'Users' header.","[5, 8]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not type the name of the second user 'R1kk3r' into the search bar as instructed in step 5. Instead, they clicked on the text field labeled 'Search GitLab' after following the first user 'ghost'. Additionally, the user did not type the name of the third user 'Abishek' into the search bar as instructed in step 8. Instead, they clicked on the text labeled 'Abishek S' which was not part of the dropdown under the 'Users' header."",
+    ""inaccurate_steps"": [5, 8],
+    ""was_accurate"": false
+}
+```",True,skip
+3,False,"['0.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was not followed accurately. The user did not use the dropdown that appears beneath the search bar to select the users. Instead, they clicked on the search bar, typed the username directly into the search bar, and then clicked on the user's profile from the search results. Additionally, the user did not return to the search bar to type the next username after following each user; they clicked on the search bar first before typing the next username.","[3, 5, 6, 8, 9]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not followed accurately. The user did not use the dropdown that appears beneath the search bar to select the users. Instead, they clicked on the search bar, typed the username directly into the search bar, and then clicked on the user's profile from the search results. Additionally, the user did not return to the search bar to type the next username after following each user; they clicked on the search bar first before typing the next username."",
+    ""inaccurate_steps"": [3, 5, 6, 8, 9],
+    ""was_accurate"": false
+}
+```",True,skip
+4,False,"['0.png', '4.png', '2.png', '3.png', '1.png', '5.png', '6.png', '7.png', '8.png', '9.png', '10.png', '11.png', '12.png']","The workflow was not followed accurately. The user did not follow the 'ghost' user as instructed in step 4. Instead, the user attempted to follow the 'ghost' user twice, and the second attempt was on an 'Unconfirmed user' page, which does not correspond to the intended user. Additionally, the user did not follow the 'Abishek' user as instructed in step 10. The user clicked on the 'Follow' button, but the button did not change to 'Unfollow', indicating that the follow action may not have been successful.","[4, 10]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not follow the 'ghost' user as instructed in step 4. Instead, the user attempted to follow the 'ghost' user twice, and the second attempt was on an 'Unconfirmed user' page, which does not correspond to the intended user. Additionally, the user did not follow the 'Abishek' user as instructed in step 10. The user clicked on the 'Follow' button, but the button did not change to 'Unfollow', indicating that the follow action may not have been successful."",
+    ""inaccurate_steps"": [4, 10],
+    ""was_accurate"": false
+}
+```",True,shuffle
+5,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '8.png', '7.png', '9.png', '10.png', '11.png', '12.png']","The Step-by-Step Guide was not accurately followed. After following the first user 'ghost', the user did not type the name of the second user 'R1kk3r' directly into the search bar as instructed in step 5. Instead, they clicked on the search bar again before typing the name. Additionally, after following the second user 'R1kk3r', the user clicked on the search bar again before typing the name of the third user 'Abishek', which was not according to the instructions in step 8.","[5, 8]",False,"```json
+{
+    ""rationale"": ""The Step-by-Step Guide was not accurately followed. After following the first user 'ghost', the user did not type the name of the second user 'R1kk3r' directly into the search bar as instructed in step 5. Instead, they clicked on the search bar again before typing the name. Additionally, after following the second user 'R1kk3r', the user clicked on the search bar again before typing the name of the third user 'Abishek', which was not according to the instructions in step 8."",
+    ""inaccurate_steps"": [5, 8],
+    ""was_accurate"": false
+}
+```",True,shuffle
+6,False,"['0.png', '1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '11.png', '8.png', '9.png', '10.png', '7.png', '12.png']","The workflow was not followed accurately. The user did not follow the correct sequence of actions for the second user 'R1kk3r'. Instead of clicking on the user 'R1kk3r' from the dropdown menu after searching, the user mistakenly clicked on the search bar again. Additionally, the user did not click on the 'Follow' button for 'R1kk3r'.","[6, 7]",False,"```json
+{
+    ""rationale"": ""The workflow was not followed accurately. The user did not follow the correct sequence of actions for the second user 'R1kk3r'. Instead of clicking on the user 'R1kk3r' from the dropdown menu after searching, the user mistakenly clicked on the search bar again. Additionally, the user did not click on the 'Follow' button for 'R1kk3r'."",
+    ""inaccurate_steps"": [6, 7],
+    ""was_accurate"": false
+}
+```",True,shuffle

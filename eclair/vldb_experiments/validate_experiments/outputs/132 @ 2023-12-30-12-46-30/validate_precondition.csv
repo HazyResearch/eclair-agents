@@ -1,0 +1,19 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is there an element corresponding to the ""The A11Y Project / a11yproject.com"" project?",There is a project listed with the name 'The A11Y Project / a11yproject.com' in the projects list.,True,"```json
+{
+    ""rationale"": ""There is a project listed with the name 'The A11Y Project / a11yproject.com' in the projects list."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,Is there a link underneath the project title showing the number of commits?,"There is a link underneath the project title 'a11yproject.com' that shows the number of commits which is '2,390 Commits'",True,"```json
+{
+    ""rationale"": ""There is a link underneath the project title 'a11yproject.com' that shows the number of commits which is '2,390 Commits'"",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,Is there a link underneath the project title showing the number of commits?,"In the screenshot provided, there is no visible link underneath the project titles showing the number of commits. The UI only shows project names, descriptions, the role of the user, some icons for activity, stars, forks, and the last update time. There is no specific information on the number of commits directly visible under each project title.",False,"```json
+{
+    ""rationale"": ""In the screenshot provided, there is no visible link underneath the project titles showing the number of commits. The UI only shows project names, descriptions, the role of the user, some icons for activity, stars, forks, and the last update time. There is no specific information on the number of commits directly visible under each project title."",
+    ""is_satisfied"": false
+}
+```",True

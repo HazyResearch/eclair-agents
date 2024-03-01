@@ -1,0 +1,115 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"The ""Catalog"" option is visible.",The 'Catalog' option is visible on the left sidebar beneath the 'SALES' option.,True,"```json
+{
+    ""rationale"": ""The 'Catalog' option is visible on the left sidebar beneath the 'SALES' option."",
+    ""is_satisfied"": true
+}
+```",True
+1,2,3,1.png,True,"The ""Products"" option is visible.",The 'Products' option is visible on the left side menu under the 'Catalog' section.,True,"```json
+{
+    ""rationale"": ""The 'Products' option is visible on the left side menu under the 'Catalog' section."",
+    ""is_satisfied"": true
+}
+```",True
+2,0,3,0.png,False,"The ""Products"" option is visible.","The 'Products' option is not visible in the current state of the UI shown in the screenshot. The navigation menu on the left includes options such as 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', and 'System', but 'Products' is not explicitly listed.",False,"```json
+{
+    ""rationale"": ""The 'Products' option is not visible in the current state of the UI shown in the screenshot. The navigation menu on the left includes options such as 'Dashboard', 'Sales', 'Catalog', 'Customers', 'Marketing', 'Content', 'Reports', 'Stores', and 'System', but 'Products' is not explicitly listed."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,"The ""Search by keyword"" search bar is visible.","The 'Search by keyword' search bar is clearly visible at the top of the 'Products' page, indicating the condition is satisfied.",True,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar is clearly visible at the top of the 'Products' page, indicating the condition is satisfied."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,"The ""Search by keyword"" search bar is visible.",The 'Search by keyword' search bar is not visible in the current UI screenshot.,False,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar is not visible in the current UI screenshot."",
+    ""is_satisfied"": false
+}
+```",True
+5,6,7,3.png,True,"The ""Search by keyword"" search bar is focused AND empty.","The 'Search by keyword' search bar appears to be focused as indicated by the blinking cursor within it. There is no text in the search bar, suggesting that it is empty.",True,"```json
+{
+    ""rationale"": ""The 'Search by keyword' search bar appears to be focused as indicated by the blinking cursor within it. There is no text in the search bar, suggesting that it is empty."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"The ""Search by keyword"" search bar is focused AND empty.","The search bar does not appear to be in focus, as there is no visible cursor or indication of focus, and the search bar has text in it, so it is not empty.",False,"```json
+{
+    ""rationale"": ""The search bar does not appear to be in focus, as there is no visible cursor or indication of focus, and the search bar has text in it, so it is not empty."",
+    ""is_satisfied"": false
+}
+```",True
+7,8,9,4.png,True,"The magnifying glass in the ""Search by keyword"" search bar is visible.",The magnifying glass icon inside the 'Search by keyword' search bar is clearly visible in the screenshot provided.,True,"```json
+{
+    ""rationale"": ""The magnifying glass icon inside the 'Search by keyword' search bar is clearly visible in the screenshot provided."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"The magnifying glass in the ""Search by keyword"" search bar is visible.","The magnifying glass icon in the 'Search by keyword' search bar is not visible in the screenshot. The search bar itself is not visible, so we cannot determine the presence of the magnifying glass icon.",False,"```json
+{
+    ""rationale"": ""The magnifying glass icon in the 'Search by keyword' search bar is not visible in the screenshot. The search bar itself is not visible, so we cannot determine the presence of the magnifying glass icon."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"The ""Configurable Product"" Taurus product is not visible.","The screenshot shows a list of products filtered by the keyword 'Taurus Elements Shell', which are all listed as 'Simple Product' under the 'Type' column. There are no products listed as 'Configurable Product', therefore the 'Configurable Product' type of Taurus products is not visible in the current state of the UI.",True,"```json
+{
+    ""rationale"": ""The screenshot shows a list of products filtered by the keyword 'Taurus Elements Shell', which are all listed as 'Simple Product' under the 'Type' column. There are no products listed as 'Configurable Product', therefore the 'Configurable Product' type of Taurus products is not visible in the current state of the UI."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"The ""Configurable Product"" Taurus product is not visible.","The current state of the UI shows a list of products with the type 'Simple Product'. All visible products are bags, and there is no product listed with the name or type 'Configurable Product' Taurus. Therefore, based on the visible information, the 'Configurable Product' Taurus is not currently shown.",True,"```json
+{
+    ""rationale"": ""The current state of the UI shows a list of products with the type 'Simple Product'. All visible products are bags, and there is no product listed with the name or type 'Configurable Product' Taurus. Therefore, based on the visible information, the 'Configurable Product' Taurus is not currently shown."",
+    ""is_satisfied"": true
+}
+```",False
+11,12,13,6.png,True,"The ""Configurable Product"" row is visible.","The 'Configurable Product' row is visible at the bottom of the list of products with ID 350, Name 'Taurus Elements Shell', and Type 'Configurable Product'.",True,"```json
+{
+    ""rationale"": ""The 'Configurable Product' row is visible at the bottom of the list of products with ID 350, Name 'Taurus Elements Shell', and Type 'Configurable Product'."",
+    ""is_satisfied"": true
+}
+```",True
+12,6,13,3.png,False,"The ""Configurable Product"" row is visible.",The current state of the UI does not display any 'Configurable Product' row in the visible part of the product list. All listed items are of the type 'Simple Product'.,False,"```json
+{
+    ""rationale"": ""The current state of the UI does not display any 'Configurable Product' row in the visible part of the product list. All listed items are of the type 'Simple Product'."",
+    ""is_satisfied"": false
+}
+```",True
+13,14,15,7.png,True,"The ""Stock Status"" label is visible.",The 'Stock Status' label is visible under the 'Quantity' section on the UI.,True,"```json
+{
+    ""rationale"": ""The 'Stock Status' label is visible under the 'Quantity' section on the UI."",
+    ""is_satisfied"": true
+}
+```",True
+14,6,15,3.png,False,"The ""Stock Status"" label is visible.","The 'Stock Status' label is not explicitly visible in the current state of the UI in the screenshot. Instead, there are columns for 'Quantity' and 'Salable Quantity', but no column or label directly titled 'Stock Status'.",False,"```json
+{
+    ""rationale"": ""The 'Stock Status' label is not explicitly visible in the current state of the UI in the screenshot. Instead, there are columns for 'Quantity' and 'Salable Quantity', but no column or label directly titled 'Stock Status'."",
+    ""is_satisfied"": false
+}
+```",True
+15,16,17,8.png,True,"The ""Out of Stock"" option is visible.",The 'Out of Stock' option is visible in the 'Stock Status' section.,True,"```json
+{
+    ""rationale"": ""The 'Out of Stock' option is visible in the 'Stock Status' section."",
+    ""is_satisfied"": true
+}
+```",True
+16,12,17,6.png,False,"The ""Out of Stock"" option is visible.","In the current UI, none of the products listed show an 'Out of Stock' option. All items show a 'Default Stock' quantity of 100 or 0 in case of the configurable product, and the 'Status' of each item is 'Enabled', which typically indicates items are in stock. Therefore, the condition 'The ""Out of Stock"" option is visible' is not satisfied.",False,"```json
+{
+    ""rationale"": ""In the current UI, none of the products listed show an 'Out of Stock' option. All items show a 'Default Stock' quantity of 100 or 0 in case of the configurable product, and the 'Status' of each item is 'Enabled', which typically indicates items are in stock. Therefore, the condition 'The \""Out of Stock\"" option is visible' is not satisfied."",
+    ""is_satisfied"": false
+}
+```",True
+17,18,19,9.png,True,"The ""Out of Stock"" status is set, AND the orange ""Save"" button is visible.","The 'Out of Stock' status is selected in the Stock Status dropdown, and the orange 'Save' button is visible in the upper right corner of the page.",True,"```json
+{
+    ""rationale"": ""The 'Out of Stock' status is selected in the Stock Status dropdown, and the orange 'Save' button is visible in the upper right corner of the page."",
+    ""is_satisfied"": true
+}
+```",True
+18,6,19,3.png,False,"The ""Out of Stock"" status is set, AND the orange ""Save"" button is visible.","The UI screenshot does not show any 'Out of Stock' status for any of the products listed. Furthermore, there is no orange 'Save' button visible anywhere on the screen.",False,"```json
+{
+    ""rationale"": ""The UI screenshot does not show any 'Out of Stock' status for any of the products listed. Furthermore, there is no orange 'Save' button visible anywhere on the screen."",
+    ""is_satisfied"": false
+}
+```",True

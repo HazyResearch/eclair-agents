@@ -1,0 +1,67 @@
+,state_id,action_id,path_to_screenshot,gt_is_met,gt_precondition,pred_rationale,pred_is_met,pred_raw_response,is_correct
+0,0,1,0.png,True,"Is there a ""Issues"" icon in the top navigation bar to the right of the plus icon that looks like a rectangle?","In the top navigation bar to the right of the plus icon, there is no 'Issues' icon that looks like a rectangle.",False,"```json
+{
+    ""rationale"": ""In the top navigation bar to the right of the plus icon, there is no 'Issues' icon that looks like a rectangle."",
+    ""is_satisfied"": false
+}
+```",False
+1,2,3,1.png,True,"Is there a tab under ""Issues"" labeled ""All""?","In the screenshot of the GitLab issues dashboard, there are tabs for 'Open' and 'Closed' issues, but there is no visible tab labeled 'All'.",False,"```json
+{
+    ""rationale"": ""In the screenshot of the GitLab issues dashboard, there are tabs for 'Open' and 'Closed' issues, but there is no visible tab labeled 'All'."",
+    ""is_satisfied"": false
+}
+```",False
+2,0,3,0.png,False,"Is there a tab under ""Issues"" labeled ""All""?","The 'Issues' tab is not visible in the current state of the UI shown in the screenshot. The screenshot displays the 'Projects' dashboard on GitLab, with various projects listed, and no 'Issues' tab is shown in this view.",False,"```json
+{
+    ""rationale"": ""The 'Issues' tab is not visible in the current state of the UI shown in the screenshot. The screenshot displays the 'Projects' dashboard on GitLab, with various projects listed, and no 'Issues' tab is shown in this view."",
+    ""is_satisfied"": false
+}
+```",True
+3,4,5,2.png,True,Is there a search bar at the top of the page?,"Yes, there is a search bar at the top of the page just below the main navigation bar. It is located under the 'Issues - Dashboard - GitLab' heading and above the list of issues.",True,"```json
+{
+    ""rationale"": ""Yes, there is a search bar at the top of the page just below the main navigation bar. It is located under the 'Issues - Dashboard - GitLab' heading and above the list of issues."",
+    ""is_satisfied"": true
+}
+```",True
+4,0,5,0.png,False,Is there a search bar at the top of the page?,"There is a search input field labeled 'Search GitLab' at the top of the page, indicating a search bar is present.",True,"```json
+{
+    ""rationale"": ""There is a search input field labeled 'Search GitLab' at the top of the page, indicating a search bar is present."",
+    ""is_satisfied"": true
+}
+```",False
+5,6,7,3.png,True,"Is the ""Sort by"" dropdown menu set to ""Updated date""?",The 'Sort by' dropdown menu visible in the screenshot is currently set to 'Updated date' as indicated by the text next to the dropdown icon.,True,"```json
+{
+    ""rationale"": ""The 'Sort by' dropdown menu visible in the screenshot is currently set to 'Updated date' as indicated by the text next to the dropdown icon."",
+    ""is_satisfied"": true
+}
+```",True
+6,2,7,1.png,False,"Is the ""Sort by"" dropdown menu set to ""Updated date""?",The 'Sort by' dropdown menu shows 'Updated date' as the current selection,True,"```json
+{
+    ""rationale"": ""The 'Sort by' dropdown menu shows 'Updated date' as the current selection"",
+    ""is_satisfied"": true
+}
+```",False
+7,8,9,4.png,True,"Is the searchbar populated with the keyword ""better""?",The search bar is populated with the keyword 'better'.,True,"```json
+{
+    ""rationale"": ""The search bar is populated with the keyword 'better'."",
+    ""is_satisfied"": true
+}
+```",True
+8,0,9,0.png,False,"Is the searchbar populated with the keyword ""better""?","The search bar is visible in the top left section of the screenshot, but it is empty and does not contain any text, including the keyword 'better'.",False,"```json
+{
+    ""rationale"": ""The search bar is visible in the top left section of the screenshot, but it is empty and does not contain any text, including the keyword 'better'."",
+    ""is_satisfied"": false
+}
+```",True
+9,10,11,5.png,True,"Is the search result titled ""Better initial load experience"" visible?",The search result titled 'Better initial load experience' is visible on the screen under the Issues section of GitLab.,True,"```json
+{
+    ""rationale"": ""The search result titled 'Better initial load experience' is visible on the screen under the Issues section of GitLab."",
+    ""is_satisfied"": true
+}
+```",True
+10,6,11,3.png,False,"Is the search result titled ""Better initial load experience"" visible?","The screenshot shows a list of issues on GitLab. The titles of the issues are visible, and none of them is titled 'Better initial load experience.' Therefore, the search result with that title is not visible.",False,"```json
+{
+    ""rationale"": ""The screenshot shows a list of issues on GitLab. The titles of the issues are visible, and none of them is titled 'Better initial load experience.' Therefore, the search result with that title is not visible."",
+    ""is_satisfied"": false
+}
+```",True

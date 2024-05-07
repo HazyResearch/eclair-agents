@@ -476,7 +476,7 @@ def execute_js_scripts(env):
     """Helper function that re-executes a set of useful JavaScript scripts."""
     # CSS for proxy-select
     with open(
-        get_rel_path(__file__, "../utils/proxy-select/proxy-select.css"), "r"
+        get_rel_path(__file__, "./proxy-select/proxy-select.css"), "r"
     ) as fd:
         script: str = f"""
             var style = document.createElement('style');
@@ -487,8 +487,8 @@ def execute_js_scripts(env):
         env.execute_script(script)
     # JS
     scripts: List[str] = [
-        "../utils/event_listeners.js",  # Map clicks/keystrokes to specific elements on the webpage
-        "../utils/proxy-select/proxy-select.js",  # Rerender dropdowns using proxy-select so that Playwright/Selenium can view them
+        "./event_listeners.js",  # Map clicks/keystrokes to specific elements on the webpage
+        "./proxy-select/proxy-select.js",  # Rerender dropdowns using proxy-select so that Playwright/Selenium can view them
     ]
     for path in scripts:
         with open(get_rel_path(__file__, path), "r") as fd:
@@ -683,7 +683,7 @@ def run_validators(
 
 def get_webarena_task_json(task_id: int) -> Optional[Dict[str, str]]:
     """Given the integer task ID, return the task JSON from the WebArena dataset"""
-    path_to_webarena_tasks: str = get_rel_path(__file__, "../../eval/webarena/tasks/")
+    path_to_webarena_tasks: str = get_rel_path(__file__, "../../data/vldb_experiments/webarena_tasks/")
     for filename in os.listdir(path_to_webarena_tasks):
         if not filename.endswith(".json") or filename.startswith("test"):
             # Skip non-JSON files and test files

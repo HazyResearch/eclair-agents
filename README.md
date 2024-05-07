@@ -23,14 +23,15 @@ pip install -e .
 
 ### 💾 Data
 
-* [Link to Data](https://drive.google.com/file/d/1h-sf1WlaIblvxhLNQbDlSiMDp1CkGFx1/view?usp=drive_link) -- Download this file into the `data/` folder and unzip it.
+* [Link to Data](https://drive.google.com/drive/folders/1WL6pMfoAaar5uDEV-SWLalsAzEPsuzJp?usp=sharing) -- Download this file into the `data/` folder and unzip it.
 * You should now have a folder at `data/vldb_experiments` with two subfolders named `demos` and `grounding`.
 
 ### 🚀 How to Run
 
 ```bash
+export OPENAI_API_KEY=<your_openai_api_key>
+
 # Demonstrate
-cd 
 bash eclair/vldb_experiments/demonstrate_experiments/run_experiments.sh data/vldb_experiments/demos
 
 # Execute

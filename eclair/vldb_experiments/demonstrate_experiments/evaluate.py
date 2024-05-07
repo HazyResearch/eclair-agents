@@ -51,7 +51,6 @@ if __name__ == "__main__":
     is_td_kf_act: bool = args.is_td_kf_act
     is_pairwise: bool = args.is_pairwise
     path_to_screenshots_dir: str = os.path.join(path_to_task_dir, f"screenshots/")
-    path_to_webarena_tasks: str = get_rel_path(__file__, "../../eval/webarena/tasks/")
     assert is_td + is_td_kf + is_td_kf_act == 1, "Must specify exactly one of --is_td, --is_td_kf, --is_td_kf_act"
 
     # Get WebArena task description

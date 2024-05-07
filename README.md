@@ -4,7 +4,8 @@
 
 
 
-https://github.com/HazyResearch/eclair-agents/assets/5491790/44f6d0dc-f103-4581-b67b-19e26a225403
+https://github.com/HazyResearch/eclair-agents/assets/5491790/580117a0-2afe-4137-97bb-e88fd2a5079e
+
 
 
 

@@ -6,6 +6,7 @@ __pycache__/
 data/vldb_experiments
 data/hospital_data
 data/hospital_demo
+outputs/
 
 # C extensions
 *.so

@@ -35,18 +35,15 @@ pip install -e .
 
 ```bash
 # Demonstrate
-cd eclair/vldb_experiments/demonstrate_experiments
-bash run_experiments.sh ../../../data/vldb_experiments
+cd 
+bash ./eclair/vldb_experiments/demonstrate_experiments/run_experiments.sh ./data/vldb_experiments
 
 # Execute
-cd eclair/vldb_experiments/execute_actions
-bash run_experiments.sh ../../../data/vldb_experiments
-cd eclair/vldb_experiments/execute_grounding
-bash run_experiments.sh ../../../data/vldb_experiments
+bash ./eclair/vldb_experiments/execute_actions/run_experiments.sh ./data/vldb_experiments
+bash ./eclair/vldb_experiments/execute_grounding/run_experiments.sh ./data/vldb_experiments
 
 # Validate
-cd eclair/vldb_experiments/validate_experiments
-bash run_experiments.sh ../../../data/vldb_experiments
+bash ./eclair/vldb_experiments/validate_experiments/run_experiments.sh ./data/vldb_experiments
 ```
 
 ## 🏥 Hospital Workflow

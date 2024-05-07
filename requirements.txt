@@ -1,0 +1,16 @@
+pynput
+roboflow
+pillow
+torch
+transformers
+IPython
+pyautogui
+selenium
+openai
+numpy
+tqdm
+moviepy
+playwright
+gdown
+timm>=0.9.12
+dirtyjson

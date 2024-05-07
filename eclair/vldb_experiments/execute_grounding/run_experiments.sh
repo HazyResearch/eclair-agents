@@ -1,3 +1,5 @@
+#!/bin/bash
+
 python main.py --inference_model "CogAgent" --bbox_generator none --dataset "WebUI"
 python main.py --inference_model "CogAgent" --bbox_generator none --dataset "Mind2Web"
 

@@ -2,13 +2,7 @@
 
 **E**nterprise s**C**a**L**e **AI** for **W**orkflows
 
-
-
 https://github.com/HazyResearch/eclair-agents/assets/5491790/580117a0-2afe-4137-97bb-e88fd2a5079e
-
-
-
-
 *Example of ECLAIR running on a real-world nursing workflow in Epic (a popular electronic health record software) after being given only a video recording and natural language description of the task.*
 
 ## 💿 Installation
@@ -30,21 +24,21 @@ pip install -e .
 ### 💾 Data
 
 * [Link to Data](https://drive.google.com/file/d/1h-sf1WlaIblvxhLNQbDlSiMDp1CkGFx1/view?usp=drive_link) -- Download this file into the `data/` folder and unzip it.
-* You should now have a folder at `data/vldb_experiments` with 30 subfolders (one for each WebArena task evaluated in the paper).
+* You should now have a folder at `data/vldb_experiments` with two subfolders named `demos` and `grounding`.
 
 ### 🚀 How to Run
 
 ```bash
 # Demonstrate
 cd 
-bash ./eclair/vldb_experiments/demonstrate_experiments/run_experiments.sh ./data/vldb_experiments
+bash eclair/vldb_experiments/demonstrate_experiments/run_experiments.sh data/vldb_experiments/demos
 
 # Execute
-bash ./eclair/vldb_experiments/execute_actions/run_experiments.sh ./data/vldb_experiments
-bash ./eclair/vldb_experiments/execute_grounding/run_experiments.sh ./data/vldb_experiments
+bash eclair/vldb_experiments/execute_actions/run_experiments.sh data/vldb_experiments/demos
+bash eclair/vldb_experiments/execute_grounding/run_experiments.sh data/vldb_experiments/demos
 
 # Validate
-bash ./eclair/vldb_experiments/validate_experiments/run_experiments.sh ./data/vldb_experiments
+bash eclair/vldb_experiments/validate_experiments/run_experiments.sh data/vldb_experiments/demos
 ```
 
 ## 🏥 Hospital Workflow

@@ -4,10 +4,8 @@ To generate SOPs for all experiments, run the following command:
 
 ```bash
 # Takes ~30 mins to run for 30 tasks
-bash run_experiments.sh "/Users/mwornow/Downloads/[VLDB] 30 WebArena Tasks"
+bash run_experiments.sh ../../../data/vldb_experiments/demos
 ```
-
-where the file path is the location of a directory containing WebArena++ human demonstrations.
 
 The bash script runs several prompt methods:
 * `--is_td`: Just use task description to generate SOPs

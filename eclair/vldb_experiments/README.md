@@ -24,4 +24,4 @@ See `validate_experiments/`
 
 ## Trace Cleanup
 
-See `trace_cleanup/`. No need to run.
+See `trace_cleanup/`. This has already been run on the demos, so you can ignore this.

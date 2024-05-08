@@ -11,11 +11,11 @@ https://github.com/HazyResearch/eclair-agents/assets/5491790/580117a0-2afe-4137-
 
 *Example of **ECLAIR** running on a **real-world nursing workflow** in [Epic](https://www.epic.com/) after being given only a video recording and natural language description of the task. Note that this is sped up from actual model execution.*
 
-Multimodal foundation models (FMs) such as GPT-4 offer a promising approach for end-to-end workflow automation given their generalized reasoning and planning abilities. 
+🤖 Multimodal foundation models (FMs) such as GPT-4 offer a promising approach for end-to-end workflow automation given their generalized reasoning and planning abilities. 
 
-To study these capabilities we propose **ECLAIR**, a system to automate enterprise workflows with minimal human supervision. 
+⚙️ To study these capabilities [we propose **ECLAIR**](https://arxiv.org/abs/2405.03710), a system to automate enterprise workflows with minimal human supervision. 
 
-Our initial experiments suggest that **ECLAIR** can overcome the limitations of traditional automation technologies (e.g. RPA) with (1) near-human-level understanding of workflows and (2) instant set-up with minimal technical barrier.
+📊 Our initial experiments suggest that **ECLAIR** can overcome the limitations of traditional automation technologies (e.g. RPA) with (1) near-human-level understanding of workflows and (2) instant set-up with minimal technical barrier.
 
 Please note that **ECLAIR** is an ongoing research project and is not production-ready.
 
@@ -35,7 +35,7 @@ pip install -e .
 
 # 📊 Paper Experiments
 
-Generate the experimental results in [our paper](TODO) using the dataset + scripts in this section. 
+Generate the experimental results in [our paper](https://arxiv.org/abs/2405.03710) using the dataset + scripts in this section. 
 
 ### 💾 Data
 
@@ -47,12 +47,12 @@ Generate the experimental results in [our paper](TODO) using the dataset + scrip
 ```bash
 export OPENAI_API_KEY=<your_openai_api_key>
 
-# Demonstrate [CONFIRMED]
+# Demonstrate
 bash eclair/vldb_experiments/demonstrate_experiments/run_experiments.sh
 
 # Execute
 bash eclair/vldb_experiments/execute_actions/run_experiments.sh
-bash eclair/vldb_experiments/execute_grounding/run_experiments.sh
+bash eclair/vldb_experiments/execute_grounding/run_experiments.sh # [TODO]
 
 # Validate
 bash eclair/vldb_experiments/validate_experiments/run_experiments.sh

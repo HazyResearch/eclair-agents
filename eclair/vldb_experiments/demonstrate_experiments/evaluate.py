@@ -1,16 +1,9 @@
-"""
-Usage:
-
-python sop_generation.py '/Users/mwornow/Downloads/VLDB - 30 WebArena Tasks/422 @ 2023-12-25-12-33-35' --is_td
-"""
-
 import os
 from eclair.utils.helpers import (
     _fetch_openai_completion,
     convert_trace_action_to_dsl,
     encode_image,
     fetch_openai_vision_completion,
-    get_rel_path,
     get_webarena_task_json,
 )
 from typing import Dict, List, Optional
@@ -29,7 +22,7 @@ from eclair.vldb_experiments.demonstrate_experiments.prompts import (
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument( "path_to_task_dir", help="Path to task folder. Should have a subfolder named `screenshots/`, there should be a `trace.json` file", )
-    parser.add_argument( "--path_to_output_dir", default="./outputs/", type=str, required=False, help="Path to output directory", )
+    parser.add_argument( "--path_to_output_dir", default="./demonstrate_outputs/", type=str, required=False, help="Path to output directory", )
     parser.add_argument( "--is_td", action="store_true", default=False, help="If TRUE, then include task description into prompts",)
     parser.add_argument( "--is_td_kf", action="store_true", default=False, help="If TRUE, then include screenshots as key frames into prompts", )
     parser.add_argument( "--is_td_kf_act", action="store_true", default=False, help="If TRUE, then include action trace as prompts" )

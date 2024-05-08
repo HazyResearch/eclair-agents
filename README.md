@@ -31,15 +31,15 @@ pip install -e .
 ```bash
 export OPENAI_API_KEY=<your_openai_api_key>
 
-# Demonstrate
-bash eclair/vldb_experiments/demonstrate_experiments/run_experiments.sh data/vldb_experiments/demos
+# Demonstrate [CONFIRMED]
+bash eclair/vldb_experiments/demonstrate_experiments/run_experiments.sh
 
 # Execute
-bash eclair/vldb_experiments/execute_actions/run_experiments.sh data/vldb_experiments/demos
-bash eclair/vldb_experiments/execute_grounding/run_experiments.sh data/vldb_experiments/demos
+bash eclair/vldb_experiments/execute_actions/run_experiments.sh
+bash eclair/vldb_experiments/execute_grounding/run_experiments.sh
 
 # Validate
-bash eclair/vldb_experiments/validate_experiments/run_experiments.sh data/vldb_experiments/demos
+bash eclair/vldb_experiments/validate_experiments/run_experiments.sh
 ```
 
 ## 🏥 Hospital Workflow

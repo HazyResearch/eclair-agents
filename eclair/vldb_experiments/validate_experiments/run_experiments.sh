@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Usage: bash run_experiments.sh <PATH_TO_EXPERIMENT_DATA_DIR>
-
-BASE_DIR=$1
+# Construct relative path to dataset
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BASE_DIR="$(realpath "${SCRIPT_DIR}/../../../data/vldb_experiments/demos")"
 
 # Loop through all folders in BASE_DIR
 find "$BASE_DIR" -mindepth 1 -maxdepth 1 -type d -print0 | while IFS= read -r -d '' folder; do
@@ -10,9 +10,9 @@ find "$BASE_DIR" -mindepth 1 -maxdepth 1 -type d -print0 | while IFS= read -r -d
     if [ -d "$folder" ]; then
         # Run the sop_generation.py script on the folder
         echo $folder
-        python evaluate.py "$folder" --is_actuation
-        python evaluate.py "$folder" --is_precondition
-        python evaluate.py "$folder" --is_task_completion
-        python evaluate.py "$folder" --is_task_trajectory
+        python "${SCRIPT_DIR}/evaluate.py" "$folder" --is_actuation
+        python "${SCRIPT_DIR}/evaluate.py" "$folder" --is_precondition
+        python "${SCRIPT_DIR}/evaluate.py" "$folder" --is_task_completion
+        python "${SCRIPT_DIR}/evaluate.py" "$folder" --is_task_trajectory
     fi
 done

@@ -1,9 +1,3 @@
-"""
-Usage:
-
-python evaluate.py --is_actuation --path_to_task_dir "/Users/avanikanarayan/Developer/Research/eclair-agents/eclair/vldb_experiments/[VLDB] 30 WebArena Tasks/104 @ 2023-12-30-12-23-12"
-"""
-
 from tqdm import tqdm
 from typing import Any, Dict, List
 import pandas as pd
@@ -19,10 +13,10 @@ from eclair.utils.helpers import (
     load_files_for_task
 )
 from typing import Dict, List, Optional
-from eclair.vldb_experiments.execute_actions.actuation_selector import (
+from eclair.vldb_experiments.execute_actions.actuation_selector.actuation_selector import (
     ActuationSelector,
 )
-from eclair.vldb_experiments.execute_actions.action_selector import (
+from eclair.vldb_experiments.execute_actions.action_selector.action_selector import (
     ActionSelectorL1,
 )
 import argparse
@@ -33,24 +27,11 @@ import dirtyjson
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "path_to_task_dir", type=str, required=True, help="Path to task demo folder"
-    )
-    parser.add_argument(
-        "--is_action",
-        action="store_true",
-        help="If TRUE, eval next action suggestion given a gt previous actions.",
-    )
-    parser.add_argument(
-        "--is_actuation",
-        action="store_true",
-        help="If TRUE, eval actuation given a gt next action suggestion.",
-    )
-    parser.add_argument(
-        "--is_include_sop",
-        action="store_true",
-        help="If TRUE, include SOP.txt in model input",
-    )
+    parser.add_argument( "path_to_task_dir", type=str, help="Path to task demo folder" )
+    parser.add_argument( "--path_to_output_dir", default="./execute_actions_outputs/", type=str, required=False, help="Path to output directory", )
+    parser.add_argument( "--is_action", action="store_true", help="If TRUE, eval next action suggestion given a gt previous actions.", )
+    parser.add_argument( "--is_actuation", action="store_true", help="If TRUE, eval actuation given a gt next action suggestion.", )
+    parser.add_argument( "--is_include_sop", action="store_true", help="If TRUE, include SOP.txt in model input", )
     return parser.parse_known_args()
 
 
@@ -377,11 +358,11 @@ def main(args):
     is_include_sop: bool = args.is_include_sop
 
     # Output dir
-    path_to_output_dir: str = os.path.join(path_to_task_dir, "experiments/")
+    path_to_output_dir: str = os.path.join(args.path_to_output_dir, os.path.basename(path_to_task_dir))
     os.makedirs(path_to_output_dir, exist_ok=True)
 
     # Find input files
-    inputs = load_files_for_task(path_to_task_dir, is_include_sop)
+    inputs = load_files_for_task(path_to_task_dir)
 
     path: str = os.path.join(
         path_to_output_dir,

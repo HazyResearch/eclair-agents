@@ -3,7 +3,7 @@
 To generate results for all tasks, run the following command:
 
 ```bash
-bash run_experiments.sh ../../../data/vldb_experiments/demos
+bash run_experiments.sh
 ```
 
 The bash script runs several prompt methods:

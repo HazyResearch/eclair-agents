@@ -1,8 +1,3 @@
-"""
-Usage:
-
-python evaluate.py "/Users/mwornow/Downloads/test/104 @ 2023-12-30-12-23-12" --is_task_trajectory
-"""
 import random
 from tqdm import tqdm
 from typing import Any, Dict, List, Tuple
@@ -30,7 +25,7 @@ from prompts import (
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("path_to_task_dir", type=str, help="Path to task demo folder")
-    parser.add_argument( "--path_to_output_dir", default="./outputs/", type=str, required=False, help="Path to output directory", )
+    parser.add_argument( "--path_to_output_dir", default="./validate_outputs/", type=str, required=False, help="Path to output directory", )
     parser.add_argument("--is_actuation", action="store_true", help="If TRUE, then eval on actuation")
     parser.add_argument("--is_precondition", action="store_true", help="If TRUE, then eval on preconditions")
     parser.add_argument("--is_task_completion", action="store_true", help="If TRUE, then eval on task completion success")

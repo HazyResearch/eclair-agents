@@ -90,5 +90,12 @@ python3 pipeline.py
 Please consider citing if you found this work or code helpful!
 
 ```
-
+@misc{wornow2024automating,
+      title={Automating the Enterprise with Foundation Models}, 
+      author={Michael Wornow and Avanika Narayan and Krista Opsahl-Ong and Quinn McIntyre and Nigam H. Shah and Christopher Re},
+      year={2024},
+      eprint={2405.03710},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE}
+}
 ```

@@ -2,8 +2,13 @@
 
 **E**nterprise s**C**a**L**e **AI** for **W**orkflows
 
+
+
 https://github.com/HazyResearch/eclair-agents/assets/5491790/580117a0-2afe-4137-97bb-e88fd2a5079e
-*Example of ECLAIR running on a real-world nursing workflow in Epic (a popular electronic health record software) after being given only a video recording and natural language description of the task.*
+
+
+
+*Example of ECLAIR running on a real-world nursing workflow in Epic (a popular electronic health record software) after being given only a video recording and natural language description of the task. Please note that this is sped up from actual model execution.*
 
 ## 💿 Installation
 
@@ -20,6 +25,8 @@ pip install -e .
 ```
 
 ## 📊 Paper Experiments
+
+Generate the experimental results in [our paper](TODO) using the dataset + scripts in this section. 
 
 ### 💾 Data
 
@@ -43,6 +50,8 @@ bash eclair/vldb_experiments/validate_experiments/run_experiments.sh data/vldb_e
 ```
 
 ## 🏥 Hospital Workflow
+
+This section contains the workflow data and scripts used to automate a real-world nursing workflow in Epic (i.e. the demo video at top of this README).
 
 ### 🎥 Demo
 

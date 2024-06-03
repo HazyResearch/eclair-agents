@@ -16,7 +16,7 @@ from selenium import webdriver
 from PIL import Image, ImageDraw, ImageFont
 from eclair.utils.constants import SYSTEM_PROMPT
 from eclair.utils.logging import TaskLog, Validation, ScreenRecorder
-
+from moviepy.editor import VideoFileClip
 
 # A mutable flag to indicate if the signal handler is currently running
 is_handler_running_flag = [False]
@@ -867,8 +867,177 @@ def load_files_for_task(path_to_task_dir: str) -> Inputs:
                     sop,
                     model_kwargs)
 
+def find_files_by_prefix_suffix(
+    directory, prefix="", suffix=".txt"
+) -> List[str]:
+    """Returns file name, not path"""
+    matching_files = []
+    for file in os.listdir(directory):
+        if file.startswith(prefix) and file.endswith(suffix):
+            matching_files.append(file)
+    return matching_files
 
+def get_path_to_screen_recording(path_to_task_folder: str, is_no_assert: bool = False) -> Optional[str]:
+    files: List[str] = [
+        x 
+        for x in find_files_by_prefix_suffix(path_to_task_folder, "", ".mp4")
+        if not (x.startswith("[gt]") or x.startswith("[raw]") or x.startswith("[clean]"))
+    ]
+    if not is_no_assert:
+        assert len(files) > 0, f"Could not find any .mp4 files in {path_to_task_folder}"
+    return os.path.join(path_to_task_folder, files[0]) if len(files) > 0 else None
+
+def get_path_to_screenshots_dir(path_to_task_folder: str, is_no_assert: bool = False) -> str:
+    file: str = os.path.join(path_to_task_folder, "screenshots/")
+    if not is_no_assert:
+        assert os.path.isdir(
+            file
+        ), f"Could not find screenshots directory in {path_to_task_folder}"
+    return file
+
+def get_path_to_trace_json(path_to_task_folder: str, is_no_assert: bool = False) -> Optional[str]:
+    files: List[str] = [
+        x
+        for x in find_files_by_prefix_suffix(path_to_task_folder, "", ".json")
+        if not (x.startswith("[gt]") or x.startswith("[raw]") or x.startswith("[clean]"))
+    ]
+    if not is_no_assert:
+        assert (
+            len(files) > 0
+        ), f"Could not find any trace.json files in {path_to_task_folder}"
+    return os.path.join(path_to_task_folder, files[0]) if len(files) > 0 else None
+
+def merge_consecutive_states(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    '''Merge consecutive states into one state (the last one).'''
+    idxs_to_remove: List[int] = []
+    consecutive_event_idxs: List[int] = []
+    for idx, event in enumerate(trace_json):
+        if event["type"] == "state":
+            consecutive_event_idxs.append(idx)
+        if event['type'] != 'state' or idx == len(trace_json) - 1:
+            # Found a non-state or at end of trace, so clear out our consecutive state tracker
+            if len(consecutive_event_idxs) > 1:
+                # keep the last state
+                idxs_to_remove += consecutive_event_idxs[:-1]
+            consecutive_event_idxs = []
+    return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
+
+
+def extract_screenshots_for_demo(path_to_demo_folder: str, path_to_trace: Optional[str] = None, path_to_screen_recording: Optional[str] = None, is_verbose: bool = True):
+    """Given a demo folder, extracts screenshots from the .mp4 screen recording and saves them to a `screenshots/` directory"""
+    path_to_trace: str = get_path_to_trace_json(path_to_demo_folder) if not path_to_trace else path_to_trace
+    path_to_screen_recording: str = get_path_to_screen_recording(path_to_demo_folder) if not path_to_screen_recording else path_to_screen_recording
+    path_to_screenshots_dir: str = get_path_to_screenshots_dir(path_to_demo_folder)
+    if os.path.exists(path_to_screenshots_dir):
+        shutil.rmtree(path_to_screenshots_dir)
+    os.makedirs(path_to_screenshots_dir)
     
+    # Check that all necessary files/folders exist
+    assert os.path.exists(path_to_demo_folder), f"Could not find {path_to_demo_folder}"
+    assert os.path.exists(path_to_trace), f"Could not find trace.json in {path_to_demo_folder}"
+    assert os.path.exists(path_to_screen_recording), f"Could not find screen recording in {path_to_demo_folder}"
+    assert os.path.exists(path_to_screenshots_dir), f"Could not create screenshots directory in {path_to_demo_folder}"
+  
+    # Get .json trace
+    full_trace: Dict[str, str] = json.loads(open(path_to_trace, "r").read())
+    trace_json: List[Dict[str, str]] = full_trace['trace']
+
+    with VideoFileClip(path_to_screen_recording) as video:
+        img_idx: int = 0
+        
+        # Get start state's timestamps (for calculating secs_from_start later)
+        start_state_timestamp: str = trace_json[0]['data']['timestamp']
+        start_state_secs_from_start: str = trace_json[0]['data']['secs_from_start']
+        # video_start_timestamp: datetime.datetime = datetime.datetime.fromtimestamp(
+        #     os.stat(path_to_screen_recording).st_birthtime
+        # )
+        
+        enumerator = tqdm(
+            enumerate(trace_json),
+            desc="Extracting Video => Screenshots",
+            total=len([ x for x in trace_json if x['type'] == 'state' ]),
+        ) if is_verbose else enumerate(trace_json)
+        for event_idx, event in enumerator:
+            if event["type"] == "state":
+                # Our trace is: (S, A, S', A', ...)
+                # For S, we want to take the screenshot immediately before A (for page loading / animations / etc.)
+                # So we actually should ignore the time of S, and instead use slightly before the time of A for our extracted frame
+                # (Except for the last S, which use its own time since there is no A after it)
+                #
+                # NOTE: We treat keystroke actions slightly differently than other actions given they last so long
+                # We take the corresponding screenshot relative to `start_timestamp` and not `timestamp`
+                is_next_action_keystroke: bool = (
+                    event_idx + 1 < len(trace_json)
+                    and trace_json[event_idx + 1]["type"] == "action"
+                    and trace_json[event_idx + 1]["data"]["type"] == "keystroke"
+                )
+                timestamp: float = (
+                    datetime.datetime.fromisoformat(
+                        trace_json[
+                            event_idx + 1
+                            if len(trace_json) > event_idx + 1
+                            else event_idx
+                        ]["data"]["timestamp" if not is_next_action_keystroke else "start_timestamp"]
+                    )
+                    - datetime.datetime.fromisoformat(start_state_timestamp)
+                ).total_seconds() + start_state_secs_from_start
+                try:
+                    if event_idx == len(trace_json) - 1:
+                        # If final frame, leave 1s of buffer or use the last action's timestamp
+                        frame = video.get_frame(min(timestamp, video.duration - 1))
+                    else:
+                        frame = video.get_frame(timestamp)
+                    img: Image = Image.fromarray(frame)
+                    img.save(os.path.join(path_to_screenshots_dir, f"{img_idx}.png"))
+                    trace_json[event_idx]["data"][ "path_to_screenshot" ] = f"./screenshots/{img_idx}.png"
+                    img_idx += 1
+                except Exception as e:
+                    print(
+                        f"====> FAILED to extract screenshot: event_idx={event_idx} | timestamp={timestamp}. Exception: {e}"
+                    )
+            elif event["type"] == "action":
+                # Make sure no screenshot associated with any actions
+                if "path_to_screenshot" in event["data"]:
+                    del trace_json[event_idx]["data"]["path_to_screenshot"]
+
+    # Save updated trace with screenshot filenames
+    n_screenshots: int = len(
+        [x for x in os.listdir(path_to_screenshots_dir) if x.endswith(".png")]
+    )
+    assert n_screenshots == len(
+        [x for x in trace_json if x["type"] == "state"]
+    ), f"Number of screenshots ({n_screenshots}) does not match number of states ({len([ x for x in trace_json if x['type'] == 'state' ])})"
+    full_trace['trace'] = trace_json
+    json.dump(
+        full_trace,
+        open(path_to_trace, "w"),
+        indent=2,
+    )
+
+def convert_mousedown_mouseup_to_click(trace_json: List[Dict[str, Any]], pixel_margin_of_error: float = 5.0, secs_margin_of_error: float = 2.0) -> List[Dict[str, Any]]:
+    '''Merge consecutive mousedown/mouseup events at the same coords and within `secs_margin_of_error` secs of each other to a "CLICK" event
+    This is lenient by +/- N pixels in x/y coords
+    '''
+    last_action: Dict[str, Any] = None
+    idxs_to_remove: List[int] = []
+    for idx, event in enumerate(trace_json):
+        if event["type"] == "action":
+            if (
+                last_action is not None
+                and last_action['data']['type'] == 'mousedown' 
+                and event['data']['type'] == 'mouseup'
+                and abs(last_action['data']['x'] - event['data']['x']) <= pixel_margin_of_error
+                and abs(last_action['data']['y'] - event['data']['y']) <= pixel_margin_of_error
+                and event['data']['secs_from_start'] - last_action['data']['secs_from_start'] <= secs_margin_of_error
+            ):
+                # We found two consecutive mousedown/mouseup events at the same(-ish) location
+                last_action['data']['type'] = 'click'
+                idxs_to_remove.append(idx)
+            else:
+                last_action = event
+    return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
+
+
 ###############################################
 ###############################################
 #
@@ -990,3 +1159,4 @@ def save_image_annotated_with_bboxes(path_to_image: str,
         draw_boxes(im, preds, color="black", width=4)
         draw_text(im, preds, color="red")
         im.save(os.path.join(path_to_output_dir, f"{name}-bbox-text.png"))
+

@@ -27,7 +27,7 @@ conda create -n eclair_env python=3.10 -y
 conda activate eclair_env
 
 # Install repo
-git clone https://github.com/HazyResearch/eclair.git
+git clone https://github.com/HazyResearch/eclair-agents.git
 cd eclair-agents/
 pip install -r requirements.txt
 pip install -e .

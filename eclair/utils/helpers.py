@@ -15,7 +15,7 @@ from playwright.sync_api import sync_playwright, Browser
 from selenium import webdriver
 from PIL import Image, ImageDraw, ImageFont
 from eclair.utils.constants import SYSTEM_PROMPT
-from eclair.utils.logging import TaskLog, Validation, ScreenRecorder
+from eclair.utils.logging import TaskLog, Validation, ScreenRecorder, LIST_OF_BROWSER_APPLICATIONS
 from moviepy.editor import VideoFileClip
 
 # A mutable flag to indicate if the signal handler is currently running
@@ -907,22 +907,6 @@ def get_path_to_trace_json(path_to_task_folder: str, is_no_assert: bool = False)
         ), f"Could not find any trace.json files in {path_to_task_folder}"
     return os.path.join(path_to_task_folder, files[0]) if len(files) > 0 else None
 
-def merge_consecutive_states(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    '''Merge consecutive states into one state (the last one).'''
-    idxs_to_remove: List[int] = []
-    consecutive_event_idxs: List[int] = []
-    for idx, event in enumerate(trace_json):
-        if event["type"] == "state":
-            consecutive_event_idxs.append(idx)
-        if event['type'] != 'state' or idx == len(trace_json) - 1:
-            # Found a non-state or at end of trace, so clear out our consecutive state tracker
-            if len(consecutive_event_idxs) > 1:
-                # keep the last state
-                idxs_to_remove += consecutive_event_idxs[:-1]
-            consecutive_event_idxs = []
-    return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
-
-
 def extract_screenshots_for_demo(path_to_demo_folder: str, path_to_trace: Optional[str] = None, path_to_screen_recording: Optional[str] = None, is_verbose: bool = True):
     """Given a demo folder, extracts screenshots from the .mp4 screen recording and saves them to a `screenshots/` directory"""
     path_to_trace: str = get_path_to_trace_json(path_to_demo_folder) if not path_to_trace else path_to_trace
@@ -1035,6 +1019,112 @@ def convert_mousedown_mouseup_to_click(trace_json: List[Dict[str, Any]], pixel_m
                 idxs_to_remove.append(idx)
             else:
                 last_action = event
+    return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
+
+def merge_consecutive_scrolls(trace_json: List[Dict[str, Any]], pixel_margin_of_error: float = 5.0) -> List[Dict[str, Any]]:
+    '''Merge consecutive scroll events into a single scroll action.
+    This is lenient by +/- N pixels in x/y coords
+    '''
+    last_action: Dict[str, Any] = None
+    idxs_to_remove: List[int] = []
+    for idx, event in enumerate(trace_json):
+        if event["type"] == "action":
+            if (
+                last_action is not None
+                and last_action['data']['type'] == 'scroll' 
+                and event['data']['type'] == 'scroll'
+                and abs(last_action['data']['x'] - event['data']['x']) <= pixel_margin_of_error
+                and abs(last_action['data']['y'] - event['data']['y']) <= pixel_margin_of_error
+            ):
+                # We found two consecutive scroll events at the same(-ish) location
+                last_action['data']['dx'] += event['data']['dx']
+                last_action['data']['dy'] += event['data']['dy']
+                idxs_to_remove.append(idx)
+            else:
+                last_action = event
+    return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
+
+def merge_consecutive_states(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    '''Merge consecutive states into one state (the last one).'''
+    idxs_to_remove: List[int] = []
+    consecutive_event_idxs: List[int] = []
+    for idx, event in enumerate(trace_json):
+        if event["type"] == "state":
+            consecutive_event_idxs.append(idx)
+        if event['type'] != 'state' or idx == len(trace_json) - 1:
+            # Found a non-state or at end of trace, so clear out our consecutive state tracker
+            if len(consecutive_event_idxs) > 1:
+                # keep the last state
+                idxs_to_remove += consecutive_event_idxs[:-1]
+            consecutive_event_idxs = []
+    return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
+
+def remove_action_type(trace_json: List[Dict[str, Any]], action_type: str) -> List[Dict[str, Any]]:
+    '''Remove all actions with type == `action_type`'''
+    return [
+        event 
+        for event in trace_json 
+        if (
+            event['type'] != 'action' 
+            or event['data']['type'] != action_type
+        )
+    ]
+
+def remove_esc_key(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    '''Remove all keypresses with key == 'esc' '''
+    return [
+        event 
+        for event in trace_json 
+        if (
+            event['type'] != 'action' 
+            or event['data']['type'] not in ['keypress', 'keyrelease']
+            or event['data']['key'] != 'Key.esc'
+        )
+    ]
+
+def merge_consecutive_keystrokes(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    '''Merge consecutive keypresses/keyreleases into the same field into one atomic entry.'''
+    last_action: Dict[str, Any] = None
+    idxs_to_remove: List[int] = []
+    prior_state: Dict[str, Any] = None # State immediately before current action
+    prior_prior_state: Dict[str, Any] = None # State before last action (i.e. before the state immediately before to this action)
+    for idx, event in enumerate(trace_json):
+        if event["type"] == "state":
+            prior_prior_state = prior_state
+            prior_state = event['data']
+        elif event["type"] == "action":
+            if (
+                last_action is not None # There is a previous action
+                and last_action['data']['type'] in ['keypress', 'keyrelease', 'keystroke', ] # Previous action was key event
+                and event['data']['type'] in ['keypress', 'keyrelease', 'keystroke',] # Current action is key event
+                and prior_state['active_application_name'] == prior_prior_state['active_application_name'] # In same application
+                and (
+                    ( # If in web browser, then we need to be in the same HTML input field
+                        prior_state['active_application_name'] in LIST_OF_BROWSER_APPLICATIONS # In web browser
+                        and 'element_attributes' in last_action['data']
+                        and 'element_attributes' in event['data']
+                        and last_action['data']['element_attributes'] is not None
+                        and event['data']['element_attributes'] is not None
+                        and last_action['data']['element_attributes'].get('xpath', None) == event['data']['element_attributes'].get('xpath', None)
+                    )
+                    or ( # If not in web browser, then don't check HTML input field
+                        prior_state['active_application_name'] not in LIST_OF_BROWSER_APPLICATIONS # Not in web browser
+                    )
+                )
+                and (not event['data']['key'].startswith('Key.') or event['data']['key'] in ['Key.space', 'Key.shift', 'Key.shift_r', 'Key.caps_lock', 'Key.backspace']) # Ignore non-space/Shift special keys
+            ):
+                # We found two consecutive non-special-key keystroke events in the same HTML field (i.e. identical xpath)
+                if event['data']['type'] == 'keypress':
+                    # only record keypresses (i.e. ignore keyrelease events so that we don't double count keypresses)
+                    last_action['data']['key'] += ' ' + event['data']['key']
+                last_action['data']['type'] = 'keystroke' # merge into one atomic keystroke
+                last_action['data']['end_timestamp'] = event['data']['timestamp']
+                last_action['data']['timestamp'] = event['data']['timestamp'] # use end_timestamp as timestamp for this action, so that we know its finished by the time we record it as having "happened"; needed for long keystroke events
+                last_action['data']['secs_from_start'] = event['data']['secs_from_start']
+                idxs_to_remove.append(idx)
+            else:
+                last_action = event
+                last_action['data']['start_timestamp'] = last_action['data']['timestamp']
     return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
 
 

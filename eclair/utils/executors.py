@@ -8,14 +8,14 @@ import Quartz
 
 class Environment:
     """
-        Wrapper around selenium + playwright + none
+        Wrapper around selenium + playwright + desktop
         Tries to conform to Selenium API as closely as possible.
         
-        NOTE: `none` is useful when we know we're only using a desktop application (e.g. Epic)
+        NOTE: `desktop` is useful when we know we're only using a desktop application (e.g. Epic)
                 and don't need to interact with a browser. Thus, every function becomes a no-op.
     """
 
-    ALLOWED_ENVS: List[str] = ["selenium", "playwright", "none"]
+    ALLOWED_ENVS: List[str] = ["selenium", "playwright", "desktop"]
 
     def __init__(self, 
                  env_type: str = "selenium"):
@@ -25,14 +25,14 @@ class Environment:
     
     def start(self, *args, is_headless: bool = False, record_video_dir: Optional[str] = None, **kwargs):
         """Creates a new browser instance (if applicable)."""
-        self.is_headless: bool = is_headless if self.env_type != "none" else False # NOTE: `none` is always non-headless
+        self.is_headless: bool = is_headless if self.env_type != "desktop" else False # NOTE: `desktop` is always non-headless
         if self.env_type == "selenium":
             self.selenium_driver: webdriver.Chrome = setup_chrome_driver(*args, is_headless=is_headless, **kwargs)
         elif self.env_type == "playwright":
             self.playwright, self.playwright_browser = setup_playwright_driver(*args, is_headless=is_headless, **kwargs)
             self.playwright_context = self.playwright_browser.new_context(record_video_dir=record_video_dir)
             self.playwright_page = self.playwright_context.new_page()
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -44,7 +44,7 @@ class Environment:
             self.playwright_context.close()
             self.playwright_browser.close()
             self.playwright.stop()
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -56,7 +56,7 @@ class Environment:
             self.playwright_context.close()
             self.playwright_context = self.playwright_browser.new_context()
             self.playwright_page = self.playwright_context.new_page()
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -67,7 +67,7 @@ class Environment:
             self.selenium_driver.get(url)
         elif self.env_type == "playwright":
             self.playwright_page.goto(url)
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -77,7 +77,7 @@ class Environment:
             return self.selenium_driver.find_elements(By.CSS_SELECTOR, css_selector)
         elif self.env_type == "playwright":
             return self.playwright_page.query_selector_all(css_selector)
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             return []
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -87,7 +87,7 @@ class Environment:
             return self.selenium_driver.find_element(By.CSS_SELECTOR, css_selector)
         elif self.env_type == "playwright":
             return self.playwright_page.query_selector(css_selector)
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             return None
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -98,7 +98,7 @@ class Environment:
             self.find_element(css_selector).send_keys(text)
         elif self.env_type == "playwright":
             self.find_element(css_selector).fill(text)
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -109,7 +109,7 @@ class Environment:
             self.find_element(css_selector).click()
         elif self.env_type == "playwright":
             self.find_element(css_selector).click()
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -121,7 +121,7 @@ class Environment:
             return self.selenium_driver.current_url
         elif self.env_type == "playwright":
             return self.playwright_page.url
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             return ""
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -133,7 +133,7 @@ class Environment:
             return self.selenium_driver.title
         elif self.env_type == "playwright":
             return self.playwright_page.title()
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             return ""
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -144,7 +144,7 @@ class Environment:
             return self.selenium_driver.get_window_rect()
         elif self.env_type == "playwright":
             return get_active_application_state(self)
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             return {}
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -155,7 +155,7 @@ class Environment:
             return self.selenium_driver.page_source
         elif self.env_type == "playwright":
             return self.playwright_page.content()
-        elif self.env_type == "none":
+        elif self.env_type == "desktop":
             return ""
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
@@ -168,7 +168,7 @@ class Environment:
             elif self.env_type == "playwright":
                 # Note: For playwright, we need to inject () => {}
                 return self.playwright_page.evaluate(f"() => {{ {script} }}" if is_playwright_use_wrapper else script)
-            elif self.env_type == "none":
+            elif self.env_type == "desktop":
                 pass
             else:
                 raise Exception(f"Invalid env_type: {self.env_type}")

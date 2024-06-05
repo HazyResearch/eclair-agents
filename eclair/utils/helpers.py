@@ -22,8 +22,8 @@ from moviepy.editor import VideoFileClip
 is_handler_running_flag = [False]
 
 def get_png_size(img_path):
-    im = Image.open(img_path)
-    width, height = im.size
+    with Image.open(filepath) as img:
+        width, height = img.size
     return width, height
 
 def signal_handler(

@@ -22,8 +22,6 @@ from eclair.utils.helpers import (
     merge_consecutive_states,
     remove_action_type,
     remove_esc_key,
-)
-from eclair.utils.helpers import (
     execute_js_scripts,
     extract_screenshots_for_demo,
     get_last_element_attributes,

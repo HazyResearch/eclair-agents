@@ -22,7 +22,7 @@ from moviepy.editor import VideoFileClip
 is_handler_running_flag = [False]
 
 def get_png_size(img_path):
-    with Image.open(filepath) as img:
+    with Image.open(img_path) as img:
         width, height = img.size
     return width, height
 

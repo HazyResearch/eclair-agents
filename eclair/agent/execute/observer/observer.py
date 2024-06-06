@@ -11,6 +11,10 @@ from eclair.utils.helpers import (
     PredictedBbox,
     save_image_annotated_with_bboxes,
 )
+from eclair.utils.logging import (
+    LIST_OF_BROWSER_APPLICATIONS,
+    State
+)
 
 class Observer(BaseClass):
     """

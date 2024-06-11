@@ -21,6 +21,10 @@ from moviepy.editor import VideoFileClip
 # A mutable flag to indicate if the signal handler is currently running
 is_handler_running_flag = [False]
 
+def get_png_size(img_path):
+    with Image.open(img_path) as img:
+        width, height = img.size
+    return width, height
 
 def signal_handler(
     sig,

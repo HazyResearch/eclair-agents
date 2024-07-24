@@ -178,8 +178,7 @@ class Observer(BaseClass):
             return {}
         # Get current state as JSON blob
         with open(
-            "/Users/avanikanarayan/Developer/Research/big-brother/eclair-agents/eclair/utils/get_webpage_state.js",
-            "r",  ##get_rel_path(__file__, "../../../utils/get_webpage_state.js"), "r"
+            get_rel_path(__file__, "../../../utils/get_webpage_state.js"), "r"
         ) as fd:
             js_script: str = fd.read()
         json_state: Dict[str, str] = json.loads(env.execute_script(js_script))

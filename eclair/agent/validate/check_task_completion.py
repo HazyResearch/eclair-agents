@@ -52,6 +52,12 @@ def parse_args() -> argparse.Namespace:
         choices=["GPT4", "GeminiPro"],
     )
     parser.add_argument(
+        "--demo_name",
+        type=str,
+        default="",
+        help="Name of demo to use for folder naming",
+    )
+    parser.add_argument(
         "--is_verbose", action="store_true", help="If TRUE, then print out stuff"
     )
     return parser.parse_args()

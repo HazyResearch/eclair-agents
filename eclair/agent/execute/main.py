@@ -10,7 +10,20 @@ import signal
 import os
 import json
 import time
+import sys
+
+# Add eclair to path
+sys.path.append(
+    "/Users/avanikanarayan/Developer/Research/big-brother/eclair-agents/eclair"
+)
+
+sys.path.append("/Users/avanikanarayan/Developer/Research/big-brother/eclair-agents")
+
+print(sys.path)
+
 from typing import Callable, Dict, List, Optional, Tuple
+
+# import eclair
 from eclair.utils.logging import ScreenRecorder, TaskLog
 from eclair.utils.executors import Environment
 from eclair.utils.helpers import (
@@ -23,12 +36,8 @@ from eclair.utils.constants import (
     TASK_LIST,
     EXECUTORS,
 )
-from eclair.agent.execute.observer import (
-    Observer
-)
-from eclair.agent.execute.uniagent import (
-    UniAgent
-)
+from eclair.agent.execute.observer import Observer
+from eclair.agent.execute.uniagent import UniAgent
 from eclair.agent.execute.validators import (
     FieldFocusedBeforeTypeValidator,
     FieldEmptyBeforeTypeValidator,
@@ -37,7 +46,13 @@ from eclair.agent.execute.validators import (
     ClickCoordinatesWithinElementValidator,
 )
 from eclair.utils.executors import Environment
-from eclair.utils.helpers import convert_dsl_to_actions, execute_js_scripts, log, run_code, run_validators
+from eclair.utils.helpers import (
+    convert_dsl_to_actions,
+    execute_js_scripts,
+    log,
+    run_code,
+    run_validators,
+)
 from eclair.utils.logging import Action, TaskLog, State, Suggestion, Validation
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -168,10 +183,10 @@ def execute_task_uniagent(
     uniagent: UniAgent = UniAgent(
         model_kwargs=model_kwargs,
         sop=sop,
-        **prompts.get('uniagent', {}),
+        **prompts.get("uniagent", {}),
     )
 
-    # Logging     
+    # Logging
     logger = lambda msg: log(msg, path_to_log_file)
     observer.set_logger(logger)
 
@@ -180,45 +195,59 @@ def execute_task_uniagent(
     task_log.log_state(state, task_log.get_current_step())
 
     # Run model
-    for step in range(task_log.get_current_step(), task_log.get_current_step() + max_calls):
+    for step in range(
+        task_log.get_current_step(), task_log.get_current_step() + max_calls
+    ):
         step_cnt: int = step + 1
 
         # Choose action
         for i in range(max_action_validation_attempts):
             action_suggestion: Suggestion = uniagent.next_action(task_log)
-            task_log.log_suggestion(action_suggestion, step_cnt, label='action_suggestion')
-            logger(f"====== ACTION: RESPONSE =======\n```\n{action_suggestion.response}\n```")
-            
+            task_log.log_suggestion(
+                action_suggestion, step_cnt, label="action_suggestion"
+            )
+            logger(
+                f"====== ACTION: RESPONSE =======\n```\n{action_suggestion.response}\n```"
+            )
+
             # Check if task is completed
             if action_suggestion.is_completed:
                 task_log.log_action(action_suggestion, step_cnt)
                 task_log.is_completed_success = True
                 return task_log
-            
+
             # Validate action suggestion
-            if observer.env.env_type == 'desktop':
+            if observer.env.env_type == "desktop":
                 # Run general validators that don't rely on HTML attributes
-                validation: Validation = run_validators(task_log, [
-                    ActionSuggestionIsDiffThanPrevActionValidator(),
-                    ScrollChangedScreenValidator(),
-                    ClickCoordinatesWithinElementValidator(),
-                ])
+                validation: Validation = run_validators(
+                    task_log,
+                    [
+                        ActionSuggestionIsDiffThanPrevActionValidator(),
+                        ScrollChangedScreenValidator(),
+                        ClickCoordinatesWithinElementValidator(),
+                    ],
+                )
             else:
                 # Run validators that rely on HTML attributes only available for webpage elements (e.g. xpath, focus, empty, etc.)
-                validation: Validation = run_validators(task_log, [
-                    FieldFocusedBeforeTypeValidator(),
-                    FieldEmptyBeforeTypeValidator(),
-                    ActionSuggestionIsDiffThanPrevActionValidator(),
-                    ScrollChangedScreenValidator(),
-                    ClickCoordinatesWithinElementValidator(),
-                ])
-            task_log.log_validation(validation, step_cnt, label='action_suggestion')
+                validation: Validation = run_validators(
+                    task_log,
+                    [
+                        FieldFocusedBeforeTypeValidator(),
+                        FieldEmptyBeforeTypeValidator(),
+                        ActionSuggestionIsDiffThanPrevActionValidator(),
+                        ScrollChangedScreenValidator(),
+                        ClickCoordinatesWithinElementValidator(),
+                    ],
+                )
+            task_log.log_validation(validation, step_cnt, label="action_suggestion")
 
             # Check if action was valid
             if validation.is_valid:
                 break
             else:
-                logger(f"====== VALIDATION: RESPONSE =======\n```\n{validation.feedback}\n```")
+                logger(
+                    f"====== VALIDATION: RESPONSE =======\n```\n{validation.feedback}\n```"
+                )
                 # Sleep two seconds, reobserve state, and try again
                 time.sleep(2)
                 # Delete previous state's screenshot
@@ -226,7 +255,9 @@ def execute_task_uniagent(
                     os.remove(task_log.states[-1].path_to_screenshot)
                 # Create new state
                 state: State = observer.run()
-                task_log.states = task_log.states[:-1] # Remove last state so we can update it with current webpage state
+                task_log.states = task_log.states[
+                    :-1
+                ]  # Remove last state so we can update it with current webpage state
                 task_log.log_state(state, step_cnt)
 
         # Register action
@@ -236,7 +267,7 @@ def execute_task_uniagent(
             rationale=action_suggestion.action_rationale,
         )
         task_log.log_action(action, step_cnt)
-        
+
         # Execute code
         code: str = convert_dsl_to_actions(env, action.actuation)
         try:
@@ -270,17 +301,20 @@ def execute_task_uniagent(
 
         # Rerun JS scripts
         execute_js_scripts(env)
-        
+
         # Observe new (i.e. post-action) state
         state: State = observer.run()
         task_log.log_state(state, step_cnt)
-        logger(f"====== NEW STATE =======\n```\n{os.path.basename(state.path_to_screenshot)}\n```")
+        logger(
+            f"====== NEW STATE =======\n```\n{os.path.basename(state.path_to_screenshot)}\n```"
+        )
 
     return task_log
 
 
-
-def main(args: argparse.Namespace, env: Optional[Environment] = None) -> Tuple[TaskLog, str, str]:
+def main(
+    args: argparse.Namespace, env: Optional[Environment] = None
+) -> Tuple[TaskLog, str, str]:
     """
     From CLI, only uses `args`.
     If called as function, can pass an existing `Environment`. Defaults to creating a new Selenium driver if no environment is provided.
@@ -289,7 +323,9 @@ def main(args: argparse.Namespace, env: Optional[Environment] = None) -> Tuple[T
     task_ui: str = args.ui
     if task in TASK_LIST:
         task = TASK_LIST[task]
-    trace_name: str = f"{args.trace_name if args.trace_name is not None else args.task[:20]} @ {datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
+    trace_name: str = (
+        f"{args.trace_name if args.trace_name is not None else args.task[:20]} @ {datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
+    )
 
     # Paths
     path_to_sop: str = args.path_to_sop
@@ -317,13 +353,13 @@ def main(args: argparse.Namespace, env: Optional[Environment] = None) -> Tuple[T
 
     # Default to creating a new Selenium driver if none are specified
     if env is None:
-        if args.env_type == 'selenium':
+        if args.env_type == "selenium":
             # Attaches to Chrome session running on port 9222
             env = Environment(env_type="selenium")
-        elif args.env_type == 'playwright':
+        elif args.env_type == "playwright":
             # Launches a new Chrome session
             env = Environment(env_type="playwright")
-        elif args.env_type == 'desktop':
+        elif args.env_type == "desktop":
             env = Environment(env_type="desktop")
         else:
             raise ValueError(f"Invalid environment type: {args.env_type}")
@@ -431,7 +467,7 @@ def main(args: argparse.Namespace, env: Optional[Environment] = None) -> Tuple[T
         screen_recorder.stop()
 
     print(f"Saved everything to: `{path_to_output_dir}`")
-    
+
     return task_log, trace_name, path_to_output_dir
 
 

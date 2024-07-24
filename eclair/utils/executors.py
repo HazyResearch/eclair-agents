@@ -2,41 +2,59 @@ import time
 from typing import Callable, Dict, Optional, Any, List
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from eclair.utils.helpers import save_screenshot, setup_chrome_driver, setup_playwright_driver
+from eclair.utils.helpers import (
+    save_screenshot,
+    setup_chrome_driver,
+    setup_playwright_driver,
+)
 from AppKit import NSWorkspace
 import Quartz
 
+
 class Environment:
     """
-        Wrapper around selenium + playwright + desktop
-        Tries to conform to Selenium API as closely as possible.
-        
-        NOTE: `desktop` is useful when we know we're only using a desktop application (e.g. Epic)
-                and don't need to interact with a browser. Thus, every function becomes a no-op.
+    Wrapper around selenium + playwright + desktop
+    Tries to conform to Selenium API as closely as possible.
+
+    NOTE: `desktop` is useful when we know we're only using a desktop application (e.g. Epic)
+            and don't need to interact with a browser. Thus, every function becomes a no-op.
     """
 
     ALLOWED_ENVS: List[str] = ["selenium", "playwright", "desktop"]
 
-    def __init__(self, 
-                 env_type: str = "selenium"):
+    def __init__(self, env_type: str = "selenium"):
         self.env_type: str = env_type
-        
+
         assert env_type in self.ALLOWED_ENVS, f"Invalid env_type: {env_type}"
-    
-    def start(self, *args, is_headless: bool = False, record_video_dir: Optional[str] = None, **kwargs):
+
+    def start(
+        self,
+        *args,
+        is_headless: bool = False,
+        record_video_dir: Optional[str] = None,
+        **kwargs,
+    ):
         """Creates a new browser instance (if applicable)."""
-        self.is_headless: bool = is_headless if self.env_type != "desktop" else False # NOTE: `desktop` is always non-headless
+        self.is_headless: bool = (
+            is_headless if self.env_type != "desktop" else False
+        )  # NOTE: `desktop` is always non-headless
         if self.env_type == "selenium":
-            self.selenium_driver: webdriver.Chrome = setup_chrome_driver(*args, is_headless=is_headless, **kwargs)
+            self.selenium_driver: webdriver.Chrome = setup_chrome_driver(
+                *args, is_headless=is_headless, **kwargs
+            )
         elif self.env_type == "playwright":
-            self.playwright, self.playwright_browser = setup_playwright_driver(*args, is_headless=is_headless, **kwargs)
-            self.playwright_context = self.playwright_browser.new_context(record_video_dir=record_video_dir)
+            self.playwright, self.playwright_browser = setup_playwright_driver(
+                *args, is_headless=is_headless, **kwargs
+            )
+            self.playwright_context = self.playwright_browser.new_context(
+                record_video_dir=record_video_dir
+            )
             self.playwright_page = self.playwright_context.new_page()
         elif self.env_type == "desktop":
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
-            
+
     def stop(self):
         if self.env_type == "selenium":
             self.selenium_driver.quit()
@@ -71,7 +89,7 @@ class Environment:
             pass
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
-    
+
     def find_elements(self, css_selector: str) -> List[Any]:
         if self.env_type == "selenium":
             return self.selenium_driver.find_elements(By.CSS_SELECTOR, css_selector)
@@ -81,7 +99,7 @@ class Environment:
             return []
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
-    
+
     def find_element(self, css_selector: str) -> Optional[Any]:
         if self.env_type == "selenium":
             return self.selenium_driver.find_element(By.CSS_SELECTOR, css_selector)
@@ -91,7 +109,7 @@ class Environment:
             return None
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
-    
+
     def type_in_element(self, css_selector: str, text: str):
         """Types `text` in the element specified by `css_selector`."""
         if self.env_type == "selenium":
@@ -125,7 +143,7 @@ class Environment:
             return ""
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
-    
+
     @property
     def title(self) -> str:
         """Get current tab name."""
@@ -137,7 +155,7 @@ class Environment:
             return ""
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
-    
+
     def get_window_rect(self) -> Dict[str, int]:
         """Get coordinates of browser on screen."""
         if self.env_type == "selenium":
@@ -148,7 +166,7 @@ class Environment:
             return {}
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
-    
+
     def content(self) -> str:
         """Gets the full HTML contents of the page, including the doctype"""
         if self.env_type == "selenium":
@@ -160,14 +178,18 @@ class Environment:
         else:
             raise Exception(f"Invalid env_type: {self.env_type}")
 
-    def execute_script(self, script: str, is_playwright_use_wrapper: bool = True, is_retry: bool = True) -> str:
+    def execute_script(
+        self, script: str, is_playwright_use_wrapper: bool = True, is_retry: bool = True
+    ) -> str:
         """Executes JS script on the current webpage"""
         try:
             if self.env_type == "selenium":
                 return self.selenium_driver.execute_script(script)
             elif self.env_type == "playwright":
                 # Note: For playwright, we need to inject () => {}
-                return self.playwright_page.evaluate(f"() => {{ {script} }}" if is_playwright_use_wrapper else script)
+                return self.playwright_page.evaluate(
+                    f"() => {{ {script} }}" if is_playwright_use_wrapper else script
+                )
             elif self.env_type == "desktop":
                 pass
             else:
@@ -179,9 +201,13 @@ class Environment:
             if is_retry:
                 print("Retrying in 5 seconds...")
                 time.sleep(5)
-                return self.execute_script(script, is_playwright_use_wrapper=is_playwright_use_wrapper, is_retry=False)
+                return self.execute_script(
+                    script,
+                    is_playwright_use_wrapper=is_playwright_use_wrapper,
+                    is_retry=False,
+                )
             return None
-    
+
     def save_screenshot(self, path_to_output: str, is_async: bool = False):
         """Saves screenshot to `path_to_output`"""
         if self.is_headless:
@@ -197,11 +223,14 @@ class Environment:
         else:
             save_screenshot(path_to_output, is_async=is_async)
 
+
 class BaseClass:
-    def __init__(self, 
-                 model_kwargs: Optional[Dict[str, str ]] = None, 
-                 env: Optional[Environment] = None):
-        self.logger: Callable = lambda x : x
+    def __init__(
+        self,
+        model_kwargs: Optional[Dict[str, str]] = None,
+        env: Optional[Environment] = None,
+    ):
+        self.logger: Callable = lambda x: x
         self.model_kwargs: Dict[str, str] = model_kwargs or {}
         self.env: Optional[Environment] = env
 
@@ -209,12 +238,16 @@ class BaseClass:
         """Define the function that we'll call to log things."""
         self.logger = logger
 
+
 TaskLog = None
 Validation = None
+
+
 class BaseValidator(BaseClass):
     """
     Base class for all validators
     """
+
     def run(self, task_log: TaskLog) -> Validation:
         raise NotImplementedError
 

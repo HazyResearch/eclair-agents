@@ -15,11 +15,24 @@ from playwright.sync_api import sync_playwright, Browser
 from selenium import webdriver
 from PIL import Image, ImageDraw, ImageFont
 from eclair.utils.constants import SYSTEM_PROMPT
-from eclair.utils.logging import TaskLog, Validation, ScreenRecorder, LIST_OF_BROWSER_APPLICATIONS
+from eclair.utils.logging import (
+    TaskLog,
+    Validation,
+    ScreenRecorder,
+    LIST_OF_BROWSER_APPLICATIONS,
+)
 from moviepy.editor import VideoFileClip
 
 # A mutable flag to indicate if the signal handler is currently running
 is_handler_running_flag = [False]
+
+
+def get_png_size(path_to_image: str) -> Tuple[int, int]:
+    """PNG images have their size information in the IHDR block, which is always the first chunk after the signature."""
+    with open(path_to_image, "rb") as img_file:
+        img_file.seek(16)  # Skip the 8-byte signature and 4-byte chunk length/type
+        w, h = struct.unpack(">LL", img_file.read(8))
+        return w, h
 
 
 def signal_handler(
@@ -219,7 +232,9 @@ def convert_dsl_to_playwright_actions(dsl: str) -> str:
         dx, dy = dsl.replace("SCROLL(", "").replace(")", "").split(",")
         action: str = f"env.playwright_page.mouse.wheel({dx}, {dy})"
     elif dsl.startswith("CLEAR"):
-        action: str = f"env.playwright_page.keyboard.press('Meta+A')\nenv.playwright_page.keyboard.press('Delete')"
+        action: str = (
+            f"env.playwright_page.keyboard.press('Meta+A')\nenv.playwright_page.keyboard.press('Delete')"
+        )
     # elif dsl.startswith("NAVIGATE"):
     #     url = dsl.replace("NAVIGATE(", "").replace(")", "")
     #     action: str = f"env.get('{url}')"
@@ -475,9 +490,7 @@ def get_last_element_attributes(env, key: Optional[str]) -> Optional[Dict[str, s
 def execute_js_scripts(env):
     """Helper function that re-executes a set of useful JavaScript scripts."""
     # CSS for proxy-select
-    with open(
-        get_rel_path(__file__, "./proxy-select/proxy-select.css"), "r"
-    ) as fd:
+    with open(get_rel_path(__file__, "./proxy-select/proxy-select.css"), "r") as fd:
         script: str = f"""
             var style = document.createElement('style');
             style.type = 'text/css';
@@ -683,7 +696,9 @@ def run_validators(
 
 def get_webarena_task_json(task_id: int) -> Optional[Dict[str, str]]:
     """Given the integer task ID, return the task JSON from the WebArena dataset"""
-    path_to_webarena_tasks: str = get_rel_path(__file__, "../../data/vldb_experiments/webarena_tasks/")
+    path_to_webarena_tasks: str = get_rel_path(
+        __file__, "../../data/vldb_experiments/webarena_tasks/"
+    )
     for filename in os.listdir(path_to_webarena_tasks):
         if not filename.endswith(".json") or filename.startswith("test"):
             # Skip non-JSON files and test files
@@ -840,36 +855,52 @@ def adjust_json_state_xy_coords_to_center(json_state: Dict[str, str]) -> Dict[st
             print(element)
     return json_state
 
-Inputs = namedtuple('Inputs', ['path_to_screenshots', 'path_to_gt_json', 'path_to_sop', 'gt_task_data', 'sop', 'model_kwargs'])
+
+Inputs = namedtuple(
+    "Inputs",
+    [
+        "path_to_screenshots",
+        "path_to_gt_json",
+        "path_to_sop",
+        "gt_task_data",
+        "sop",
+        "model_kwargs",
+    ],
+)
+
+
 def load_files_for_task(path_to_task_dir: str) -> Inputs:
     path_to_screenshots: str = os.path.join(path_to_task_dir, "screenshots")
     path_to_gt_json: Optional[str] = find_gt_json(path_to_task_dir)
     path_to_sop: Optional[str] = find_sop_txt(path_to_task_dir)
-    assert path_to_gt_json is not None, f"Could not find [gt].json file in {path_to_task_dir}"
+    assert (
+        path_to_gt_json is not None
+    ), f"Could not find [gt].json file in {path_to_task_dir}"
     assert path_to_sop is not None, f"Could not find SOP.txt file in {path_to_task_dir}"
-    
+
     # Read gt_trace.json
-    gt_task_data: Dict[str, str] = json.load(open(path_to_gt_json, 'r'))
+    gt_task_data: Dict[str, str] = json.load(open(path_to_gt_json, "r"))
 
     # Read SOP.txt (if applicable)
-    sop: Optional[str] = open(path_to_sop, 'r').read()
+    sop: Optional[str] = open(path_to_sop, "r").read()
 
     # Load model
     model_kwargs = {
         "model": "gpt-4-vision-preview",
         "temperature": 0.0,
     }
-    
-    return Inputs(path_to_screenshots,
-                    path_to_gt_json,
-                    path_to_sop,
-                    gt_task_data,
-                    sop,
-                    model_kwargs)
 
-def find_files_by_prefix_suffix(
-    directory, prefix="", suffix=".txt"
-) -> List[str]:
+    return Inputs(
+        path_to_screenshots,
+        path_to_gt_json,
+        path_to_sop,
+        gt_task_data,
+        sop,
+        model_kwargs,
+    )
+
+
+def find_files_by_prefix_suffix(directory, prefix="", suffix=".txt") -> List[str]:
     """Returns file name, not path"""
     matching_files = []
     for file in os.listdir(directory):
@@ -877,17 +908,25 @@ def find_files_by_prefix_suffix(
             matching_files.append(file)
     return matching_files
 
-def get_path_to_screen_recording(path_to_task_folder: str, is_no_assert: bool = False) -> Optional[str]:
+
+def get_path_to_screen_recording(
+    path_to_task_folder: str, is_no_assert: bool = False
+) -> Optional[str]:
     files: List[str] = [
-        x 
+        x
         for x in find_files_by_prefix_suffix(path_to_task_folder, "", ".mp4")
-        if not (x.startswith("[gt]") or x.startswith("[raw]") or x.startswith("[clean]"))
+        if not (
+            x.startswith("[gt]") or x.startswith("[raw]") or x.startswith("[clean]")
+        )
     ]
     if not is_no_assert:
         assert len(files) > 0, f"Could not find any .mp4 files in {path_to_task_folder}"
     return os.path.join(path_to_task_folder, files[0]) if len(files) > 0 else None
 
-def get_path_to_screenshots_dir(path_to_task_folder: str, is_no_assert: bool = False) -> str:
+
+def get_path_to_screenshots_dir(
+    path_to_task_folder: str, is_no_assert: bool = False
+) -> str:
     file: str = os.path.join(path_to_task_folder, "screenshots/")
     if not is_no_assert:
         assert os.path.isdir(
@@ -895,11 +934,16 @@ def get_path_to_screenshots_dir(path_to_task_folder: str, is_no_assert: bool = F
         ), f"Could not find screenshots directory in {path_to_task_folder}"
     return file
 
-def get_path_to_trace_json(path_to_task_folder: str, is_no_assert: bool = False) -> Optional[str]:
+
+def get_path_to_trace_json(
+    path_to_task_folder: str, is_no_assert: bool = False
+) -> Optional[str]:
     files: List[str] = [
         x
         for x in find_files_by_prefix_suffix(path_to_task_folder, "", ".json")
-        if not (x.startswith("[gt]") or x.startswith("[raw]") or x.startswith("[clean]"))
+        if not (
+            x.startswith("[gt]") or x.startswith("[raw]") or x.startswith("[clean]")
+        )
     ]
     if not is_no_assert:
         assert (
@@ -907,40 +951,64 @@ def get_path_to_trace_json(path_to_task_folder: str, is_no_assert: bool = False)
         ), f"Could not find any trace.json files in {path_to_task_folder}"
     return os.path.join(path_to_task_folder, files[0]) if len(files) > 0 else None
 
-def extract_screenshots_for_demo(path_to_demo_folder: str, path_to_trace: Optional[str] = None, path_to_screen_recording: Optional[str] = None, is_verbose: bool = True):
+
+def extract_screenshots_for_demo(
+    path_to_demo_folder: str,
+    path_to_trace: Optional[str] = None,
+    path_to_screen_recording: Optional[str] = None,
+    is_verbose: bool = True,
+):
     """Given a demo folder, extracts screenshots from the .mp4 screen recording and saves them to a `screenshots/` directory"""
-    path_to_trace: str = get_path_to_trace_json(path_to_demo_folder) if not path_to_trace else path_to_trace
-    path_to_screen_recording: str = get_path_to_screen_recording(path_to_demo_folder) if not path_to_screen_recording else path_to_screen_recording
+    path_to_trace: str = (
+        get_path_to_trace_json(path_to_demo_folder)
+        if not path_to_trace
+        else path_to_trace
+    )
+    path_to_screen_recording: str = (
+        get_path_to_screen_recording(path_to_demo_folder)
+        if not path_to_screen_recording
+        else path_to_screen_recording
+    )
     path_to_screenshots_dir: str = get_path_to_screenshots_dir(path_to_demo_folder)
     if os.path.exists(path_to_screenshots_dir):
         shutil.rmtree(path_to_screenshots_dir)
     os.makedirs(path_to_screenshots_dir)
-    
+
     # Check that all necessary files/folders exist
     assert os.path.exists(path_to_demo_folder), f"Could not find {path_to_demo_folder}"
-    assert os.path.exists(path_to_trace), f"Could not find trace.json in {path_to_demo_folder}"
-    assert os.path.exists(path_to_screen_recording), f"Could not find screen recording in {path_to_demo_folder}"
-    assert os.path.exists(path_to_screenshots_dir), f"Could not create screenshots directory in {path_to_demo_folder}"
-  
+    assert os.path.exists(
+        path_to_trace
+    ), f"Could not find trace.json in {path_to_demo_folder}"
+    assert os.path.exists(
+        path_to_screen_recording
+    ), f"Could not find screen recording in {path_to_demo_folder}"
+    assert os.path.exists(
+        path_to_screenshots_dir
+    ), f"Could not create screenshots directory in {path_to_demo_folder}"
+
     # Get .json trace
     full_trace: Dict[str, str] = json.loads(open(path_to_trace, "r").read())
-    trace_json: List[Dict[str, str]] = full_trace['trace']
+    trace_json: List[Dict[str, str]] = full_trace["trace"]
 
     with VideoFileClip(path_to_screen_recording) as video:
         img_idx: int = 0
-        
+
         # Get start state's timestamps (for calculating secs_from_start later)
-        start_state_timestamp: str = trace_json[0]['data']['timestamp']
-        start_state_secs_from_start: str = trace_json[0]['data']['secs_from_start']
+        start_state_timestamp: str = trace_json[0]["data"]["timestamp"]
+        start_state_secs_from_start: str = trace_json[0]["data"]["secs_from_start"]
         # video_start_timestamp: datetime.datetime = datetime.datetime.fromtimestamp(
         #     os.stat(path_to_screen_recording).st_birthtime
         # )
-        
-        enumerator = tqdm(
-            enumerate(trace_json),
-            desc="Extracting Video => Screenshots",
-            total=len([ x for x in trace_json if x['type'] == 'state' ]),
-        ) if is_verbose else enumerate(trace_json)
+
+        enumerator = (
+            tqdm(
+                enumerate(trace_json),
+                desc="Extracting Video => Screenshots",
+                total=len([x for x in trace_json if x["type"] == "state"]),
+            )
+            if is_verbose
+            else enumerate(trace_json)
+        )
         for event_idx, event in enumerator:
             if event["type"] == "state":
                 # Our trace is: (S, A, S', A', ...)
@@ -958,10 +1026,18 @@ def extract_screenshots_for_demo(path_to_demo_folder: str, path_to_trace: Option
                 timestamp: float = (
                     datetime.datetime.fromisoformat(
                         trace_json[
-                            event_idx + 1
-                            if len(trace_json) > event_idx + 1
-                            else event_idx
-                        ]["data"]["timestamp" if not is_next_action_keystroke else "start_timestamp"]
+                            (
+                                event_idx + 1
+                                if len(trace_json) > event_idx + 1
+                                else event_idx
+                            )
+                        ]["data"][
+                            (
+                                "timestamp"
+                                if not is_next_action_keystroke
+                                else "start_timestamp"
+                            )
+                        ]
                     )
                     - datetime.datetime.fromisoformat(start_state_timestamp)
                 ).total_seconds() + start_state_secs_from_start
@@ -973,7 +1049,9 @@ def extract_screenshots_for_demo(path_to_demo_folder: str, path_to_trace: Option
                         frame = video.get_frame(timestamp)
                     img: Image = Image.fromarray(frame)
                     img.save(os.path.join(path_to_screenshots_dir, f"{img_idx}.png"))
-                    trace_json[event_idx]["data"][ "path_to_screenshot" ] = f"./screenshots/{img_idx}.png"
+                    trace_json[event_idx]["data"][
+                        "path_to_screenshot"
+                    ] = f"./screenshots/{img_idx}.png"
                     img_idx += 1
                 except Exception as e:
                     print(
@@ -991,67 +1069,82 @@ def extract_screenshots_for_demo(path_to_demo_folder: str, path_to_trace: Option
     assert n_screenshots == len(
         [x for x in trace_json if x["type"] == "state"]
     ), f"Number of screenshots ({n_screenshots}) does not match number of states ({len([ x for x in trace_json if x['type'] == 'state' ])})"
-    full_trace['trace'] = trace_json
+    full_trace["trace"] = trace_json
     json.dump(
         full_trace,
         open(path_to_trace, "w"),
         indent=2,
     )
 
-def convert_mousedown_mouseup_to_click(trace_json: List[Dict[str, Any]], pixel_margin_of_error: float = 5.0, secs_margin_of_error: float = 2.0) -> List[Dict[str, Any]]:
-    '''Merge consecutive mousedown/mouseup events at the same coords and within `secs_margin_of_error` secs of each other to a "CLICK" event
+
+def convert_mousedown_mouseup_to_click(
+    trace_json: List[Dict[str, Any]],
+    pixel_margin_of_error: float = 5.0,
+    secs_margin_of_error: float = 2.0,
+) -> List[Dict[str, Any]]:
+    """Merge consecutive mousedown/mouseup events at the same coords and within `secs_margin_of_error` secs of each other to a "CLICK" event
     This is lenient by +/- N pixels in x/y coords
-    '''
+    """
     last_action: Dict[str, Any] = None
     idxs_to_remove: List[int] = []
     for idx, event in enumerate(trace_json):
         if event["type"] == "action":
             if (
                 last_action is not None
-                and last_action['data']['type'] == 'mousedown' 
-                and event['data']['type'] == 'mouseup'
-                and abs(last_action['data']['x'] - event['data']['x']) <= pixel_margin_of_error
-                and abs(last_action['data']['y'] - event['data']['y']) <= pixel_margin_of_error
-                and event['data']['secs_from_start'] - last_action['data']['secs_from_start'] <= secs_margin_of_error
+                and last_action["data"]["type"] == "mousedown"
+                and event["data"]["type"] == "mouseup"
+                and abs(last_action["data"]["x"] - event["data"]["x"])
+                <= pixel_margin_of_error
+                and abs(last_action["data"]["y"] - event["data"]["y"])
+                <= pixel_margin_of_error
+                and event["data"]["secs_from_start"]
+                - last_action["data"]["secs_from_start"]
+                <= secs_margin_of_error
             ):
                 # We found two consecutive mousedown/mouseup events at the same(-ish) location
-                last_action['data']['type'] = 'click'
+                last_action["data"]["type"] = "click"
                 idxs_to_remove.append(idx)
             else:
                 last_action = event
     return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
 
-def merge_consecutive_scrolls(trace_json: List[Dict[str, Any]], pixel_margin_of_error: float = 5.0) -> List[Dict[str, Any]]:
-    '''Merge consecutive scroll events into a single scroll action.
+
+def merge_consecutive_scrolls(
+    trace_json: List[Dict[str, Any]], pixel_margin_of_error: float = 5.0
+) -> List[Dict[str, Any]]:
+    """Merge consecutive scroll events into a single scroll action.
     This is lenient by +/- N pixels in x/y coords
-    '''
+    """
     last_action: Dict[str, Any] = None
     idxs_to_remove: List[int] = []
     for idx, event in enumerate(trace_json):
         if event["type"] == "action":
             if (
                 last_action is not None
-                and last_action['data']['type'] == 'scroll' 
-                and event['data']['type'] == 'scroll'
-                and abs(last_action['data']['x'] - event['data']['x']) <= pixel_margin_of_error
-                and abs(last_action['data']['y'] - event['data']['y']) <= pixel_margin_of_error
+                and last_action["data"]["type"] == "scroll"
+                and event["data"]["type"] == "scroll"
+                and abs(last_action["data"]["x"] - event["data"]["x"])
+                <= pixel_margin_of_error
+                and abs(last_action["data"]["y"] - event["data"]["y"])
+                <= pixel_margin_of_error
             ):
                 # We found two consecutive scroll events at the same(-ish) location
-                last_action['data']['dx'] += event['data']['dx']
-                last_action['data']['dy'] += event['data']['dy']
+                last_action["data"]["dx"] += event["data"]["dx"]
+                last_action["data"]["dy"] += event["data"]["dy"]
                 idxs_to_remove.append(idx)
             else:
                 last_action = event
     return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
 
+
 def merge_consecutive_states(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    '''Merge consecutive states into one state (the last one).'''
+    """Merge consecutive states into one state (the last one)."""
     idxs_to_remove: List[int] = []
     consecutive_event_idxs: List[int] = []
     for idx, event in enumerate(trace_json):
         if event["type"] == "state":
             consecutive_event_idxs.append(idx)
-        if event['type'] != 'state' or idx == len(trace_json) - 1:
+        if event["type"] != "state" or idx == len(trace_json) - 1:
             # Found a non-state or at end of trace, so clear out our consecutive state tracker
             if len(consecutive_event_idxs) > 1:
                 # keep the last state
@@ -1059,72 +1152,110 @@ def merge_consecutive_states(trace_json: List[Dict[str, Any]]) -> List[Dict[str,
             consecutive_event_idxs = []
     return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
 
-def remove_action_type(trace_json: List[Dict[str, Any]], action_type: str) -> List[Dict[str, Any]]:
-    '''Remove all actions with type == `action_type`'''
+
+def remove_action_type(
+    trace_json: List[Dict[str, Any]], action_type: str
+) -> List[Dict[str, Any]]:
+    """Remove all actions with type == `action_type`"""
     return [
-        event 
-        for event in trace_json 
-        if (
-            event['type'] != 'action' 
-            or event['data']['type'] != action_type
-        )
+        event
+        for event in trace_json
+        if (event["type"] != "action" or event["data"]["type"] != action_type)
     ]
+
 
 def remove_esc_key(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    '''Remove all keypresses with key == 'esc' '''
+    """Remove all keypresses with key == 'esc'"""
     return [
-        event 
-        for event in trace_json 
+        event
+        for event in trace_json
         if (
-            event['type'] != 'action' 
-            or event['data']['type'] not in ['keypress', 'keyrelease']
-            or event['data']['key'] != 'Key.esc'
+            event["type"] != "action"
+            or event["data"]["type"] not in ["keypress", "keyrelease"]
+            or event["data"]["key"] != "Key.esc"
         )
     ]
 
-def merge_consecutive_keystrokes(trace_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    '''Merge consecutive keypresses/keyreleases into the same field into one atomic entry.'''
+
+def merge_consecutive_keystrokes(
+    trace_json: List[Dict[str, Any]]
+) -> List[Dict[str, Any]]:
+    """Merge consecutive keypresses/keyreleases into the same field into one atomic entry."""
     last_action: Dict[str, Any] = None
     idxs_to_remove: List[int] = []
-    prior_state: Dict[str, Any] = None # State immediately before current action
-    prior_prior_state: Dict[str, Any] = None # State before last action (i.e. before the state immediately before to this action)
+    prior_state: Dict[str, Any] = None  # State immediately before current action
+    prior_prior_state: Dict[str, Any] = (
+        None  # State before last action (i.e. before the state immediately before to this action)
+    )
     for idx, event in enumerate(trace_json):
         if event["type"] == "state":
             prior_prior_state = prior_state
-            prior_state = event['data']
+            prior_state = event["data"]
         elif event["type"] == "action":
             if (
-                last_action is not None # There is a previous action
-                and last_action['data']['type'] in ['keypress', 'keyrelease', 'keystroke', ] # Previous action was key event
-                and event['data']['type'] in ['keypress', 'keyrelease', 'keystroke',] # Current action is key event
-                and prior_state['active_application_name'] == prior_prior_state['active_application_name'] # In same application
+                last_action is not None  # There is a previous action
+                and last_action["data"]["type"]
+                in [
+                    "keypress",
+                    "keyrelease",
+                    "keystroke",
+                ]  # Previous action was key event
+                and event["data"]["type"]
+                in [
+                    "keypress",
+                    "keyrelease",
+                    "keystroke",
+                ]  # Current action is key event
+                and prior_state["active_application_name"]
+                == prior_prior_state["active_application_name"]  # In same application
                 and (
-                    ( # If in web browser, then we need to be in the same HTML input field
-                        prior_state['active_application_name'] in LIST_OF_BROWSER_APPLICATIONS # In web browser
-                        and 'element_attributes' in last_action['data']
-                        and 'element_attributes' in event['data']
-                        and last_action['data']['element_attributes'] is not None
-                        and event['data']['element_attributes'] is not None
-                        and last_action['data']['element_attributes'].get('xpath', None) == event['data']['element_attributes'].get('xpath', None)
+                    (  # If in web browser, then we need to be in the same HTML input field
+                        prior_state["active_application_name"]
+                        in LIST_OF_BROWSER_APPLICATIONS  # In web browser
+                        and "element_attributes" in last_action["data"]
+                        and "element_attributes" in event["data"]
+                        and last_action["data"]["element_attributes"] is not None
+                        and event["data"]["element_attributes"] is not None
+                        and last_action["data"]["element_attributes"].get("xpath", None)
+                        == event["data"]["element_attributes"].get("xpath", None)
                     )
-                    or ( # If not in web browser, then don't check HTML input field
-                        prior_state['active_application_name'] not in LIST_OF_BROWSER_APPLICATIONS # Not in web browser
+                    or (  # If not in web browser, then don't check HTML input field
+                        prior_state["active_application_name"]
+                        not in LIST_OF_BROWSER_APPLICATIONS  # Not in web browser
                     )
                 )
-                and (not event['data']['key'].startswith('Key.') or event['data']['key'] in ['Key.space', 'Key.shift', 'Key.shift_r', 'Key.caps_lock', 'Key.backspace']) # Ignore non-space/Shift special keys
+                and (
+                    not event["data"]["key"].startswith("Key.")
+                    or event["data"]["key"]
+                    in [
+                        "Key.space",
+                        "Key.shift",
+                        "Key.shift_r",
+                        "Key.caps_lock",
+                        "Key.backspace",
+                    ]
+                )  # Ignore non-space/Shift special keys
             ):
                 # We found two consecutive non-special-key keystroke events in the same HTML field (i.e. identical xpath)
-                if event['data']['type'] == 'keypress':
+                if event["data"]["type"] == "keypress":
                     # only record keypresses (i.e. ignore keyrelease events so that we don't double count keypresses)
-                    last_action['data']['key'] += ' ' + event['data']['key']
-                last_action['data']['type'] = 'keystroke' # merge into one atomic keystroke
-                last_action['data']['end_timestamp'] = event['data']['timestamp']
-                last_action['data']['timestamp'] = event['data']['timestamp'] # use end_timestamp as timestamp for this action, so that we know its finished by the time we record it as having "happened"; needed for long keystroke events
-                last_action['data']['secs_from_start'] = event['data']['secs_from_start']
+                    last_action["data"]["key"] += " " + event["data"]["key"]
+                last_action["data"][
+                    "type"
+                ] = "keystroke"  # merge into one atomic keystroke
+                last_action["data"]["end_timestamp"] = event["data"]["timestamp"]
+                last_action["data"]["timestamp"] = event["data"][
+                    "timestamp"
+                ]  # use end_timestamp as timestamp for this action, so that we know its finished by the time we record it as having "happened"; needed for long keystroke events
+                last_action["data"]["secs_from_start"] = event["data"][
+                    "secs_from_start"
+                ]
                 idxs_to_remove.append(idx)
             else:
                 last_action = event
-                last_action['data']['start_timestamp'] = last_action['data']['timestamp']
+                last_action["data"]["start_timestamp"] = last_action["data"][
+                    "timestamp"
+                ]
     return [event for idx, event in enumerate(trace_json) if idx not in idxs_to_remove]
 
 
@@ -1142,19 +1273,21 @@ class PredictedBbox:
     """Standard class for storing bboxes and their corresponding text labels for screenshots."""
 
     # Coordinates
-    x: float # upper left
-    y: float # upper left
+    x: float  # upper left
+    y: float  # upper left
     width: float
     height: float
 
-    text: Optional[str] = None # e.g. "Medication Orders" or "Submit"
-    tag: Optional[str] = None # e.g. button, input, etc.
-    confidence: Optional[float] = None # e.g. 0.95
-    
-    def get_bbox_xyxy(self, is_flat: bool = False) -> Union[Tuple[int], List[Tuple[int, int]]]:
+    text: Optional[str] = None  # e.g. "Medication Orders" or "Submit"
+    tag: Optional[str] = None  # e.g. button, input, etc.
+    confidence: Optional[float] = None  # e.g. 0.95
+
+    def get_bbox_xyxy(
+        self, is_flat: bool = False
+    ) -> Union[Tuple[int], List[Tuple[int, int]]]:
         """Return the bounding box coordinates in the format:
-            - is_flat=True: [ x0, y0, x1, y1 ]
-            - is_flat=False: [(x0, y0), (x1, y1)]
+        - is_flat=True: [ x0, y0, x1, y1 ]
+        - is_flat=False: [(x0, y0), (x1, y1)]
         """
         x0 = self.x
         y0 = self.y
@@ -1162,12 +1295,14 @@ class PredictedBbox:
         y1 = y0 + self.height
         if is_flat:
             return [x0, y0, x1, y1]
-        return [ (x0, y0), (x1, y1) ] 
-    
-    def get_bbox_xyxyxyxy(self, is_flat: bool = False) -> Union[Tuple[int], List[Tuple[int, int]]]:
+        return [(x0, y0), (x1, y1)]
+
+    def get_bbox_xyxyxyxy(
+        self, is_flat: bool = False
+    ) -> Union[Tuple[int], List[Tuple[int, int]]]:
         """Return the bounding box coordinates in the format:
-            - is_flat=True: [x0, y0, x1, y1, x2, y2, x3, y3]
-            - is_flat=False: [(x0, y0), (x1, y1), (x2, y2), (x3, y3)]
+        - is_flat=True: [x0, y0, x1, y1, x2, y2, x3, y3]
+        - is_flat=False: [(x0, y0), (x1, y1), (x2, y2), (x3, y3)]
         """
         x0 = self.x
         y0 = self.y
@@ -1181,12 +1316,14 @@ class PredictedBbox:
             return [x0, y0, x1, y1, x2, y2, x3, y3]
         return [(x0, y0), (x1, y1), (x2, y2), (x3, y3)]
 
-def draw_boxes(image, preds: List[PredictedBbox], color='black', width=2):
+
+def draw_boxes(image, preds: List[PredictedBbox], color="black", width=2):
     draw = ImageDraw.Draw(image)
     for pred in preds:
         p0, p1, p2, p3 = pred.get_bbox_xyxyxyxy(is_flat=False)
         draw.line([*p0, *p1, *p2, *p3, *p0], fill=color, width=width)
     return image
+
 
 def get_text_size(text, font):
     im = Image.new(mode="P", size=(0, 0))
@@ -1194,24 +1331,27 @@ def get_text_size(text, font):
     _, _, width, height = draw.textbbox((0, 0), text=text, font=font)
     return width, height
 
+
 def draw_text(image, preds: List[PredictedBbox], color="black"):
     draw = ImageDraw.Draw(image)
     max_font_size: int = 60
     font_path: str = surya.postprocessing.text.get_font_path()
     for pred in preds:
         text: str = pred.text
-        
+
         # Bbox
         bbox_width = pred.width
         bbox_height = pred.height
-        box_font_size = max(6, min(int(.75 * bbox_height), max_font_size))
-        
+        box_font_size = max(6, min(int(0.75 * bbox_height), max_font_size))
+
         # Font
         font = ImageFont.truetype(font_path, box_font_size)
         text_width, text_height = get_text_size(text, font)
-        
+
         # Calculate font size
-        while (text_width > bbox_width or text_height > bbox_height) and box_font_size > 6:
+        while (
+            text_width > bbox_width or text_height > bbox_height
+        ) and box_font_size > 6:
             box_font_size = box_font_size - 1
             font = ImageFont.truetype(font_path, box_font_size)
             text_width, text_height = get_text_size(text, font)
@@ -1223,13 +1363,16 @@ def draw_text(image, preds: List[PredictedBbox], color="black"):
 
         draw.text((x, y), text, fill=color, font=font)
 
-def save_image_annotated_with_bboxes(path_to_image: str, 
-                                    path_to_output_dir: str, 
-                                    preds: List[PredictedBbox], 
-                                    is_bbox: bool = False,
-                                    is_text: bool = False,
-                                    is_bbox_text: bool = False,
-                                    file_name_suffix: Optional[str] = None):
+
+def save_image_annotated_with_bboxes(
+    path_to_image: str,
+    path_to_output_dir: str,
+    preds: List[PredictedBbox],
+    is_bbox: bool = False,
+    is_text: bool = False,
+    is_bbox_text: bool = False,
+    file_name_suffix: Optional[str] = None,
+):
     """Given an image and a list of predicted bounding boxes, annotate the image with the bounding boxes and text labels."""
     name: str = os.path.basename(path_to_image).split(".")[0]
     name = f"{name}{'-' + str(file_name_suffix) if file_name_suffix else ''}"
@@ -1240,7 +1383,7 @@ def save_image_annotated_with_bboxes(path_to_image: str,
         im.save(os.path.join(path_to_output_dir, f"{name}-bbox.png"))
     # Text only
     if is_text:
-        im = Image.new('RGB', im.size, color='white')
+        im = Image.new("RGB", im.size, color="white")
         draw_text(im, preds, color="red")
         im.save(os.path.join(path_to_output_dir, f"{name}-text.png"))
     # Bboxes and text
@@ -1249,4 +1392,3 @@ def save_image_annotated_with_bboxes(path_to_image: str,
         draw_boxes(im, preds, color="black", width=4)
         draw_text(im, preds, color="red")
         im.save(os.path.join(path_to_output_dir, f"{name}-bbox-text.png"))
-

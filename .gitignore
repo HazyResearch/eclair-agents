@@ -6,6 +6,7 @@ __pycache__/
 data/vldb_experiments
 data/hospital_data
 data/hospital_demo
+data/check_task_completion
 outputs/
 
 # C extensions

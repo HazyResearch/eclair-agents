@@ -39,7 +39,7 @@ Generate the experimental results in [our paper](https://arxiv.org/abs/2405.0371
 
 ### 💾 Data
 
-* [Link to Data](https://drive.google.com/drive/folders/1WL6pMfoAaar5uDEV-SWLalsAzEPsuzJp?usp=sharing) -- Download this file into the `data/` folder and unzip it.
+* [Link to Data](https://drive.google.com/drive/folders/1WL6pMfoAaar5uDEV-SWLalsAzCEPsuzJp?usp=sharing) -- Download this file into the `data/` folder and unzip it.
 * You should now have a folder at `data/vldb_experiments`.
 
 ### 🚀 How to Run
@@ -81,7 +81,7 @@ First, it generates an SOP from a demonstration. Second, it runs ECLAIR on the g
 Note that this assumes you have a sandboxed instance of [Epic](https://www.epic.com/) running on your computer.
 
 ```bash
-cd eclair/hospital_data
+cd eclair/agent
 python3 pipeline.py
 ```
 

@@ -20,7 +20,7 @@ from PIL import Image
 from typing import Dict, List, Optional, Any
 import json
 import argparse
-from eclair.hospital_demo.demonstrate.prompts import (
+from eclair.agent.demonstrate.prompts import (
     prompt__td_kf_act_intro,
     prompt__td_kf_act_close,
     prompt__td_kf_act_intro__pairwise,

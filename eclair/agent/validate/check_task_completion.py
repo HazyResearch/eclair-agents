@@ -1,25 +1,19 @@
-"""
-Usage:
-
-python main.py <PATH_TO_TASKS_DIR> FLAGS
-"""
-
 import traceback
+import os
+import argparse
+import json
 from typing import Any, Dict, List, Optional
 import pandas as pd
-import os
-from workflows.helpers import (
+from eclair.utils.helpers import (
     _fetch_completion,
-    build_prompt_s_a_sequence,
     add_standard_experiment_args,
-    get_folders_for_task_id,
     get_path_to_screenshots_dir,
     get_path_to_sop_txt,
     get_path_to_trace_json,
+    get_rel_path,
+    load_screenshot_for_state,
 )
-import argparse
-import json
-from eclair.hospital_demo.validate.prompts import (
+from eclair.agent.validate.prompts import (
     prompt__validate_task_completion__intro,
     prompt__validate_task_completion__close,
 )
@@ -76,9 +70,43 @@ def helper_task_completion(
     task_type: str,
 ) -> Dict[str, str]:
     """Helper fx to eval a single POSITIVE or NEGATIVE example."""
-    prompt_s_a_sequence, paths_to_screenshots = build_prompt_s_a_sequence(
-        gt_trace, path_to_screenshots
-    )
+    prompt_s_a_sequence: List[str] = []
+    paths_to_screenshots: List[str] = []
+    for item in gt_trace:
+        if item["type"] == "state":
+            path_to_screenshot, encoded_image = load_screenshot_for_state(
+                item, path_to_screenshots
+            )
+            paths_to_screenshots.append(path_to_screenshot)
+            prompt_s_a_sequence.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/png;base64,{encoded_image}"
+                            },
+                        }
+                    ],
+                }
+            )
+        elif item["type"] == "action":
+            action: str = item['data']['action']
+            prompt_s_a_sequence.append(
+                {
+                    "role": "assistant",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": f"Action: {action}",
+                        }
+                    ],
+                }
+            )
+        else:
+            raise Exception(f"Unknown type for `item` {item}")
+
     if not is_td:
         task_descrip = None
     if not is_kf:
@@ -196,32 +224,36 @@ def kwarg_setting_to_ablation(kwarg_setting: Dict[str, Any]) -> str:
 def run(
     path_to_demo_folder: str,
     path_to_output_dir: str,
-    task_id: int,
     model: str,
     is_include_sop: bool,
     is_td: bool,
     is_kf: bool,
     is_act: bool,
+    demo_name: str,
     is_verbose: bool = False,
 ):
     # Create output directory
     path_to_output_dir: str = (
-        "/Users/avanikanarayan/Developer/Research/demonstration-collection/data/experimental_results"
+        get_rel_path(__file__, "../../../data/check_task_completion")
     )
-    demo_name: str = "Order a sitter order"
     path_to_output_dir: str = os.path.join(path_to_output_dir, demo_name)
     os.makedirs(path_to_output_dir, exist_ok=True)
+    print(f"Saving output to {path_to_output_dir}")
 
     # Load files
     path_to_sop_file: str = (
-        "/Users/avanikanarayan/Developer/Research/demonstration-collection/data/[new] ECLAIR - Order a sitter order @ 2024-03-30-16-09-01/manual_sop_sitter.txt"  # get_path_to_trace_json(path_to_demo_folder)
+        get_path_to_sop_txt(path_to_demo_folder)
     )
     path_to_screenshots_dir: str = (
-        "/Users/avanikanarayan/Developer/Research/demonstration-collection/data/[new] ECLAIR - Order a sitter order @ 2024-03-30-16-09-01/screenshots"  # get_path_to_screenshots_dir(path_to_demo_folder)
+        get_path_to_screenshots_dir(path_to_demo_folder)
     )
     path_to_trace: str = (
-        "/Users/avanikanarayan/Developer/Research/demonstration-collection/data/[new] ECLAIR - Order a sitter order @ 2024-03-30-16-09-01/Order a sitter order @ 2024-05-04-17-27-41.json"  # get_path_to_sop_txt(path_to_demo_folder)
+        get_path_to_trace_json(path_to_demo_folder)
     )
+    
+    print(f"Loading SOP from {path_to_sop_file}")
+    print(f"Loading screenshots from {path_to_screenshots_dir}")
+    print(f"Loading trace from {path_to_trace}")
 
     # Read files
     trace_json: Dict[str, Any] = json.load(open(path_to_trace, "r"))
@@ -233,23 +265,31 @@ def run(
     # interleave states and actions
     interleaved = []
     for i in range(len(states) + len(actions)):
+        new_obj = {}
         if i % 2 == 0:
             state = states.pop(0)
-            state["type"] = "state"
-            state["data"] = {}
-            state["data"]["id"] = i
-
-            interleaved.append(state)
+            new_obj = {
+                'type' : 'state',
+                'data' : {
+                    'id' : i,
+                    **state,
+                }
+            }
         else:
             action = actions.pop(0)
-            action["type"] = "action"
-            action["data"] = {}
-            action["data"]["element_attributes"] = None
-            action["data"]["id"] = i
-            interleaved.append(action)
+            new_obj = {
+                'type' : 'action',
+                'data' : {
+                    'id' : i,
+                    'element_attributes' : None,
+                    'type' : (action['actuation'][:action['actuation'].index("(")] if 'actuation' in action else 'WAIT').lower(),
+                    **action,
+                }
+            }
+        interleaved.append(new_obj)
 
     trace_json["trace"] = interleaved
-
+    
     # Execute eval
     try:
         df = validate_task_completion(
@@ -262,7 +302,7 @@ def run(
             is_act=is_act,
         )
     except Exception as e:
-        print(f"Error with demo folder: {path_to_demo_folder} | task_id: {task_id}")
+        print(f"Error with demo folder: {path_to_demo_folder}")
         print(traceback.format_exc())
         print(str(e))
         raise e
@@ -278,7 +318,6 @@ def run(
         }
     )
     df["demo_name"] = demo_name
-    df["task_id"] = task_id
     df["ablation--is_td"] = is_td
     df["ablation--is_kf"] = is_kf
     df["ablation--is_act"] = is_act
@@ -289,7 +328,6 @@ def run(
     accuracy: float = df["is_correct"].mean() if "is_correct" in df.columns else "N/A"
     all_correct: bool = df["is_correct"].all() if "is_correct" in df.columns else "N/A"
     if is_verbose:
-        print(f"Task: {task_id}")
         print(f"Accuracy: {accuracy}")
         print(f"All correct? {all_correct}")
     df.to_csv(
@@ -302,7 +340,6 @@ if __name__ == "__main__":
     args = parse_args()
     path_to_input_dir: str = args.path_to_input_dir
     path_to_output_dir: str = args.path_to_output_dir
-    task_id: bool = args.task_id
 
     # Task-specific flags
     is_include_sop: bool = args.is_include_sop
@@ -310,22 +347,16 @@ if __name__ == "__main__":
     is_kf: bool = args.is_kf
     is_act: bool = args.is_act
     model: str = args.model
-
-    # Identify folders corresponding to this `task_id` in `path_to_input_dir`
-    path_to_demo_folders: List[str] = get_folders_for_task_id(
-        path_to_input_dir, task_id
-    )
+    demo_name: str = args.demo_name
 
     # Loop through each demos's folder...
-    # for path_to_demo_folder in path_to_demo_folders:
-    breakpoint()
     run(
-        "",
+        path_to_input_dir,
         path_to_output_dir,
-        task_id,
         model,
         is_td,
         is_kf,
         is_act,
         is_include_sop,
+        demo_name,
     )

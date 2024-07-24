@@ -158,8 +158,6 @@ Instructions for filling out the JSON object:
         * where key is the key to press (must be one of: "return", "up", "down", "left", "right")
     * `CLEAR()`
         * clears the currently focused element (i.e. if you have focused a text input, this will clear the text in that input)
-    * `WAIT()`
-        * waits for a few seconds before re-observing the screen state
 
 3. Keep these rules in mind when suggesting an ACTION:
 

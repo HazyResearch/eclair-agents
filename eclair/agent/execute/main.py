@@ -20,13 +20,12 @@ from eclair.utils.helpers import (
     get_rel_path,
 )
 from eclair.utils.constants import (
-    TASK_LIST,
     EXECUTORS,
 )
-from eclair.agent.execute.observer import (
+from eclair.agent.execute.observer.observer import (
     Observer
 )
-from eclair.agent.execute.uniagent import (
+from eclair.agent.execute.uniagent.uniagent import (
     UniAgent
 )
 from eclair.agent.execute.validators import (
@@ -180,6 +179,7 @@ def execute_task_uniagent(
     task_log.log_state(state, task_log.get_current_step())
 
     # Run model
+    os.system("stty sane")
     for step in range(task_log.get_current_step(), task_log.get_current_step() + max_calls):
         step_cnt: int = step + 1
 
@@ -251,21 +251,6 @@ def execute_task_uniagent(
         task_log.actions[-1].executed_code = executed_code
         logger(f"====== EXECUTED CODE =======\n```\n{executed_code}\n```")
         task_log.get_current_action().was_run = True
-        # Log HTML element clicked (if browser)
-        # TODO
-        # if task_log.get_current_state().is_browser():
-        #     element_key: Optional[str] = None
-        #     if 'CLICK' in action.action:
-        #         element_key = 'lastMouseUp'
-        #     elif 'SCROLL' in action.action:
-        #         element_key = 'lastScrolled'
-        #     elif 'TYPE' in action.action:
-        #         element_key = 'lastKeyUp'
-        #     elif 'PRESS' in action.action:
-        #         element_key = 'lastKeyUp'
-        #     else:
-        #         logger(f"Couldn't map action `{action.action}` to HTML element")
-
         time.sleep(2)
 
         # Rerun JS scripts
@@ -287,8 +272,6 @@ def main(args: argparse.Namespace, env: Optional[Environment] = None) -> Tuple[T
     """
     task: str = args.task
     task_ui: str = args.ui
-    if task in TASK_LIST:
-        task = TASK_LIST[task]
     trace_name: str = f"{args.trace_name if args.trace_name is not None else args.task[:20]} @ {datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
 
     # Paths
@@ -314,6 +297,7 @@ def main(args: argparse.Namespace, env: Optional[Environment] = None) -> Tuple[T
         print("Starting screen recorder...")
         screen_recorder = ScreenRecorder(path_to_screen_recording)
         screen_recorder.start()
+    os.system("stty sane")
 
     # Default to creating a new Selenium driver if none are specified
     if env is None:
@@ -336,7 +320,7 @@ def main(args: argparse.Namespace, env: Optional[Environment] = None) -> Tuple[T
         )
 
     # Validators
-    with open(get_rel_path(__file__, "utils/event_listeners.js"), "r") as fd:
+    with open(get_rel_path(__file__, "../../utils/event_listeners.js"), "r") as fd:
         js_script: str = fd.read()
     env.execute_script(js_script)
 

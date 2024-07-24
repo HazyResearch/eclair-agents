@@ -1,4 +1,6 @@
+import datetime
 import json
+import shutil
 import subprocess
 import time
 import os
@@ -7,6 +9,9 @@ import openai
 import sys
 import platform
 import base64
+import argparse
+
+from tqdm import tqdm
 import surya.postprocessing.text
 from typing import Callable, Optional, List, Dict, Any, Tuple, Union
 from collections import namedtuple
@@ -14,9 +19,9 @@ from dataclasses import dataclass
 from playwright.sync_api import sync_playwright, Browser
 from selenium import webdriver
 from PIL import Image, ImageDraw, ImageFont
+from moviepy.editor import VideoFileClip
 from eclair.utils.constants import SYSTEM_PROMPT
 from eclair.utils.logging import TaskLog, Validation, ScreenRecorder, LIST_OF_BROWSER_APPLICATIONS
-from moviepy.editor import VideoFileClip
 
 # A mutable flag to indicate if the signal handler is currently running
 is_handler_running_flag = [False]
@@ -178,14 +183,19 @@ time.sleep(1)
             action: str = f"pyautogui.scroll({dx})"
         elif dsl.startswith("CLEAR"):
             action: str = f"pyautogui.hotkey('ctrl', 'a')\npyautogui.press('delete')"
-        # elif dsl.startswith("NAVIGATE"):
-        #     url = dsl.replace("NAVIGATE(", "").replace(")", "")
-        #     action: str = f"env.get('{url}')"
+        elif dsl.startswith("NAVIGATE"):
+            url = dsl.replace("NAVIGATE(", "").replace(")", "")
+            action: str = f"env.get('{url}')"
+        elif dsl.startswith("WAIT"):
+             # wait 3 seconds
+            action = f"time.sleep(3)"
         elif dsl.startswith("DELETE"):
             x, y = dsl.replace("DELETE(", "").replace(")", "").split(",")
             action: str = (
                 f"pyautogui.moveTo(x={x}, y={y})\ntime.sleep(1)\npyautogui.click()\npyautogui.hotkey('command', 'a')\n"
             )
+        else:
+            raise ValueError(f"Unknown DSL: {dsl}")
 
         script += "\n" + action
 
@@ -627,29 +637,304 @@ def adjust_json_state_xy_coords_to_center(json_state: Dict[str, str]) -> Dict[st
     return json_state
 
 
-def _fetch_openai_completion(messages: List[Any], model: str, **kwargs) -> str:
+def _fetch_geminipro_completion(messages: List[Any], model_name: str) -> str:
+    """Helper function to call Google's GeminiPro API. Handles rate limit errors and other exceptions"""
+
+    assert model_name in [
+        "gemini-1.0-pro",
+        "gemini-pro-vision",
+    ], f"Unknown model: {model_name}, must be one of 'gemini-1.0-pro', 'gemini-pro-vision'"
+
+    genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
+    model = genai.GenerativeModel(model_name)
+
+    IMAGE_LIMIT: int = 16 if model_name == "gemini-pro-vision" else 9999999
+    img_counter: int = 0
+
+    # Flatten into one user message
+    content: List[str] = []
+    for idx, message in enumerate(messages):
+        for content_obj in message["content"]:
+            if content_obj["type"] == "text":
+                content.append(content_obj["text"])
+            elif content_obj["type"] == "image_url":
+                if img_counter >= IMAGE_LIMIT:
+                    # Skip image if limit reached
+                    continue
+                # First 22 characters are "data:image/png;base64,"
+                img: Image = Image.open(
+                    BytesIO(base64.b64decode(content_obj["image_url"]["url"][22:]))
+                )
+                content.append(img)
+                img_counter += 1
+            else:
+                raise ValueError(f"Unknown content type: {content_obj['type']}")
+    new_messages = [
+        {
+            "role": "user",
+            "parts": content,
+        }
+    ]
+
+    try:
+        response = model.generate_content(new_messages)
+    except Exception as e:
+        if "Quota exceeded for quota metric" in str(
+            e
+        ) or "Resource has been exhausted" in str(e):
+            print(f"Rate limit exceeded -- waiting 1 min before retrying")
+            time.sleep(60)
+            return _fetch_geminipro_completion(messages, model_name)
+        traceback.print_exc()
+        print(f"Unknown error: {e}")
+    return response.text
+
+
+def _fetch_together_completion(messages: List[Any], model_name: str) -> str:
+
+    client = Together(api_key=os.environ.get("TOGETHER_API_KEY"))
+
+    response = client.chat.completions.create(
+        model=model_name,
+        messages=messages,
+    )
+    return response.choices[0].message.content
+
+
+def _fetch_claude_completion(messages: List[Any], model_name: str) -> str:
+    """Helper function to call Anthropic's Claude API. Handles rate limit errors and other exceptions"""
+    assert model_name in [
+        "claude-3-opus-20240229",
+        "claude-3-sonnet-20240229",
+        "claude-3-haiku-20240307",
+    ], f"Unknown model: {model_name}, must be one of 'gemini-pro', 'gemini-pro-vision'"
+
+    IMAGE_LIMIT: int = 20  # Max number of images allowed in prompt
+    img_counter: int = 0
+
+    for idx, message in enumerate(messages):
+        content: List[Dict[str, Any]] = []
+        for content_obj in message["content"]:
+            if content_obj["type"] == "image_url":
+                # Reformulate image content
+                if img_counter >= IMAGE_LIMIT:
+                    # Skip image if limit reached
+                    continue
+                image_data: str = content_obj["image_url"]["url"][
+                    22:
+                ]  # First 22 characters are "data:image/png;base64,"
+                content_obj = {
+                    "source": {
+                        "type": "base64",
+                        "media_type": "image/png",
+                        "data": image_data,
+                    }
+                }
+                img_counter += 1
+            content.append(content_obj)
+        messages[idx]["content"] = content
+
+    try:
+        response = anthropic.Anthropic().messages.create(
+            model=model_name,
+            max_tokens=4096,
+            messages=messages,
+        )
+    except Exception as e:
+        traceback.print_exc()
+        print(f"Unknown error: {e}")
+    return response.content[0].text
+
+
+def _fetch_openai_completion(messages: List[Any], **kwargs) -> str:
     """Helper function to call OpenAI's Vision API. Handles rate limit errors and other exceptions"""
     client = openai.OpenAI()
     try:
         response = client.chat.completions.create(
             messages=[{"role": "system", "content": SYSTEM_PROMPT}] + messages,
-            model=model,
             max_tokens=4096,
             **kwargs,
         )
     except openai.RateLimitError:
         print("Rate limit exceeded -- waiting 1 min before retrying")
         time.sleep(60)
-        return _fetch_openai_completion(messages, model, **kwargs)
+        return _fetch_openai_completion(messages, **kwargs)
     except openai.APIError as e:
         traceback.print_exc()
         print(f"OpenAI API error: {e}")
-        sys.exit(1)
+        raise e
     except Exception as e:
         traceback.print_exc()
         print(f"Unknown error: {e}")
-        sys.exit(1)
+        raise e
     return response.choices[0].message.content
+
+
+def _fetch_completion(
+    messages: List[Any], model: str, model_name: Optional[str] = None, **kwargs
+) -> str:
+    """Master router."""
+    is_image: bool = any(
+        content["type"] == "image_url"
+        for message in messages
+        for content in message["content"]
+    )
+    if model == "GPT4":
+        if not model_name:
+            model_name: str = (
+                "gpt-4-0125-preview" if not is_image else "gpt-4-vision-preview"
+            )
+        response: str = _fetch_openai_completion(
+            messages, model=model_name, temperature=0.0
+        )
+    elif model == "GeminiPro":
+        if not model_name:
+            model_name: str = "gemini-1.0-pro" if not is_image else "gemini-pro-vision"
+        response: str = _fetch_geminipro_completion(messages, model_name=model_name)
+    elif model == "Claude3":
+        if not model_name:
+            model_name = "claude-3-haiku-20240307"
+        response: str = _fetch_claude_completion(messages, model_name=model_name)
+    elif model == "Together":
+        if not model_name:
+            model_name = "mistralai/Mixtral-8x7B-v0.1"
+        response: str = _fetch_together_completion(messages, model_name=model_name)
+    else:
+        raise ValueError(f"Unknown model: {model}")
+    return response
+
+
+def fetch_openai_json_completion(
+    prompt: str, system_prompt: Optional[str] = None, **kwargs
+) -> str:
+    """Helper function to call OpenAI's JSON Completion API. Handles rate limit errors and other exceptions"""
+    assert (
+        "json" in prompt.lower()
+    ), "Error - when using OpenAI JSON endpoint, your prompt must contain the word 'json' but currently doesn't"
+    messages = [
+        {
+            "role": "system",
+            "content": system_prompt if system_prompt is not None else SYSTEM_PROMPT,
+        },
+        {"role": "user", "content": prompt},
+    ]
+    return _fetch_openai_completion(
+        messages,
+        response_format={"type": "json_object"},
+        **kwargs,
+    )
+
+
+
+def build_prompt_s_a_sequence(
+    trace: Dict[str, Any], path_to_screenshots: str
+) -> Tuple[Dict[str, Any], List[str]]:
+    # Loop through trace, interleaving screenshots (states) and actions
+    prompt_s_a_sequence: List[str] = []
+    paths_to_screenshots: List[str] = []
+    for item in trace:
+        if item["type"] == "state":
+            path_to_screenshot, encoded_image = load_screenshot_for_state(
+                item, path_to_screenshots
+            )
+            paths_to_screenshots.append(path_to_screenshot)
+            prompt_s_a_sequence.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/png;base64,{encoded_image}"
+                            },
+                        }
+                    ],
+                }
+            )
+        elif item["type"] == "action":
+            action: str = convert_trace_action_to_dsl(item)["action"]
+            prompt_s_a_sequence.append(
+                {
+                    "role": "assistant",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": f"Action: {action}",
+                        }
+                    ],
+                }
+            )
+        else:
+            raise Exception(f"Unknown type for `item` in `s_a_sequence`: {type(item)}")
+    return prompt_s_a_sequence, paths_to_screenshots
+
+
+def add_standard_experiment_args(
+    parser: argparse.ArgumentParser,
+) -> argparse.ArgumentParser:
+    parser.add_argument(
+        "path_to_input_dir",
+        help="Path to folder containing all task folders.",
+    )
+    parser.add_argument(
+        "--path_to_output_dir",
+        default="./outputs/",
+        type=str,
+        required=False,
+        help="Path to output directory",
+    )
+    return parser
+
+
+
+def get_folders_for_task_id(path_to_input_dir: str, task_id: int) -> List[str]:
+    # Identify folders corresponding to this `task_id` in `path_to_input_dir`
+    path_to_task_folders: List[str] = []
+    for folder in os.listdir(path_to_input_dir):
+        if folder.startswith(f"{task_id} @ "):
+            path_to_task_folders.append(os.path.join(path_to_input_dir, folder))
+    assert (
+        len(path_to_task_folders) > 0
+    ), f"Could not find any folders corresponding to task_id {task_id} in {path_to_input_dir}"
+    return path_to_task_folders
+
+
+def get_path_to_sop_txt(
+    path_to_task_folder: str, is_no_assert: bool = False
+) -> Optional[str]:
+    files: List[str] = find_files_by_prefix_suffix(path_to_task_folder, "SOP", ".txt")
+    if not is_no_assert:
+        assert (
+            len(files) > 0
+        ), f"Could not find any SOP.txt files in {path_to_task_folder}"
+    return os.path.join(path_to_task_folder, files[0]) if len(files) > 0 else None
+
+
+def get_path_to_screenshots_dir(
+    path_to_task_folder: str, is_no_assert: bool = False
+) -> str:
+    file: str = os.path.join(path_to_task_folder, "screenshots/")
+    if not is_no_assert:
+        assert os.path.isdir(
+            file
+        ), f"Could not find screenshots directory in {path_to_task_folder}"
+    return file
+
+
+def get_path_to_trace_json(
+    path_to_task_folder: str, is_no_assert: bool = False
+) -> Optional[str]:
+    files: List[str] = [
+        x
+        for x in find_files_by_prefix_suffix(path_to_task_folder, "", ".json")
+        if not (x.startswith("[gt]") or x.startswith("[raw]"))
+    ]
+    if not is_no_assert:
+        assert (
+            len(files) > 0
+        ), f"Could not find any trace.json files in {path_to_task_folder}"
+    return os.path.join(path_to_task_folder, files[0]) if len(files) > 0 else None
+
 
 
 def is_diff_base64_images(image_1: str, image_2: str) -> bool:
@@ -699,8 +984,12 @@ def get_webarena_task_json(task_id: int) -> Optional[Dict[str, str]]:
     return None
 
 
-def convert_trace_action_to_dsl(event: Dict[str, str]) -> Dict[str, str]:
-    """Converts a trace.json action into DSL format."""
+def convert_trace_action_to_dsl(event: Dict[str, str], is_filtered_action_subset: bool = True) -> Dict[str, str]:
+    """Converts a trace.json action into DSL format.
+    
+    If `is_filtered_action_subset` is True, then only consider [mouseup, keystroke, keypress, scroll] events.
+    Otherwise, explicitly model all events (e.g. [mousedown, mouseup, mousemove, keystroke, keypress, scroll])
+    """
     action_data: Dict[str, str] = {}
     tag_2_type = {
         "input": "text field",
@@ -748,13 +1037,30 @@ def convert_trace_action_to_dsl(event: Dict[str, str]) -> Dict[str, str]:
         elem_textified = None
         elem_type = None
         elem_xpath = None
-    if event["data"]["type"] == "mouseup":
-        action_data["action"] = f"Click on the {elem_type} labeled '{elem_textified}'"
+    click_events = ['click'] if is_filtered_action_subset else ['mouseup', 'click']
+    if event["data"]["type"] in click_events:
+        if not elem_type: elem_type = 'button'
+        action_data["action"] = f"Click on the {elem_type}" + (f"labeled '{elem_textified}'" if elem_textified else "")
         action_data["actuation_suggestion"] = {
             "action": f"CLICK({int(event['data']['x'])}, {int(event['data']['y'])})",
             "element": f"{{'x': {elem_x}, 'y': {elem_y}, 'height': {elem_height}, 'width': {elem_width}, 'text': '{elem_text}', 'tag': '{elem_tag}', 'xpath' : '{elem_xpath}' }}",
         }
+    elif event["data"]["type"] in [ "mousedown" ]:
+        if not elem_type: elem_type = 'button'
+        action_data["action"] = f"Mousedown on the {elem_type}" + (f"labeled '{elem_textified}'" if elem_textified else "")
+        action_data["actuation_suggestion"] = {
+            "action": f"MOUSEDOWN({int(event['data']['x'])}, {int(event['data']['y'])})",
+            "element": f"{{'x': {elem_x}, 'y': {elem_y}, 'height': {elem_height}, 'width': {elem_width}, 'text': '{elem_text}', 'tag': '{elem_tag}', 'xpath' : '{elem_xpath}' }}",
+        }
+    elif event["data"]["type"] in [ "mouseup" ]:
+        if not elem_type: elem_type = 'button'
+        action_data["action"] = f"Mouseup on the {elem_type}" + (f"labeled '{elem_textified}'" if elem_textified else "")
+        action_data["actuation_suggestion"] = {
+            "action": f"MOUSEUP({int(event['data']['x'])}, {int(event['data']['y'])})",
+            "element": f"{{'x': {elem_x}, 'y': {elem_y}, 'height': {elem_height}, 'width': {elem_width}, 'text': '{elem_text}', 'tag': '{elem_tag}', 'xpath' : '{elem_xpath}' }}",
+        }
     elif event["data"]["type"] in ["keystroke"]:
+        if not elem_type: elem_type = 'text field'
         keystroke: str = "".join(
             [x.replace("'", "") for x in event["data"]["key"].split(" ")]
         )
@@ -762,13 +1068,14 @@ def convert_trace_action_to_dsl(event: Dict[str, str]) -> Dict[str, str]:
         keystroke = keystroke.replace("Key.shift_r", "")
         keystroke = keystroke.replace("Key.shift", "")
         action_data["action"] = (
-            f"Type the string '{keystroke}' in the {elem_type} labeled '{elem_textified}'"
+            f"Type the string '{keystroke}' in the {elem_type}" + (f"labeled '{elem_textified}'" if elem_textified else "")
         )
         action_data["actuation_suggestion"] = {
             "action": f'TYPE("{keystroke}")',
             "element": f"{{'x': {elem_x}, 'y': {elem_y}, 'height': {elem_height}, 'width': {elem_width}, 'text': '{elem_text}', 'tag': '{elem_tag}', 'xpath' : '{elem_xpath}'}}",
         }
     elif event["data"]["type"] in ["keypress"]:
+        if not elem_type: elem_type = 'text field'
         keystroke: str = "".join(
             [x.replace("'", "") for x in event["data"]["key"].split(" ")]
         )
@@ -777,7 +1084,7 @@ def convert_trace_action_to_dsl(event: Dict[str, str]) -> Dict[str, str]:
         if keystroke.lower() in ["enter", "return"]:
             keystroke = "Enter"
         action_data["action"] = (
-            f"Press the key '{keystroke}' in the {elem_type} labeled '{elem_textified}'"
+            f"Press the key '{keystroke}' in the {elem_type}" + (f"labeled '{elem_textified}'" if elem_textified else "")
         )
         action_data["actuation_suggestion"] = {
             "action": f'PRESS("{keystroke}")',
@@ -915,7 +1222,7 @@ def extract_screenshots_for_demo(path_to_demo_folder: str, path_to_trace: Option
     """Given a demo folder, extracts screenshots from the .mp4 screen recording and saves them to a `screenshots/` directory"""
     path_to_trace: str = get_path_to_trace_json(path_to_demo_folder) if not path_to_trace else path_to_trace
     path_to_screen_recording: str = get_path_to_screen_recording(path_to_demo_folder) if not path_to_screen_recording else path_to_screen_recording
-    path_to_screenshots_dir: str = get_path_to_screenshots_dir(path_to_demo_folder)
+    path_to_screenshots_dir: str = get_path_to_screenshots_dir(path_to_demo_folder, is_no_assert=True)
     if os.path.exists(path_to_screenshots_dir):
         shutil.rmtree(path_to_screenshots_dir)
     os.makedirs(path_to_screenshots_dir)

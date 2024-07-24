@@ -1,10 +1,11 @@
 """
+NOTE: This doesn't modify existing files, but creates "[clean]" versions. This is idempotent.
+
 Usage:
 
 python postprocess.py './data/Nursing/sitter @ 2024-03-21-10-08-24' --task_descrip 'Sitter order'
 """
 import datetime
-import shutil
 import os
 from eclair.utils.helpers import (
     convert_mousedown_mouseup_to_click,
@@ -12,7 +13,11 @@ from eclair.utils.helpers import (
     get_path_to_screen_recording,
     get_path_to_screenshots_dir,
     get_path_to_trace_json,
+    merge_consecutive_keystrokes,
+    merge_consecutive_scrolls,
     merge_consecutive_states,
+    remove_action_type,
+    remove_esc_key,
 )
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from typing import Dict, List, Optional, Any
@@ -35,24 +40,42 @@ def clean_demo(path_to_demo_folder: str, valid_application_name: str = 'Citrix V
     path_to_trace: str = get_path_to_trace_json(path_to_demo_folder)
     full_trace: Dict[str, str] = json.loads(open(path_to_trace, "r").read())
     trace_json: List[Dict[str, str]] = full_trace['trace']
-    
-    # Check if we've already cleaned this trace.json
-    is_already_cleaned: bool = full_trace.get('is_cleaned', False)
 
     # Get screen reecording
     path_to_screen_recording: str = get_path_to_screen_recording(path_to_demo_folder)
 
-    # Get screenshots
-    path_to_screenshots_dir: str = get_path_to_screenshots_dir(path_to_demo_folder)
-    screenshots: List[str] = os.listdir(path_to_screenshots_dir)
-    screenshots = sorted(screenshots) # sort by filename, from 0 -> N
+    # Path to outputs
+    path_to_clean_trace: str = os.path.join(os.path.dirname(path_to_trace), "[clean] " + os.path.basename(path_to_trace))
+    path_to_clean_screen_recording: str = os.path.join(os.path.dirname(path_to_screen_recording), "[clean] " + os.path.basename(path_to_screen_recording))
     
-    
+    ##############################
+    ##############################
+    # Do initial preprocesing
+    # Same as record.py (but just in case hasn't been done)
+    ##############################
+    ##############################
+    # Merge consecutive scroll events
+    trace_json = merge_consecutive_scrolls(trace_json)
+    # Remove ESC keypresses
+    trace_json = remove_esc_key(trace_json)
+    # Remove keyrelease
+    trace_json = remove_action_type(trace_json, "keyrelease")
+    # Merge consecutive keystrokes in same input field
+    trace_json = merge_consecutive_keystrokes(trace_json)
+    # Merge consecutive states without intermediate actions (only keep first + last)
+    trace_json = merge_consecutive_states(trace_json)
+    # Reset data id's
+    for i, x in enumerate(trace_json):
+        x["data"]["id"] = i
+        if "step" in x['data']:
+            del x['data']['step']
+
     ##############################
     ##############################
     # Group actions => semantic grouping (e.g. mousedown+mouseup => click)
     ##############################
     ##############################
+    print("Grouping actions...")
     trace_json = convert_mousedown_mouseup_to_click(trace_json)
     trace_json = merge_consecutive_states(trace_json)
     
@@ -61,6 +84,7 @@ def clean_demo(path_to_demo_folder: str, valid_application_name: str = 'Citrix V
     # Truncate video
     ##############################
     ##############################
+    print("Truncating video...")
     
     # Align video end with expected video length
     expected_video_secs_length: float = trace_json[-1]['data']['secs_from_start']
@@ -68,9 +92,6 @@ def clean_demo(path_to_demo_folder: str, valid_application_name: str = 'Citrix V
     diff_secs: float = expected_video_secs_length - actual_video_secs_length
     if diff_secs > 0:
         diff_secs -= buffer_seconds # add 0.05s buffer
-    # Ignore if already cleaned
-    if is_already_cleaned:
-        diff_secs = 0
 
     # Adjust all timestamps earlier by diff_secs so that last state's timestamp aligns with last video frame
     for event in trace_json:
@@ -105,7 +126,7 @@ def clean_demo(path_to_demo_folder: str, valid_application_name: str = 'Citrix V
     
     # Determine new video START time
     valid_start_secs_from_start: float = 0
-    if valid_start_idx > 0:
+    if valid_start_idx >= 0:
         valid_start_secs_from_start = trace_json[valid_start_idx]['data']['secs_from_start']
 
     # Determine new video END time
@@ -113,11 +134,6 @@ def clean_demo(path_to_demo_folder: str, valid_application_name: str = 'Citrix V
     if valid_end_idx < len(trace_json):
         valid_end_secs_from_start = trace_json[valid_end_idx - 1]['data']['secs_from_start']
     
-    # Ignore if already cleaned
-    if is_already_cleaned:
-        valid_start_secs_from_start = 0
-        valid_end_secs_from_start = None
-
     # Adjust all timestamps to be relative to new video START time
     for event in trace_json:
         event['data']['secs_from_start'] -= valid_start_secs_from_start
@@ -133,33 +149,42 @@ def clean_demo(path_to_demo_folder: str, valid_application_name: str = 'Citrix V
     full_trace['task'] = {
         'description': task_descrip if task_descrip else full_trace.get('task', {}).get('description', None)
     }
-    json.dump(full_trace, open(path_to_trace, "w"), indent=2)
+    
+    # Save [clean] trace.json
+    json.dump(full_trace, open(path_to_clean_trace, "w"), indent=2)
 
     # Truncate video
-    path_to_raw_file: str = os.path.join(os.path.dirname(path_to_screen_recording), "[raw] " + os.path.basename(path_to_screen_recording))
-    if not os.path.exists(path_to_raw_file):
-        shutil.copy(path_to_screen_recording, path_to_raw_file)
     if valid_start_secs_from_start > 0 or valid_end_secs_from_start is not None:
-        path_to_tmp_file: str = os.path.join(os.path.dirname(path_to_screen_recording), "[new] " + os.path.basename(path_to_screen_recording))
+        # Save [clean] video
         ffmpeg_extract_subclip(path_to_screen_recording, 
                                valid_start_secs_from_start, 
                                valid_end_secs_from_start if valid_end_secs_from_start else 99999999, 
-                               targetname=path_to_tmp_file)
-        os.remove(path_to_screen_recording)
-        os.rename(path_to_tmp_file, path_to_screen_recording)
+                               targetname=path_to_clean_screen_recording)
+    
+    ##############################
+    ##############################
+    # Separate audio from .mp4 of video
+    ##############################
+    ##############################
+    print("Separating audio from video...")
+    audio = VideoFileClip(path_to_clean_screen_recording).audio
+    if audio:
+        audio.write_audiofile(path_to_clean_screen_recording.replace(".mp4", ".mp3"))
+    os.system(f"ffmpeg -i '{path_to_clean_screen_recording}' -an -c:v copy '{path_to_clean_screen_recording.replace('.mp4', '.tmp.mp4')}'")
+    os.rename(f"{path_to_clean_screen_recording.replace('.mp4', '.tmp.mp4')}", path_to_clean_screen_recording)
 
     ##############################
     ##############################
     # Resample screenshots
     ##############################
     ##############################
-    
-    extract_screenshots_for_demo(path_to_demo_folder)
-    full_trace: Dict[str, str] = json.loads(open(path_to_trace, "r").read()) # need to reload trace.json to get updated screenshot names
+    print("Resampling screenshots...")
+    extract_screenshots_for_demo(path_to_demo_folder, path_to_trace=path_to_clean_trace, path_to_screen_recording=path_to_clean_screen_recording)
+    full_trace: Dict[str, str] = json.loads(open(path_to_clean_trace, "r").read()) # need to reload trace.json to get updated screenshot names
 
     # Mark that we've successfully cleaned this trace.json
-    full_trace['is_cleaned'] = True
-    json.dump(full_trace, open(path_to_trace, "w"), indent=2)
+    full_trace['is_postprocessed'] = True
+    json.dump(full_trace, open(path_to_clean_trace, "w"), indent=2)
 
 if __name__ == "__main__":
     args = parse_args()

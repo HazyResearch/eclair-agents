@@ -16,3 +16,6 @@ timm>=0.9.12
 dirtyjson
 surya-ocr
 pandas
+anthropic
+python-bidi=0.4.2
+easyocr

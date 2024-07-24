@@ -11,10 +11,8 @@ from eclair.utils.helpers import (
     PredictedBbox,
     save_image_annotated_with_bboxes,
 )
-from eclair.utils.logging import (
-    LIST_OF_BROWSER_APPLICATIONS,
-    State
-)
+from eclair.utils.logging import LIST_OF_BROWSER_APPLICATIONS, State
+
 
 class Observer(BaseClass):
     """
@@ -32,9 +30,11 @@ class Observer(BaseClass):
         super().__init__(env=env)
         self.path_to_screenshots_dir: Optional[str] = path_to_screenshots_dir
         self.is_take_screenshots: bool = is_take_screenshots
-        self.is_save_intermediate_bbox_screenshots: bool = is_save_intermediate_bbox_screenshots
+        self.is_save_intermediate_bbox_screenshots: bool = (
+            is_save_intermediate_bbox_screenshots
+        )
         self.is_delete_xpath_from_json_state: bool = is_delete_xpath_from_json_state
-        self.ocr_model = easyocr.Reader(['en'], gpu=True) # OCR model for non-webpages
+        self.ocr_model = easyocr.Reader(["en"], gpu=True)  # OCR model for non-webpages
         # Sometimes, the width/height of the screenshots we take != the actual screen size
         # This is because of Mac Retina display, which doubles the resolution of the screen in screenshots
         # So, we need to rescale the coordinates to match the actual screen size
@@ -72,6 +72,7 @@ class Observer(BaseClass):
         tab: Optional[str] = None
         json_state: Optional[List[Dict[str, str]]] = None
         pred_bboxes: List[PredictedBbox] = []
+        is_application_browser = True
         if is_application_browser:
             # Webpage, so get JSON state from JS
             json_state = self.convert_webpage_to_json_elements(self.env)
@@ -82,17 +83,19 @@ class Observer(BaseClass):
             self.rescale_screenshot_height_factor = 1.0
         else:
             # Non-webpage, so get OCR'd text
-            ocr_preds: List[Tuple[List[int], str, float]] = self.ocr_model.readtext(path_to_screenshot)
+            ocr_preds: List[Tuple[List[int], str, float]] = self.ocr_model.readtext(
+                path_to_screenshot
+            )
             pred_bboxes: List[PredictedBbox] = [
                 PredictedBbox(
                     # NOTE: Casting from np.int64 -> int makes life easier for downstream JSON serialization code
-                    x=int(bbox[0][0]), 
+                    x=int(bbox[0][0]),
                     y=int(bbox[0][1]),
                     width=int(bbox[2][0] - bbox[0][0]),
                     height=int(bbox[2][1] - bbox[0][1]),
                     text=text,
                     confidence=confidence,
-                    tag='clickable',
+                    tag="clickable",
                 )
                 for (bbox, text, confidence) in ocr_preds
             ]
@@ -105,42 +108,50 @@ class Observer(BaseClass):
                     "width": pred.width,
                     "tag": "button",
                     "text": "",
-                    "type" : "button",
-                    "label" : pred.text,
+                    "type": "button",
+                    "label": pred.text,
                     "role": "clickable",
-                    "xpath" : None,
+                    "xpath": None,
                 }
                 for pred in pred_bboxes
             ]
-        
+
         if self.is_save_intermediate_bbox_screenshots:
             # Save screenshot with bounding boxes + OCR'd text
-            save_image_annotated_with_bboxes(path_to_screenshot,
-                                             os.path.dirname(path_to_screenshot),
-                                             pred_bboxes,
-                                             is_bbox_text=True,
+            save_image_annotated_with_bboxes(
+                path_to_screenshot,
+                os.path.dirname(path_to_screenshot),
+                pred_bboxes,
+                is_bbox_text=True,
             )
 
         # NOTE: Due to Mac Retina display, the screenshot is 2x the size of the actual screen
         # So, we need to rescale the coordinates to match the actual screen size
-        if self.rescale_screenshot_width_factor is None or self.rescale_screenshot_height_factor is None:
+        if (
+            self.rescale_screenshot_width_factor is None
+            or self.rescale_screenshot_height_factor is None
+        ):
             # Only need to calculate this once, then save it for future use
             screen_display_size = pyautogui.size()
             screenshot_w, screenshot_h = get_png_size(path_to_screenshot)
-            self.rescale_screenshot_width_factor = screen_display_size.width / screenshot_w
-            self.rescale_screenshot_height_factor = screen_display_size.height / screenshot_h
+            self.rescale_screenshot_width_factor = (
+                screen_display_size.width / screenshot_w
+            )
+            self.rescale_screenshot_height_factor = (
+                screen_display_size.height / screenshot_h
+            )
         for elem in json_state:
             elem["x"] = int(elem["x"] * self.rescale_screenshot_width_factor)
             elem["y"] = int(elem["y"] * self.rescale_screenshot_height_factor)
             elem["width"] = int(elem["width"] * self.rescale_screenshot_width_factor)
             elem["height"] = int(elem["height"] * self.rescale_screenshot_height_factor)
-        
+
         return State(
             url=url,
             tab=tab,
             json_state=json_state,
             html=self.env.content() if is_application_browser else None,
-            screenshot_base64=None, # must be set later
+            screenshot_base64=None,  # must be set later
             path_to_screenshot=path_to_screenshot,
             active_application_name=active_application_state["name"],
             window_size={
@@ -187,9 +198,9 @@ class Observer(BaseClass):
         )  # height of webpage itself
         browser_chrome_width: int = browser_width - browser_viewport_width
         browser_chrome_height: int = browser_height - browser_viewport_height
-        browser_coords: Dict[
-            str, int
-        ] = env.get_window_rect()  # coords of browser on screen
+        browser_coords: Dict[str, int] = (
+            env.get_window_rect()
+        )  # coords of browser on screen
         browser_x, browser_y = browser_coords["x"], browser_coords["y"]
         for element in json_state:
             # Account for positioning of browser window on screen
@@ -209,7 +220,15 @@ class Observer(BaseClass):
         for element in json_state:
             if self.is_delete_xpath_from_json_state:
                 del element["xpath"]
-            for key in ["role", "text", "type", "label", "is_focused", "is_disabled", "is_checked",]:
+            for key in [
+                "role",
+                "text",
+                "type",
+                "label",
+                "is_focused",
+                "is_disabled",
+                "is_checked",
+            ]:
                 if key in element and element[key] is None or element[key] == False:
                     del element[key]
 

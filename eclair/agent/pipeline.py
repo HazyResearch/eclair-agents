@@ -28,24 +28,24 @@ if is_record_new_demo:
     """)
 
 # Step 1: Generate SOP from demonstration
-# os.system(f"""
-#     python demonstrate/gen_sop.py {path_to_data_folder} \
-#                         --task_descrip "{task_descrip}" \
-#                         --is_act \
-#                         --is_pairwise \
-#                         --is_crop_to_action
-# """)
+os.system(f"""
+    python demonstrate/gen_sop.py {path_to_data_folder} \
+                        --task_descrip "{task_descrip}" \
+                        --is_act \
+                        --is_pairwise \
+                        --is_crop_to_action
+""")
 
 # Step 2: Run ECLAIR on Epic
-# os.system(f"""
-#     python execute/main.py {path_to_data_folder} \
-#                     --task "{task_descrip}" \
-#                     --path_to_sop "{path_to_sop}" \
-#                     --max_calls 50 \
-#                     --env_type desktop \
-#                     --executor uniagent \
-#                     --path_to_sop "{path_to_sop}"
-# """)
+os.system(f"""
+    python execute/main.py {path_to_data_folder} \
+                    --task "{task_descrip}" \
+                    --path_to_sop "{path_to_sop}" \
+                    --max_calls 50 \
+                    --env_type desktop \
+                    --executor uniagent \
+                    --path_to_sop "{path_to_sop}"
+""")
 
 # Step 3: Validate that the workflow was successfully completed
 os.system(f"""

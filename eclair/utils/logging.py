@@ -415,7 +415,6 @@ class Trace:
             )
         return jsonified
 
-
 class ScreenRecorder:
     """
     Helper class for screen recording.
@@ -427,12 +426,22 @@ class ScreenRecorder:
         recorder.stop() # stops recording, saves recording to file
     """
 
-    def __init__(self, path_to_screen_recording: str) -> None:
+    def __init__(self, path_to_screen_recording: str, is_record_audio: bool = False, is_show_clicks: bool = False, display_number: int = 1) -> None:
         self.path_to_screen_recording: str = path_to_screen_recording
+        self.is_record_audio: bool = is_record_audio
+        self.is_show_clicks: bool = is_show_clicks
+        self.display_number: int = display_number # If multiple monitors, choose which one to record on
 
     def start(self) -> None:
+        args = ["screencapture", "-v", self.path_to_screen_recording]
+        if self.is_record_audio:
+            args += ["-k"]
+        if self.is_show_clicks:
+            args += ["-c"]
+        if self.display_number:
+            args += ["-D", str(self.display_number)]
         self.proc = subprocess.Popen(
-            ["screencapture", "-v", self.path_to_screen_recording],
+            args,
             shell=False,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -443,7 +452,6 @@ class ScreenRecorder:
         # Poll until screen recording is done writing to file
         while self.proc.poll() is None:
             pass
-
 
 if __name__ == "__main__":
     recorder = ScreenRecorder("test.mp4")

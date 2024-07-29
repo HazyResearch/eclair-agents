@@ -6,9 +6,6 @@ import time
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import datetime
 
-# from eclair.utils.helpers import run_validators
-
-
 ################################################
 #
 # Log AI agent as completes task
@@ -16,7 +13,6 @@ import datetime
 ################################################
 
 LIST_OF_BROWSER_APPLICATIONS = ["Google Chrome", "Firefox", "Safari"]
-
 
 class LoggedItemBaseClass:
     def __init__(

@@ -39,7 +39,7 @@ Generate the experimental results in [our paper](https://arxiv.org/abs/2405.0371
 
 ### 💾 Data
 
-* [Link to Data](https://drive.google.com/drive/folders/1WL6pMfoAaar5uDEV-SWLalsAzEPsuzJp?usp=drive_link) -- Download this file into the `data/` folder and unzip it.
+* [Link to Data](https://drive.google.com/file/d/1h-sf1WlaIblvxhLNQbDlSiMDp1CkGFx1/view?usp=sharing) -- Download this file into the `data/` folder and unzip it.
 * You should now have a folder at `data/vldb_experiments`.
 
 ### 🚀 How to Run
